@@ -14,13 +14,12 @@ module.exports = {
     '@stylistic',
   ],
   rules: {
+    'vue/attribute-hyphenation': ['error', 'always'],
     'vue/no-deprecated-slot-attribute': 'off',
     'vue/no-multiple-template-root': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/valid-template-root': 'off',
     'vue/no-v-html': 'off',
-    'vue/no-unused-vars': 'error',
-    'vue/attribute-hyphenation': 'error',
     'vue/max-attributes-per-line': ['error', {
       singleline: { max: 1 },
       multiline: { max: 1 }
@@ -73,6 +72,7 @@ module.exports = {
     '@stylistic/object-curly-spacing': ['error', 'always'],
     '@stylistic/quote-props': ['error', 'as-needed'],
     '@stylistic/block-spacing': 'error',
-    '@stylistic/arrow-spacing': 'error'
+    '@stylistic/arrow-spacing': 'error',
+    '@stylistic/brace-style': 'error'
   }
 }

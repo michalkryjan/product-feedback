@@ -1,0 +1,12 @@
+{
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.codeActionsOnSave.mode": "all",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "autoimport.useSemiColon": false,
+  "vue3snippets.semi": false
+}
