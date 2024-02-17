@@ -1,4 +1,18 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "verbatimModuleSyntax": false,
+    "types": [],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
+    "paths": {
+      "#imports": [
+        ".nuxt/imports.d.ts"
+      ]
+    },
+  }
 }
