@@ -7,14 +7,14 @@ module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: { parser: '@typescript-eslint/parser' },
   extends: [
+    '@nuxt/eslint-config',
     'plugin:vue/vue3-recommended',
-    '@nuxt/eslint-config'
+    '@unocss'
   ],
   plugins: [
     '@stylistic',
   ],
   rules: {
-    'vue/attribute-hyphenation': ['error', 'always'],
     'vue/no-deprecated-slot-attribute': 'off',
     'vue/no-multiple-template-root': 'off',
     'vue/multi-word-component-names': 'off',
