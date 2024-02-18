@@ -53,5 +53,5 @@ function getAlignClass (key: NonNullable<IBaseHeadlineProps['align']>): string {
   <component
     :is="tag"
     :class="classes"
-    v-html="value" />
+    v-html="useOrphans(value)" />
 </template>
