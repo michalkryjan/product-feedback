@@ -20,6 +20,10 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/valid-template-root': 'off',
     'vue/no-v-html': 'off',
+    'vue/no-v-text-v-html-on-component': [
+      'error',
+      { allow: ['component'] }
+    ],
     'vue/max-attributes-per-line': ['error', {
       singleline: { max: 1 },
       multiline: { max: 1 }
