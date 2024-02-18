@@ -43,6 +43,7 @@ module.exports = {
       selfClosingTag: 'always'
     }],
     'vue/template-curly-spacing': ['error', 'always'],
+    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: 'props' }],
     '@stylistic/indent': ['error', 2],
     '@stylistic/quotes': ['error', 'single'],
     '@stylistic/semi': ['error', 'never'],
