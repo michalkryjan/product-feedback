@@ -1,11 +1,13 @@
-import { defineConfig, presetUno } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
+import { defineConfig, presetUno } from 'unocss'
 
 export default defineConfig({
   presets: [
     presetUno(),
-    presetRemToPx({ baseFontSize: 4 }),
+    presetRemToPx({ baseFontSize: 4 })
+  ],
+  transformers: [
     transformerVariantGroup()
   ],
   theme: {
