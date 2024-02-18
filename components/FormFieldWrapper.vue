@@ -6,21 +6,18 @@ interface IFormFieldWrapperProps {
   validationRules?: RuleExpression<unknown>
   showErrors?: boolean
   customErrorMessages?: string[]
-  isRequired?: boolean
 }
 
 const props = withDefaults(defineProps<IFormFieldWrapperProps>(), {
   name: '',
   validationRules: undefined,
   showErrors: true,
-  customErrorMessages: () => [],
-  isRequired: false
+  customErrorMessages: () => []
 })
 
 const slots = useSlots()
 const { formFieldWrapper } = useDependencyInjectionSchema()
 
-provide(formFieldWrapper.isRequired, props.isRequired)
 provide(formFieldWrapper.name, props.name)
 
 const hasHeader = computed<boolean>(() => !!slots?.header)
