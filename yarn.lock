@@ -1917,13 +1917,6 @@
     "@unocss/extractor-arbitrary-variants" "0.58.5"
     "@unocss/rule-utils" "0.58.5"
 
-"@unocss/preset-rem-to-px@^0.58.5":
-  version "0.58.5"
-  resolved "https://registry.yarnpkg.com/@unocss/preset-rem-to-px/-/preset-rem-to-px-0.58.5.tgz#cecfd0576792ee7b99bd9416a31c889273388e41"
-  integrity sha512-gM1jy/HoUS/HeiuOt5u+fAAWT/PPLqfC8eWGRrtqm22zKOq0Ea/Lp8Jh+BApc1cGby2xw6lwiFJRbFbiPaFoNw==
-  dependencies:
-    "@unocss/core" "0.58.5"
-
 "@unocss/preset-tagify@0.58.5":
   version "0.58.5"
   resolved "https://registry.yarnpkg.com/@unocss/preset-tagify/-/preset-tagify-0.58.5.tgz#d7b6c86cf9a71b4e9d6bb5051af7ed9d5fe14e44"

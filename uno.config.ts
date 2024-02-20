@@ -1,20 +1,18 @@
-import presetRemToPx from '@unocss/preset-rem-to-px'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { defineConfig, presetUno } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetUno(),
-    presetRemToPx({ baseFontSize: 4 })
+    presetUno()
   ],
   transformers: [
     transformerVariantGroup()
   ],
   theme: {
     breakpoints: {
-      mob_s: '370px',
-      mob_m: '480px',
-      mob_l: '670px',
+      mob_xs: '370px',
+      mob_s: '480px',
+      mob: '670px',
       tm: '980px',
       t: '1200px',
       ls: '1280px',
@@ -48,23 +46,26 @@ export default defineConfig({
       }
     }
   },
+  rules: [
+    ['rounded-primary', { 'border-radius': '1rem' }]
+  ],
   shortcuts: [
     {
-      'title-h1': 'font-bold text-24 leading-35 -tracking-[0.033rem]',
-      'title-h2': 'font-bold text-20 leading-29 -tracking-[0.025rem]',
-      'title-h3': 'font-bold text-18 leading-26 -tracking-[0.025rem]',
-      'title-h4': 'font-bold text-14 leading-20 -tracking-[0.02rem]'
+      'title-h1': 'font-bold text-[2.4rem] leading-[3.5rem] -tracking-[0.033rem]',
+      'title-h2': 'font-bold text-[2rem] leading-[2.9rem] -tracking-[0.025rem]',
+      'title-h3': 'font-bold text-[1.8rem] leading-[2.6rem] -tracking-[0.025rem]',
+      'title-h4': 'font-bold text-[1.4rem] leading-[2rem] -tracking-[0.02rem]'
     },
     {
-      'text-body-1': 'font-regular text-16 leading-23',
-      'text-body-2': 'font-regular text-15 leading-22',
-      'text-body-3': 'font-semibold text-13 leading-19',
-      'text-label-1': 'font-bold text-14 leading-14'
+      'text-body-1': 'font-normal text-[1.6rem] leading-[2.3rem]',
+      'text-body-2': 'font-normal text-[1.5rem] leading-[2.2rem]',
+      'text-body-3': 'font-semibold text-[1.3rem] leading-[1.9rem]',
+      'text-label-1': 'font-bold text-[1.4rem] leading-[1.4rem]'
     },
     {
-      'btn-small': 'p-15',
-      'btn-big': 'p-20',
-      'btn-fit-content': 'py-4'
+      'btn-small': 'p-[1.5rem]',
+      'btn-big': 'p-[2rem]',
+      'btn-fit-content': 'py-[0.4rem]'
     },
     {
       'btn-purple': 'bg-purple-1 hover:bg-purple-2',
