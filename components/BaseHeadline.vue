@@ -4,6 +4,7 @@ interface IBaseHeadlineProps {
   type?: 'h' | 'span' | 'label'
   level?: 1 | 2 | 3 | 4 | 5 | 6
   variant?: 'title-h1' | 'title-h2' | 'title-h3' | 'title-h4'
+  color?: 'white'
   align?: 'left' | 'center' | 'right'
   isOneLine?: boolean
   isUppercase?: boolean
@@ -16,7 +17,9 @@ const props = withDefaults(defineProps<IBaseHeadlineProps>(), {
   type: 'h',
   level: 2,
   variant: 'title-h1',
+  color: 'white',
   align: 'left',
+  isOneLine: false,
   isUppercase: false,
   isUnderline: false
 })
@@ -24,7 +27,8 @@ const props = withDefaults(defineProps<IBaseHeadlineProps>(), {
 const classes = computed<string[]>(() => {
   return [
     props.variant,
-    getAlignClass(props.align),
+    `text-${props.color}`,
+    `text-${props.align}`,
     props.isUppercase ? 'uppercase' : '',
     props.isUnderline ? 'underline' : ''
   ]
@@ -37,16 +41,6 @@ const tag = computed<BaseHeadlineTag>(() => {
     return props.type
   }
 })
-
-function getAlignClass (key: NonNullable<IBaseHeadlineProps['align']>): string {
-  const config: Record<NonNullable<IBaseHeadlineProps['align']>, string> = {
-    left: 'text-left',
-    center: 'text-center',
-    right: 'text-right'
-  }
-
-  return config[key]
-}
 </script>
 
 <template>
