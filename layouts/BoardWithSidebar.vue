@@ -2,7 +2,17 @@
 </script>
 
 <template>
-  <div>
-    <slot />
+  <div class="grid grid-cols-[26rem_1fr] mx-auto max-w-[111rem] w-full gap-x-[3rem]">
+    <div class="col-start-1 col-end-1">
+      <slot name="sidebar" />
+    </div>
+
+    <div class="menu">
+      <slot name="menu" />
+    </div>
+
+    <div class="board">
+      <slot name="board" />
+    </div>
   </div>
 </template>
