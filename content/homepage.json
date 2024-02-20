@@ -1,0 +1,44 @@
+{
+  "title": "Feedback board",
+  "productInfo": {
+    "title": "Frontend Mentor",
+    "content": "Feedback board"
+  },
+  "filters": {
+    "items": [
+      {
+        "label": "UI"
+      },
+      {
+        "label": "UX"
+      },
+      {
+        "label": "Enhancement"
+      },
+      {
+        "label": "Bug"
+      },
+      {
+        "label": "Feature"
+      }
+    ]
+  },
+  "roadmapSummary": {
+    "title": "Roadmap",
+    "button": {
+      "label": "View",
+      "href": "/roadmap"
+    },
+    "items": [
+      {
+        "label": "Planned"
+      },
+      {
+        "label": "In-progress"
+      },
+      {
+        "label": "Live"
+      }
+    ]
+  }
+}
