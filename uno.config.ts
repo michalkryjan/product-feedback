@@ -20,7 +20,6 @@ export default defineConfig({
       ls: '1280px',
       l: '1920px'
     },
-    fontFamily: { base: '"Jost", sans-serif' },
     colors: {
       white: '#FFFFFF',
       lightBlue: '#62BCFA',
@@ -29,7 +28,8 @@ export default defineConfig({
       gray: {
         1: '#647196',
         2: '#F2F4FF',
-        3: '#F7F8FD'
+        3: '#F7F8FD',
+        4: '#CFD7FF'
       },
       purple: {
         1: '#AD1FEA',
@@ -47,23 +47,14 @@ export default defineConfig({
         1: '#D73737',
         2: '#E98888'
       }
+    },
+    fontFamily: {
+      base: '"Jost", sans-serif'
     }
   },
   rules: [
-    ['rounded-primary', { 'border-radius': '1rem' }]
-  ],
-  shortcuts: [
-    {
-      'btn-small': 'p-[1.5rem]',
-      'btn-big': 'p-[2rem]',
-      'btn-fit-content': 'py-[0.4rem]'
-    },
-    {
-      'btn-purple': 'bg-purple-1 hover:bg-purple-2',
-      'btn-blue': 'bg-blue-1 hover:bg-blue-2',
-      'btn-navy': 'bg-navy-1 hover:bg-navy-2',
-      'btn-red': 'bg-red-1 hover:bg-red-2',
-      'btn-darkNavy': 'bg-darkNavy-1'
-    }
+    ['rounded-primary', {
+      'border-radius': '1rem'
+    }]
   ]
 })
