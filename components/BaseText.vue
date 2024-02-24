@@ -1,18 +1,11 @@
 <script setup lang="ts">
-const colorConfig = { white: 'text-white' }
-
-const alignConfig = {
-  left: 'text-left',
-  center: 'text-center',
-  right: 'text-right'
-}
-
 interface IBaseTextProps {
   value: string
   tag?: 'p' | 'div' | 'span' | 'label'
   typography?: 'text-body-1' | 'text-body-2' | 'text-body-3' | 'text-label-1'
-  color?: keyof typeof colorConfig
-  align?: keyof typeof alignConfig
+  color?: 'white'
+  align?: 'left' | 'center' | 'right'
+  transition?: 'color'
   isOneLine?: boolean
   isUppercase?: boolean
   isUnderline?: boolean
@@ -23,17 +16,29 @@ const props = withDefaults(defineProps<IBaseTextProps>(), {
   typography: 'text-body-1',
   color: 'white',
   align: 'left',
+  transition: undefined,
   isOneLine: false,
   isUppercase: false,
   isUnderline: false
 })
 
+const configColor = { white: 'text-white' }
+
+const configAlign = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+}
+
+const configTransition = { color: 'transition-color duration-200' }
+
 const classes = computed<string[]>(() => {
   return [
     'font-base',
     props.typography,
-    props.color ? colorConfig[props.color] : '',
-    props.align ? alignConfig[props.align] : '',
+    configColor[props.color],
+    configAlign[props.align],
+    props.transition ? configTransition[props.transition] : '',
     props.isOneLine ? 'u-text-one-line' : '',
     props.isUppercase ? 'uppercase' : '',
     props.isUnderline ? 'underline' : ''

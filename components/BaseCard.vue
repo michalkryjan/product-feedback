@@ -1,16 +1,8 @@
-<!-- eslint-disable @stylistic/quote-props -->
 <script setup lang="ts">
-const variantConfig = { '1': 'p-[2.4rem]' }
-
-const themeConfig = {
-  'white': 'bg-white',
-  'gradient-1': 'bg-[url(/suggestions/background-header-mobile.png)] mob:bg-[url(/suggestions/background-header-tablet.png)] tm:bg-[url(/suggestions/background-header-desktop.png)] bg-cover bg-no-repeat'
-}
-
 interface IBaseCardProps {
   tag?: 'div'
-  variant?: keyof typeof variantConfig
-  theme?: keyof typeof themeConfig
+  variant?: '1'
+  theme?: 'white' | 'gradient-1'
 }
 
 const props = withDefaults(defineProps<IBaseCardProps>(), {
@@ -19,11 +11,18 @@ const props = withDefaults(defineProps<IBaseCardProps>(), {
   theme: 'white'
 })
 
+const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = { 1: 'p-[2.4rem]' }
+
+const configTheme = {
+  white: 'bg-white',
+  'gradient-1': 'bg-[url(/suggestions/background-header-mobile.png)] mob:bg-[url(/suggestions/background-header-tablet.png)] tm:bg-[url(/suggestions/background-header-desktop.png)] bg-cover bg-no-repeat'
+}
+
 const classes = computed(() => {
   return [
     'flex w-full h-full rounded-primary',
-    variantConfig[props.variant],
-    themeConfig[props.theme]
+    configVariant[props.variant],
+    configTheme[props.theme]
   ]
 })
 </script>
