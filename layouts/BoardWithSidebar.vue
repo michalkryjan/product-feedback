@@ -3,7 +3,7 @@
 
 <template>
   <div class="grid grid-cols-[26rem_1fr] mx-auto max-w-[111rem] w-full gap-x-[3rem] pt-[9rem]">
-    <div class="col-start-1 col-end-1">
+    <div class="col-start-1 col-end-1 flex flex-col gap-[2.4rem]">
       <slot name="sidebar" />
     </div>
 
