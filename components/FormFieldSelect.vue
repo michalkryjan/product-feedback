@@ -2,21 +2,23 @@
 import type { IFormFieldSelectOptionProps } from './FormFieldSelectOption.vue'
 
 interface IFormFieldSelectProps {
-  optionType?: IFormFieldSelectOptionProps['type']
-  optionTheme?: IFormFieldSelectOptionProps['theme']
   options: Array<IFormFieldSelectOptionProps['data']>
   value: string | string[] | undefined
+  optionType?: IFormFieldSelectOptionProps['type']
+  optionTheme?: IFormFieldSelectOptionProps['theme']
   gapSize?: 's1'
+  addOptionAll?: boolean
 }
 
 interface IFormFieldSelectEmits {
-  (e: 'change', val: string | string[] | undefined): void
+  (e: 'change', val: typeof props.value): void
 }
 
 const props = withDefaults(defineProps<IFormFieldSelectProps>(), {
   optionType: 'button',
   optionTheme: 'gray',
-  gapSize: 's1'
+  gapSize: 's1',
+  addOptionAll: false
 })
 
 const emit = defineEmits<IFormFieldSelectEmits>()
@@ -36,14 +38,30 @@ const wrapperClasses = computed(() => {
   ]
 })
 
+const optionsComputed = computed(() => {
+  return props.addOptionAll
+    ? [
+      {
+        label: 'All',
+        value: 'all'
+      },
+      ...props.options
+    ]
+    : props.options
+})
+
 const valueModel = computed<string | string[] | undefined>({
   get: () => props.value,
-  set: (val: string | string[] | undefined) => emit('change', val)
+  set: (val: typeof props.value) => emit('change', val)
 })
 
 function handleSelect (val: string): void {
   if (Array.isArray(valueModel.value)) {
-    valueModel.value = [...valueModel.value, val]
+    if (props.addOptionAll && val === 'all') {
+      valueModel.value = ['all']
+    } else {
+      valueModel.value = [...valueModel.value.filter(item => item !== 'all'), val]
+    }
   } else {
     valueModel.value = val
   }
@@ -51,22 +69,37 @@ function handleSelect (val: string): void {
 
 function handleUnselect (val: string): void {
   if (Array.isArray(valueModel.value)) {
-    valueModel.value = valueModel.value.filter(item => item !== val)
+    if (props.addOptionAll && val !== 'all') {
+      valueModel.value = valueModel.value.filter(item => item !== val)
+
+      if (valueModel.value.length === 1) {
+        valueModel.value = ['all']
+      }
+    } else {
+      valueModel.value = valueModel.value.filter(item => item !== val)
+    }
   } else {
     valueModel.value = undefined
   }
 }
+
+onBeforeMount(() => {
+  if (props.addOptionAll) {
+    handleSelect('all')
+  }
+})
 </script>
 
 <template>
   <div :class="wrapperClasses">
     <form-field-select-option
-      v-for="option in options"
+      v-for="option in optionsComputed"
       :key="option.value"
       v-bind="$attrs"
       :data="option"
       :type="optionType"
       :theme="optionTheme"
+      :is-disabled="Array.isArray(valueModel) && valueModel.length === 1 && valueModel.includes('all') && option.value === 'all'"
       :is-selected="valueModel === option.value || (Array.isArray(valueModel) && valueModel.includes(option.value))"
       @select="handleSelect($event)"
       @unselect="handleUnselect($event)" />

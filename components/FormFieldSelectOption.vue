@@ -7,6 +7,7 @@ export interface IFormFieldSelectOptionProps {
   type?: 'input' | 'button'
   theme?: 'gray'
   isSelected?: boolean
+  isDisabled?: boolean
 }
 
 interface IFormFieldSelectOptionEmits {
@@ -17,7 +18,8 @@ interface IFormFieldSelectOptionEmits {
 const props = withDefaults(defineProps<IFormFieldSelectOptionProps>(), {
   type: 'input',
   theme: 'gray',
-  isSelected: false
+  isSelected: false,
+  isDisabled: false
 })
 
 const emit = defineEmits<IFormFieldSelectOptionEmits>()
@@ -64,10 +66,12 @@ const classesInputWrapper = computed<string[] | null>(() => {
 })
 
 function toggle (): void {
-  if (props.isSelected) {
-    emit('unselect', props.data.value)
-  } else {
-    emit('select', props.data.value)
+  if (!props.isDisabled) {
+    if (props.isSelected) {
+      emit('unselect', props.data.value)
+    } else {
+      emit('select', props.data.value)
+    }
   }
 }
 </script>
@@ -76,6 +80,7 @@ function toggle (): void {
   <span
     v-if="type === 'input'"
     :class="classesInputWrapper"
+    :disabled="isDisabled"
     @click="toggle">
     <input
       v-bind="$attrs"
@@ -97,7 +102,9 @@ function toggle (): void {
   <base-button
     v-else
     :label="data.label"
+    :disabled="isDisabled"
     label-size="s2"
     :theme="isSelected ? configTheme[theme].button.active : configTheme[theme].button.idle"
+    :no-hover-effect="isSelected"
     @click="toggle" />
 </template>
