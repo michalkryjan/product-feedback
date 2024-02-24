@@ -31,13 +31,19 @@
     },
     "items": [
       {
-        "label": "Planned"
+        "label": "Planned",
+        "count": 2,
+        "markerColor": "orange"
       },
       {
-        "label": "In-progress"
+        "label": "In-progress",
+        "count": 3,
+        "markerColor": "purple"
       },
       {
-        "label": "Live"
+        "label": "Live",
+        "count": 1,
+        "markerColor": "lightBlue"
       }
     ]
   }

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 export interface IBaseTextProps {
   value: string
-  tag?: 'p' | 'div' | 'span' | 'label'
+  tag?: 'p' | 'div' | 'span' | 'label' | 'strong'
   typography?: 'body-1' | 'body-2' | 'body-3' | 'label-1' | 'label-2'
-  color?: 'white' | 'blue'
+  color?: 'white' | 'blue' | 'gray'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
   isOneLine?: boolean
@@ -32,7 +32,8 @@ const configTypography: Record<NonNullable<IBaseTextProps['typography']>, string
 
 const configColor = {
   white: 'text-white',
-  blue: 'text-blue-1'
+  blue: 'text-blue-1',
+  gray: 'text-gray-1'
 }
 
 const configAlign: Record<NonNullable<IBaseTextProps['align']>, string> = {
@@ -47,14 +48,15 @@ const configTransition: Record<NonNullable<IBaseTextProps['transition']>, string
 
 const classes = computed<string[]>(() => {
   return [
-    'font-base',
+    'content font-base',
     configTypography[props.typography],
     configColor[props.color],
     configAlign[props.align],
     props.transition ? configTransition[props.transition] : '',
     props.isOneLine ? 'u-text-one-line' : '',
     props.isUppercase ? 'uppercase' : '',
-    props.isUnderline ? 'underline' : ''
+    props.isUnderline ? 'underline underline-offset-2' : '',
+    props.tag === 'strong' ? 'font-bold' : ''
   ]
 })
 </script>

@@ -4,7 +4,7 @@ export interface IBaseHeadlineProps {
   type?: 'h' | 'span' | 'label'
   level?: 1 | 2 | 3 | 4 | 5 | 6
   typography?: 'title-1' | 'title-2' | 'title-3' | 'title-4'
-  color?: 'white'
+  color?: 'white' | 'navy'
   align?: 'left' | 'center' | 'right'
   isOneLine?: boolean
   isUppercase?: boolean
@@ -25,7 +25,8 @@ const props = withDefaults(defineProps<IBaseHeadlineProps>(), {
 })
 
 const configColor: Record<NonNullable<IBaseHeadlineProps['color']>, string> = {
-  white: 'text-white'
+  white: 'text-white',
+  navy: 'text-navy-1'
 }
 
 const configAlign = {
@@ -42,7 +43,7 @@ const classes = computed<string[]>(() => {
     configAlign[props.align],
     props.isOneLine ? 'u-text-one-line' : '',
     props.isUppercase ? 'uppercase' : '',
-    props.isUnderline ? 'underline' : ''
+    props.isUnderline ? 'underline underline-offset-2' : ''
   ]
 })
 

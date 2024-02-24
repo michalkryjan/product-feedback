@@ -7,6 +7,17 @@ export declare namespace Data {
   }
 
   namespace Components {
+    type FormFieldSelectOption = {
+      label: string
+      value: string
+    }
+
+    type ListSummaryItem = {
+      label: string
+      count: number
+      markerColor: 'orange' | 'purple' | 'lightBlue'
+    }
+
     type MainMenuProductInfo = {
       title: string
       content: string
@@ -15,20 +26,13 @@ export declare namespace Data {
     type MainMenuRoadmapSummary = {
       title: string
       button: Base.Button
-      items: Array<{
-        labels: string
-      }>
+      items: ListSummaryItem[]
     }
 
     type MainMenuSuggestionsFilters = {
       items: Array<{
         label: string
       }>
-    }
-
-    type FormFieldSelectOption = {
-      label: string
-      value: string
     }
   }
 }

@@ -5,8 +5,8 @@ import type { IBaseTextProps } from './BaseText.vue'
 export interface IBaseButtonProps {
   label?: string
   type?: 'button' | 'submit'
-  theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple'
-  size?: 's1'
+  theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'only-text-blue'
+  size?: 'fit' | 's1'
   labelSize?: 's1' | 's2'
   href?: string
   isOneLine?: boolean
@@ -36,11 +36,12 @@ const configTheme: {
     navy: 'btn-navy',
     darkNavy: 'btn-darkNavy',
     red: 'btn-red',
-    purple: 'btn-purple'
+    purple: 'btn-purple',
+    'only-text-blue': 'bg-transparent hover:[&_.content]:text-lightBlue-2'
   },
   label: {
     gray: {
-      color: 'blue-1'
+      color: 'blue'
     },
     blue: {
       color: 'white'
@@ -56,11 +57,16 @@ const configTheme: {
     },
     purple: {
       color: 'white'
+    },
+    'only-text-blue': {
+      color: 'blue',
+      isUnderline: true
     }
   }
 }
 
 const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> = {
+  fit: 'w-fit h-fit',
   s1: 'px-[1.6rem] pt-[0.5rem] pb-[0.6rem] min-h-[3rem]'
 }
 
@@ -75,7 +81,7 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partia
 
 const wrapperClasses = computed(() => {
   return [
-    'flex flex-col flex-nowrap justify-center items-center border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer',
+    'flex flex-col flex-nowrap justify-center items-center border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
     props.noHoverEffect ? 'no-hover' : '',
     configWrapperSize[props.size],
     configTheme.wrapper[props.theme]

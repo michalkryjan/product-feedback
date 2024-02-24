@@ -22,9 +22,14 @@ export default defineConfig({
     },
     colors: {
       white: '#FFFFFF',
-      lightBlue: '#62BCFA',
+      lightBlue: {
+        1: '#62BCFA',
+        2: '#8397F8'
+      },
       darkNavy: '#373F68',
-      orange: '#F49F85',
+      orange: {
+        1: '#F49F85'
+      },
       gray: {
         1: '#647196',
         2: '#F2F4FF',
