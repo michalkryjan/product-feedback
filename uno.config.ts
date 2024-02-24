@@ -59,12 +59,12 @@ export default defineConfig({
   ],
   shortcuts: [
     {
-      'btn-gray': 'bg-gray-2 hover:bg-gray-4',
-      'btn-blue': 'bg-blue-1 hover:bg-blue-2',
-      'btn-navy': 'bg-navy-1 hover:bg-navy-2',
-      'btn-darkNavy': 'bg-darkNavy-1',
-      'btn-red': 'bg-red-1 hover:bg-red-2',
-      'btn-purple': 'bg-purple-1 hover:bg-purple-2'
+      'btn-gray': 'bg-gray-2 [&:not([disabled])]:hover:bg-gray-4',
+      'btn-blue': 'bg-blue-1 [&:not([disabled])]:hover:bg-blue-2',
+      'btn-navy': 'bg-navy-1 [&:not([disabled])]:hover:bg-navy-2',
+      'btn-darkNavy': 'bg-darkNavy',
+      'btn-red': 'bg-red-1 [&:not([disabled])]:hover:bg-red-2',
+      'btn-purple': 'bg-purple-1 [&:not([disabled])]:hover:bg-purple-2'
     }
   ]
 })

@@ -22,8 +22,13 @@ export declare namespace Data {
 
     type MainMenuSuggestionsFilters = {
       items: Array<{
-        labels: string
+        label: string
       }>
+    }
+
+    type FormFieldSelectOption = {
+      label: string
+      value: string
     }
   }
 }

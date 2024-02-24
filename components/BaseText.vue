@@ -32,7 +32,7 @@ const configTypography: Record<NonNullable<IBaseTextProps['typography']>, string
 
 const configColor = {
   white: 'text-white',
-  'blue-1': 'blue-1'
+  'blue-1': 'text-blue-1'
 }
 
 const configAlign: Record<NonNullable<IBaseTextProps['align']>, string> = {
