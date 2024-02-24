@@ -61,11 +61,11 @@ module.exports = {
     '@stylistic/object-curly-newline': ['error', {
       ObjectExpression: {
         multiline: true,
-        minProperties: 2
+        minProperties: 1
       },
       ObjectPattern: {
         multiline: true,
-        minProperties: 2
+        minProperties: 1
       },
       ImportDeclaration: 'never',
       ExportDeclaration: {
