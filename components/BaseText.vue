@@ -30,10 +30,11 @@ const props = withDefaults(defineProps<IBaseTextProps>(), {
 
 const classes = computed<string[]>(() => {
   return [
+    'font-base',
     props.typography,
     props.color ? colorConfig[props.color] : '',
     props.align ? alignConfig[props.align] : '',
-    props.isOneLine ? 'is-one-line' : '',
+    props.isOneLine ? 'u-text-one-line' : '',
     props.isUppercase ? 'uppercase' : '',
     props.isUnderline ? 'underline' : ''
   ]
@@ -46,11 +47,3 @@ const classes = computed<string[]>(() => {
     :class="classes"
     v-html="useOrphans(value)" />
 </template>
-
-<style lang="postcss" scoped>
-.is-one-line {
-  @apply inline-flex;
-  inline-size: max-content;
-  text-wrap: nowrap;
-}
-</style>
