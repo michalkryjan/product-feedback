@@ -1,5 +1,5 @@
-import transformerVariantGroup from '@unocss/transformer-variant-group'
 import transformerDirectives from '@unocss/transformer-directives'
+import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { defineConfig, presetUno } from 'unocss'
 
 export default defineConfig({
@@ -20,6 +20,7 @@ export default defineConfig({
       ls: '1280px',
       l: '1920px'
     },
+    fontFamily: { base: '"Jost", sans-serif' },
     colors: {
       white: '#FFFFFF',
       lightBlue: '#62BCFA',
@@ -52,18 +53,6 @@ export default defineConfig({
     ['rounded-primary', { 'border-radius': '1rem' }]
   ],
   shortcuts: [
-    {
-      'title-h1': 'font-bold text-[2.4rem] leading-[3.5rem] -tracking-[0.033rem]',
-      'title-h2': 'font-bold text-[2rem] leading-[2.9rem] -tracking-[0.025rem]',
-      'title-h3': 'font-bold text-[1.8rem] leading-[2.6rem] -tracking-[0.025rem]',
-      'title-h4': 'font-bold text-[1.4rem] leading-[2rem] -tracking-[0.02rem]'
-    },
-    {
-      'text-body-1': 'font-normal text-[1.6rem] leading-[2.3rem]',
-      'text-body-2': 'font-normal text-[1.5rem] leading-[2.2rem]',
-      'text-body-3': 'font-semibold text-[1.3rem] leading-[1.9rem]',
-      'text-label-1': 'font-bold text-[1.4rem] leading-[1.4rem]'
-    },
     {
       'btn-small': 'p-[1.5rem]',
       'btn-big': 'p-[2rem]',

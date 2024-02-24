@@ -1,21 +1,15 @@
 @import 'reset.css';
 @import 'fonts.css';
-/* @import 'typography.css'; */
+@import 'typography.css';
 /* @import 'transitions.css'; */
 @import 'utils.css';
 
 html,
 body {
-  font-size: 62.5%;
-  background-color: #F7F8FD;
+  @apply text-[62.5%] bg-gray-3;
 }
 
 body {
   -webkit-print-color-adjust: exact !important;
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
-
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 100%;
+  @apply text-[1.6rem] font-normal leading-[100%] subpixel-antialiased;
 }

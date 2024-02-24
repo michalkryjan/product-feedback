@@ -1,0 +1,32 @@
+.title-h1 {
+  @apply font-bold text-[2.4rem] leading-[3.5rem] -tracking-[0.033rem];
+}
+
+.title-h2 {
+  @apply font-bold text-[2rem] leading-[2.9rem] -tracking-[0.025rem];
+}
+
+.title-h3 {
+  @apply font-bold text-[1.8rem] leading-[2.6rem] -tracking-[0.025rem];
+}
+
+.title-h4 {
+  @apply font-bold text-[1.4rem] leading-[2rem] -tracking-[0.02rem];
+}
+
+
+.text-body-1 {
+  @apply font-normal text-[1.6rem] leading-[2.3rem];
+}
+
+.text-body-2 {
+  @apply font-normal text-[1.5rem] leading-[2.2rem];
+}
+
+.text-body-3 {
+  @apply font-semibold text-[1.3rem] leading-[1.9rem];
+}
+
+.text-label-1 {
+  @apply font-bold text-[1.4rem] leading-[1.4rem];
+}
