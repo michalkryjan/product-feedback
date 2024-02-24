@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface IBaseHeadlineProps {
+export interface IBaseHeadlineProps {
   value: string
   type?: 'h' | 'span' | 'label'
   level?: 1 | 2 | 3 | 4 | 5 | 6

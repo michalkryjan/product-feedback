@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface IBaseCardProps {
+export interface IBaseCardProps {
   tag?: 'div'
   variant?: '1'
   theme?: 'white' | 'gradient-1'

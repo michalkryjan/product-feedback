@@ -1,9 +1,9 @@
 <script setup lang="ts">
-interface IBaseTextProps {
+export interface IBaseTextProps {
   value: string
   tag?: 'p' | 'div' | 'span' | 'label'
-  typography?: 'text-body-1' | 'text-body-2' | 'text-body-3' | 'text-label-1'
-  color?: 'white'
+  typography?: 'text-body-1' | 'text-body-2' | 'text-body-3' | 'text-label-1' | 'text-label-2'
+  color?: 'white' | 'blue-1'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
   isOneLine?: boolean
@@ -23,7 +23,8 @@ const props = withDefaults(defineProps<IBaseTextProps>(), {
 })
 
 const configColor = {
-  white: 'text-white'
+  white: 'text-white',
+  'blue-1': 'blue-1'
 }
 
 const configAlign: Record<NonNullable<IBaseTextProps['align']>, string> = {
