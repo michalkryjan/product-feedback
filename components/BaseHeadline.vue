@@ -1,11 +1,19 @@
 <script setup lang="ts">
+const colorConfig = { white: 'text-white' }
+
+const alignConfig = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+}
+
 interface IBaseHeadlineProps {
   value: string
   type?: 'h' | 'span' | 'label'
   level?: 1 | 2 | 3 | 4 | 5 | 6
-  variant?: 'title-h1' | 'title-h2' | 'title-h3' | 'title-h4'
-  color?: 'white'
-  align?: 'left' | 'center' | 'right'
+  typography?: 'title-h1' | 'title-h2' | 'title-h3' | 'title-h4'
+  color?: keyof typeof colorConfig
+  align?: keyof typeof alignConfig
   isOneLine?: boolean
   isUppercase?: boolean
   isUnderline?: boolean
@@ -16,7 +24,7 @@ type BaseHeadlineTag = `h${NonNullable<IBaseHeadlineProps['level']>}` | 'span' |
 const props = withDefaults(defineProps<IBaseHeadlineProps>(), {
   type: 'h',
   level: 2,
-  variant: 'title-h1',
+  typography: 'title-h1',
   color: 'white',
   align: 'left',
   isOneLine: false,
@@ -26,9 +34,10 @@ const props = withDefaults(defineProps<IBaseHeadlineProps>(), {
 
 const classes = computed<string[]>(() => {
   return [
-    props.variant,
-    `text-${props.color}`,
-    `text-${props.align}`,
+    props.typography,
+    props.color ? colorConfig[props.color] : '',
+    props.align ? alignConfig[props.align] : '',
+    props.isOneLine ? 'is-one-line' : '',
     props.isUppercase ? 'uppercase' : '',
     props.isUnderline ? 'underline' : ''
   ]
@@ -49,3 +58,11 @@ const tag = computed<BaseHeadlineTag>(() => {
     :class="classes"
     v-html="useOrphans(value)" />
 </template>
+
+<style lang="postcss" scoped>
+.is-one-line {
+  @apply inline-flex;
+  inline-size: max-content;
+  text-wrap: nowrap;
+}
+</style>
