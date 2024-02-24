@@ -27,12 +27,12 @@ const configTheme: {
   label: Record<NonNullable<IBaseButtonProps['theme']>, Partial<IBaseTextProps>>
 } = {
   wrapper: {
-    gray: 'bg-gray-2 hover:bg-gray-4',
-    blue: 'bg-blue-1 hover:bg-blue-2',
-    navy: 'bg-navy-1 hover:bg-navy-2',
-    darkNavy: 'bg-darkNavy-1',
-    red: 'bg-red-1 hover:bg-red-2',
-    purple: 'bg-purple-1 hover:bg-purple-2'
+    gray: 'btn-gray',
+    blue: 'btn-blue',
+    navy: 'btn-navy',
+    darkNavy: 'btn-darkNavy',
+    red: 'btn-red',
+    purple: 'btn-purple'
   },
   label: {
     gray: {
