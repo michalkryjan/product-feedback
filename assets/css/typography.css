@@ -30,3 +30,7 @@
 .text-label-1 {
   @apply font-bold text-[1.4rem] leading-[1.4rem];
 }
+
+.text-label-2 {
+  @apply font-bold text-[1.3rem] leading-[1.3rem];
+}
