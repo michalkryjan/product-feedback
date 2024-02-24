@@ -7,11 +7,8 @@
       <slot name="sidebar" />
     </div>
 
-    <div class="menu">
+    <div class="col-start-2 col-end-2 h-fit flex flex-col">
       <slot name="menu" />
-    </div>
-
-    <div class="board">
       <slot name="board" />
     </div>
   </div>
