@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Data } from 'types/data'
 import type { IBaseButtonProps } from './BaseButton.vue'
+import type { IBaseTextProps } from './BaseText.vue'
 
 export interface IFormFieldSelectOptionProps {
   data: Data.Components.FormFieldSelectOption
@@ -33,6 +34,10 @@ const configTheme: Record<NonNullable<IFormFieldSelectOptionProps['theme']>, {
     idle: string
     active: string
   }
+  inputLabel: {
+    idle: IBaseTextProps['color']
+    active: IBaseTextProps['color']
+  }
   button: {
     idle: IBaseButtonProps['theme']
     active: IBaseButtonProps['theme']
@@ -42,6 +47,10 @@ const configTheme: Record<NonNullable<IFormFieldSelectOptionProps['theme']>, {
     inputWrapper: {
       idle: 'btn-gray',
       active: 'btn-blue'
+    },
+    inputLabel: {
+      idle: 'blue',
+      active: 'white'
     },
     button: {
       idle: 'gray',
@@ -95,6 +104,7 @@ function toggle (): void {
       typography="label-2"
       align="center"
       transition="color"
+      :color="isSelected ? configTheme[theme].inputLabel.active : configTheme[theme].inputLabel.idle"
       is-one-line
       :value="data.label" />
   </span>

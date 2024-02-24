@@ -3,7 +3,7 @@ export interface IBaseTextProps {
   value: string
   tag?: 'p' | 'div' | 'span' | 'label'
   typography?: 'body-1' | 'body-2' | 'body-3' | 'label-1' | 'label-2'
-  color?: 'white' | 'blue-1'
+  color?: 'white' | 'blue'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
   isOneLine?: boolean
@@ -32,7 +32,7 @@ const configTypography: Record<NonNullable<IBaseTextProps['typography']>, string
 
 const configColor = {
   white: 'text-white',
-  'blue-1': 'text-blue-1'
+  blue: 'text-blue-1'
 }
 
 const configAlign: Record<NonNullable<IBaseTextProps['align']>, string> = {
