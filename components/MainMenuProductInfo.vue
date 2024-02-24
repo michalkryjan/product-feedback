@@ -17,7 +17,7 @@ const props = defineProps<IMainMenuProductInfoProps>()
         typography="title-2"
         :value="data.title" />
       <base-text
-        typography="text-body-2"
+        typography="body-2"
         :value="data.content" />
     </div>
   </base-card>

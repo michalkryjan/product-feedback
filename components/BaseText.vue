@@ -2,7 +2,7 @@
 export interface IBaseTextProps {
   value: string
   tag?: 'p' | 'div' | 'span' | 'label'
-  typography?: 'text-body-1' | 'text-body-2' | 'text-body-3' | 'text-label-1' | 'text-label-2'
+  typography?: 'body-1' | 'body-2' | 'body-3' | 'label-1' | 'label-2'
   color?: 'white' | 'blue-1'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
@@ -13,7 +13,7 @@ export interface IBaseTextProps {
 
 const props = withDefaults(defineProps<IBaseTextProps>(), {
   tag: 'p',
-  typography: 'text-body-1',
+  typography: 'body-1',
   color: 'white',
   align: 'left',
   transition: undefined,
@@ -21,6 +21,14 @@ const props = withDefaults(defineProps<IBaseTextProps>(), {
   isUppercase: false,
   isUnderline: false
 })
+
+const configTypography: Record<NonNullable<IBaseTextProps['typography']>, string> = {
+  'body-1': 'text-body-1',
+  'body-2': 'text-body-2',
+  'body-3': 'text-body-3',
+  'label-1': 'text-label-1',
+  'label-2': 'text-label-2'
+}
 
 const configColor = {
   white: 'text-white',
@@ -40,7 +48,7 @@ const configTransition: Record<NonNullable<IBaseTextProps['transition']>, string
 const classes = computed<string[]>(() => {
   return [
     'font-base',
-    props.typography,
+    configTypography[props.typography],
     configColor[props.color],
     configAlign[props.align],
     props.transition ? configTransition[props.transition] : '',
