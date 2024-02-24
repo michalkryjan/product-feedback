@@ -1,4 +1,5 @@
 import transformerVariantGroup from '@unocss/transformer-variant-group'
+import transformerDirectives from '@unocss/transformer-directives'
 import { defineConfig, presetUno } from 'unocss'
 
 export default defineConfig({
@@ -6,7 +7,8 @@ export default defineConfig({
     presetUno()
   ],
   transformers: [
-    transformerVariantGroup()
+    transformerVariantGroup(),
+    transformerDirectives()
   ],
   theme: {
     breakpoints: {

@@ -2001,7 +2001,7 @@
   dependencies:
     "@unocss/core" "0.58.5"
 
-"@unocss/transformer-directives@0.58.5":
+"@unocss/transformer-directives@0.58.5", "@unocss/transformer-directives@^0.58.5":
   version "0.58.5"
   resolved "https://registry.yarnpkg.com/@unocss/transformer-directives/-/transformer-directives-0.58.5.tgz#0ff7827b96b98f5da2b5c7ae26fa2e13153dc79d"
   integrity sha512-allspF5TlT1B2bJSZ1houHScXOTaTPlatLiEmgQKzr/m93rCvktokaO5J6qeN2VXQdpTIsxdA5B8//7UkfTuIA==
