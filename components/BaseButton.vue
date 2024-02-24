@@ -6,7 +6,7 @@ export interface IBaseButtonProps {
   label?: string
   type?: 'button' | 'submit'
   theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'only-text-blue'
-  size?: 'fit' | 's1'
+  size?: 'fit' | 's1' | 's2'
   labelSize?: 's1' | 's2'
   href?: string
   isOneLine?: boolean
@@ -67,7 +67,8 @@ const configTheme: {
 
 const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> = {
   fit: 'w-fit h-fit',
-  s1: 'px-[1.6rem] pt-[0.5rem] pb-[0.6rem] min-h-[3rem]'
+  s1: 'px-[1.6rem] pt-[0.5rem] pb-[0.6rem] min-h-[3rem]',
+  s2: 'px-[2.4rem] pt-[1.25rem] pb-[1.1rem] pb-[1.2rem]'
 }
 
 const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partial<IBaseTextProps>> = {
@@ -132,7 +133,7 @@ const labelAttrs = computed<Partial<IBaseTextProps>>(() => {
     :class="wrapperClasses">
     <slot name="iconTop" />
 
-    <span class="flex flex-row flex-nowrap">
+    <span class="flex flex-row flex-nowrap items-center gap-x-[0.6rem]">
       <slot name="iconLeft" />
 
       <base-text
