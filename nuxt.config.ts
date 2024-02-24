@@ -34,7 +34,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@unocss/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
+    'nuxt-icons'
   ],
   css: ['~/assets/css/main.css']
 })

@@ -12,7 +12,6 @@ const props = withDefaults(defineProps<IBaseIconProps>(), {
 
 const classes = computed(() => {
   return [
-    '[&_svg]:!mb-0',
     props.fillContainer ? '[&>svg]:!w-full [&>svg]:!h-full' : ''
   ]
 })
