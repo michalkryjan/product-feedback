@@ -6,8 +6,23 @@ interface IMainMenuSuggestionsFiltersProps {
 }
 
 const props = defineProps<IMainMenuSuggestionsFiltersProps>()
+
+const optionsAvailable = computed<Data.Components.FormFieldSelectOption[]>(() => {
+  return props.data.items.map(item => ({
+    label: item.label,
+    value: item.label.toLowerCase()
+  }))
+})
+
+const optionsSelected = ref<string[]>([])
 </script>
 
 <template>
-  <div />
+  <base-card>
+    <form-field-select
+      :value="optionsSelected"
+      :options="optionsAvailable"
+      add-option-all
+      @change="optionsSelected = ($event as string[])" />
+  </base-card>
 </template>

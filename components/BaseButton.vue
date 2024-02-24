@@ -11,6 +11,7 @@ export interface IBaseButtonProps {
   href?: string
   isOneLine?: boolean
   disabled?: boolean
+  noHoverEffect?: boolean
 }
 
 const props = withDefaults(defineProps<IBaseButtonProps>(), {
@@ -21,7 +22,8 @@ const props = withDefaults(defineProps<IBaseButtonProps>(), {
   labelSize: 's1',
   isOneLine: true,
   href: undefined,
-  disabled: false
+  disabled: false,
+  noHoverEffect: false
 })
 
 const configTheme: {
@@ -74,6 +76,7 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partia
 const wrapperClasses = computed(() => {
   return [
     'flex flex-col flex-nowrap justify-center items-center border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer',
+    props.noHoverEffect ? 'no-hover' : '',
     configWrapperSize[props.size],
     configTheme.wrapper[props.theme]
   ]
