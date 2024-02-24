@@ -24,7 +24,9 @@ const props = withDefaults(defineProps<IBaseHeadlineProps>(), {
   isUnderline: false
 })
 
-const configColor = { white: 'text-white' }
+const configColor: Record<NonNullable<IBaseHeadlineProps['color']>, string> = {
+  white: 'text-white'
+}
 
 const configAlign = {
   left: 'text-left',

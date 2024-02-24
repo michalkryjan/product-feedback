@@ -22,15 +22,19 @@ const props = withDefaults(defineProps<IBaseTextProps>(), {
   isUnderline: false
 })
 
-const configColor = { white: 'text-white' }
+const configColor = {
+  white: 'text-white'
+}
 
-const configAlign = {
+const configAlign: Record<NonNullable<IBaseTextProps['align']>, string> = {
   left: 'text-left',
   center: 'text-center',
   right: 'text-right'
 }
 
-const configTransition = { color: 'transition-color duration-200' }
+const configTransition: Record<NonNullable<IBaseTextProps['transition']>, string> = {
+  color: 'transition-color duration-200'
+}
 
 const classes = computed<string[]>(() => {
   return [

@@ -11,9 +11,11 @@ const props = withDefaults(defineProps<IBaseCardProps>(), {
   theme: 'white'
 })
 
-const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = { 1: 'p-[2.4rem]' }
+const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = {
+  1: 'p-[2.4rem]'
+}
 
-const configTheme = {
+const configTheme: Record<NonNullable<IBaseCardProps['theme']>, string> = {
   white: 'bg-white',
   'gradient-1': 'bg-[url(/suggestions/background-header-mobile.png)] mob:bg-[url(/suggestions/background-header-tablet.png)] tm:bg-[url(/suggestions/background-header-desktop.png)] bg-cover bg-no-repeat'
 }
