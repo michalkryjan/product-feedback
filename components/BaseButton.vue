@@ -10,7 +10,6 @@ export interface IBaseButtonProps {
   href?: string
   isOneLine?: boolean
   disabled?: boolean
-  loading?: boolean
 }
 
 const props = withDefaults(defineProps<IBaseButtonProps>(), {
@@ -20,8 +19,7 @@ const props = withDefaults(defineProps<IBaseButtonProps>(), {
   labelSize: 's1',
   isOneLine: true,
   href: undefined,
-  disabled: false,
-  loading: false
+  disabled: false
 })
 
 const configTheme: {
@@ -69,7 +67,7 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partia
 
 const wrapperClasses = computed(() => {
   return [
-    'flex flex-col flex-nowrap',
+    'flex flex-col flex-nowrap transition-colors duration-200',
     configTheme.wrapper[props.theme]
   ]
 })
@@ -99,6 +97,8 @@ const labelAttrs = computed<Partial<IBaseTextProps>>(() => {
   if (props.label) {
     return {
       tag: 'span',
+      align: 'center',
+      transition: 'color',
       isOneLine: props.isOneLine,
       ...configLabelSize[props.labelSize],
       ...configTheme.label[props.theme]
