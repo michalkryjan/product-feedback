@@ -11,7 +11,7 @@ interface IBaseHeadlineProps {
   value: string
   type?: 'h' | 'span' | 'label'
   level?: 1 | 2 | 3 | 4 | 5 | 6
-  typography?: 'title-h1' | 'title-h2' | 'title-h3' | 'title-h4'
+  typography?: 'title-1' | 'title-2' | 'title-3' | 'title-4'
   color?: keyof typeof colorConfig
   align?: keyof typeof alignConfig
   isOneLine?: boolean
@@ -24,7 +24,7 @@ type BaseHeadlineTag = `h${NonNullable<IBaseHeadlineProps['level']>}` | 'span' |
 const props = withDefaults(defineProps<IBaseHeadlineProps>(), {
   type: 'h',
   level: 2,
-  typography: 'title-h1',
+  typography: 'title-1',
   color: 'white',
   align: 'left',
   isOneLine: false,
