@@ -13,8 +13,12 @@ const props = defineProps<IMainMenuProductInfoProps>()
     theme="gradient-1"
     class="min-h-[13.7rem]">
     <div class="mt-auto">
-      <base-headline :value="data.title" />
-      <base-text :value="data.content" />
+      <base-headline
+        typography="title-2"
+        :value="data.title" />
+      <base-text
+        typography="text-body-2"
+        :value="data.content" />
     </div>
   </base-card>
 </template>
