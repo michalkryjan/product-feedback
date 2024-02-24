@@ -58,10 +58,10 @@ const configTheme: {
 
 const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partial<IBaseTextProps>> = {
   s1: {
-    typography: 'text-label-1'
+    typography: 'label-1'
   },
   s2: {
-    typography: 'text-label-2'
+    typography: 'label-2'
   }
 }
 
