@@ -38,8 +38,8 @@ const classes = computed<string[]>(() => {
   return [
     'font-base',
     props.typography,
-    props.color ? configColor[props.color] : '',
-    props.align ? configAlign[props.align] : '',
+    configColor[props.color],
+    configAlign[props.align],
     props.isOneLine ? 'u-text-one-line' : '',
     props.isUppercase ? 'uppercase' : '',
     props.isUnderline ? 'underline' : ''
