@@ -14,6 +14,7 @@ const props = defineProps<IMainMenuProductInfoProps>()
     class="min-h-[13.7rem]">
     <div class="mt-auto">
       <base-headline
+        :level="1"
         typography="title-2"
         :value="data.title" />
       <base-text
