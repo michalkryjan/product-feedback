@@ -1,36 +1,36 @@
 .title-1 {
-  @apply font-bold text-[2.4rem] leading-[3.5rem] -tracking-[0.033rem];
+  @apply font-bold text-24 leading-145 -tracking-033;
 }
 
 .title-2 {
-  @apply font-bold text-[2rem] leading-[2.9rem] -tracking-[0.025rem];
+  @apply font-bold text-20 leading-145 -tracking-025;
 }
 
 .title-3 {
-  @apply font-bold text-[1.8rem] leading-[2.6rem] -tracking-[0.025rem];
+  @apply font-bold text-18 leading-145 -tracking-025;
 }
 
 .title-4 {
-  @apply font-bold text-[1.4rem] leading-[2rem] -tracking-[0.02rem];
+  @apply font-bold text-14 leading-145 -tracking-020;
 }
 
 
 .text-body-1 {
-  @apply font-normal text-[1.6rem] leading-[2.3rem];
+  @apply font-normal text-16 leading-145;
 }
 
 .text-body-2 {
-  @apply font-normal text-[1.5rem] leading-[2.2rem];
+  @apply font-normal text-15 leading-145;
 }
 
 .text-body-3 {
-  @apply font-semibold text-[1.3rem] leading-[1.9rem];
+  @apply font-semibold text-13 leading-145;
 }
 
 .text-label-1 {
-  @apply font-bold text-[1.4rem] leading-[1.4rem];
+  @apply font-bold text-14 leading-100;
 }
 
 .text-label-2 {
-  @apply font-semibold text-[1.3rem] leading-[1.3rem];
+  @apply font-semibold text-13 leading-100;
 }

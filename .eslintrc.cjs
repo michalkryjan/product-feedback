@@ -5,11 +5,12 @@ module.exports = {
     node: true
   },
   parser: 'vue-eslint-parser',
-  parserOptions: { parser: '@typescript-eslint/parser' },
+  parserOptions: {
+    parser: '@typescript-eslint/parser'
+  },
   extends: [
     '@nuxt/eslint-config',
-    'plugin:vue/vue3-recommended',
-    '@unocss'
+    'plugin:vue/vue3-recommended'
   ],
   plugins: [
     '@stylistic',
@@ -22,11 +23,17 @@ module.exports = {
     'vue/no-v-html': 'off',
     'vue/no-v-text-v-html-on-component': [
       'error',
-      { allow: ['component'] }
+      {
+        allow: ['component']
+      }
     ],
     'vue/max-attributes-per-line': ['error', {
-      singleline: { max: 1 },
-      multiline: { max: 1 }
+      singleline: {
+        max: 1
+      },
+      multiline: {
+        max: 1
+      }
     }],
     'vue/html-closing-bracket-newline': ['error', {
       singleline: 'never',
@@ -47,7 +54,9 @@ module.exports = {
       selfClosingTag: 'always'
     }],
     'vue/template-curly-spacing': ['error', 'always'],
-    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: 'props' }],
+    '@typescript-eslint/no-unused-vars': ['error', {
+      varsIgnorePattern: 'props'
+    }],
     '@stylistic/indent': ['error', 2],
     '@stylistic/quotes': ['error', 'single'],
     '@stylistic/semi': ['error', 'never'],

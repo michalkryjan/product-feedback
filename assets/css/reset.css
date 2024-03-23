@@ -15,7 +15,8 @@ input,
 optgroup,
 select,
 textarea {
-  @apply p-0 font-[inherit];
+  @apply p-0;
+  font-family: inherit;
 }
 
 h1,

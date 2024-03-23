@@ -33,9 +33,12 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/content',
-    '@unocss/nuxt',
+    '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     'nuxt-icons'
   ],
-  css: ['~/assets/css/main.css']
+  tailwindcss: {
+    cssPath: '~/assets/css/main.css',
+    exposeConfig: true
+  },
 })

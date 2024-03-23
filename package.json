@@ -15,12 +15,10 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@savvywombat/tailwindcss-grid-areas": "^4.0.0",
     "@stylistic/eslint-plugin": "^1.6.2",
     "@typescript-eslint/parser": "^7.0.1",
-    "@unocss/eslint-config": "^0.58.5",
-    "@unocss/nuxt": "^0.58.5",
-    "@unocss/transformer-directives": "^0.58.5",
-    "@unocss/transformer-variant-group": "^0.58.5",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
   },

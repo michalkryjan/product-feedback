@@ -5,7 +5,7 @@ import type { IBaseTextProps } from './BaseText.vue'
 export interface IBaseButtonProps {
   label?: string
   type?: 'button' | 'submit'
-  theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'only-text-blue'
+  theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'text-blue'
   size?: 'fit' | 's1' | 's2'
   labelSize?: 's1' | 's2'
   href?: string
@@ -37,7 +37,7 @@ const configTheme: {
     darkNavy: 'btn-darkNavy',
     red: 'btn-red',
     purple: 'btn-purple',
-    'only-text-blue': 'bg-transparent hover:[&_.content]:text-lightBlue-2'
+    'text-blue': 'btn-text-blue'
   },
   label: {
     gray: {
@@ -58,7 +58,7 @@ const configTheme: {
     purple: {
       color: 'white'
     },
-    'only-text-blue': {
+    'text-blue': {
       color: 'blue',
       isUnderline: true
     }
@@ -139,9 +139,64 @@ const labelAttrs = computed<Partial<IBaseTextProps>>(() => {
       <base-text
         v-if="label"
         :value="label"
-        v-bind="labelAttrs" />
+        v-bind="labelAttrs"
+        class="label" />
 
       <slot name="iconRight" />
     </span>
   </component>
 </template>
+
+<style lang="postcss">
+.btn-gray {
+  @apply bg-gray-2;
+
+  &:not(:disabled):not(.no-hover):hover {
+    @apply bg-gray-4;
+  }
+}
+
+.btn-blue {
+  @apply bg-blue-1;
+
+  &:not(:disabled):not(.no-hover):hover {
+    @apply bg-blue-2;
+  }
+}
+
+.btn-navy {
+  @apply bg-navy-1;
+
+  &:not(:disabled):not(.no-hover):hover {
+    @apply bg-navy-2;
+  }
+}
+
+.btn-darkNavy {
+  @apply bg-darkNavy;
+}
+
+.btn-red {
+  @apply bg-red-1;
+
+  &:not(:disabled):not(.no-hover):hover {
+    @apply bg-red-2;
+  }
+}
+
+.btn-purple {
+  @apply bg-purple-1;
+
+  &:not(:disabled):not(.no-hover):hover {
+    @apply bg-purple-2;
+  }
+}
+
+.btn-text-blue {
+  @apply bg-transparent;
+
+  &:hover .label {
+    @apply text-lightBlue-2;
+  }
+}
+</style>
