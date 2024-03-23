@@ -1,5 +1,7 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'form' })
+definePageMeta({
+  layout: 'form'
+})
 </script>
 
 <template>

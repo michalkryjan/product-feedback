@@ -19,7 +19,7 @@ const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = {
 
 const configTheme: Record<NonNullable<IBaseCardProps['theme']>, string> = {
   white: 'bg-white',
-  'gradient-1': 'bg-[url(/suggestions/background-header-mobile.png)] mob:bg-[url(/suggestions/background-header-tablet.png)] tm:bg-[url(/suggestions/background-header-desktop.png)] bg-cover bg-no-repeat'
+  'gradient-1': 'bg-gradientCardMobile mob:bg-gradientCardTablet tm:bg-gradientCardDesktop bg-cover bg-no-repeat'
 }
 
 const configLayout: Record<NonNullable<IBaseCardProps['layout']>, string> = {

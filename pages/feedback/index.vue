@@ -1,5 +1,7 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'details' })
+definePageMeta({
+  layout: 'details'
+})
 </script>
 
 <template>

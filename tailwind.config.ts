@@ -81,13 +81,27 @@ export default {
     },
     spacing: {
       0: '0rem',
+      6: '0.6rem',
+      8: '0.8rem',
+      14: '1.4rem',
+      16: '1.6rem',
+      20: '2rem',
+      24: '2.4rem',
+      30: '3rem',
+      48: '4.8rem',
+      54: '5.4rem',
+      90: '9rem',
       min: 'min-content',
       max: 'max-content'
+    },
+    top: {
+      6: '0.6rem'
     },
     minHeight: {
       fit: 'fit-content',
       min: 'min-content',
-      max: 'max-content'
+      max: 'max-content',
+      600: '60rem'
     },
     maxHeight: {
       full: '100%',
@@ -98,18 +112,27 @@ export default {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content',
-      320: '32rem'
+      130: '13rem',
+      320: '32rem',
+      430: '43rem',
+      1110: '111rem'
     },
     minWidth: {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content'
     },
+    width: {
+      full: '100%',
+      fit: 'fit-content',
+      max: 'max-content',
+      8: '0.8rem'
+    },
     backgroundImage: {
       none: 'unset',
-    },
-    boxShadow: {
-      cardPrimary: '',
+      gradientCardMobile: 'url(/suggestions/background-header-mobile.png)',
+      gradientCardTablet: 'url(/suggestions/background-header-tablet.png)',
+      gradientCardDesktop: 'url(/suggestions/background-header-desktop.png)'
     },
     aspectRatio: {
       auto: 'auto',
@@ -118,9 +141,7 @@ export default {
     },
     transitionDuration: {
       DEFAULT: '300ms',
-    },
-    width: {
-      innerDefault: '136.6rem'
+      200: '200ms'
     },
     flexGrow: {
       1: '1',

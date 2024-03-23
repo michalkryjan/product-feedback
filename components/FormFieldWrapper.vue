@@ -16,7 +16,9 @@ const props = withDefaults(defineProps<IFormFieldWrapperProps>(), {
 })
 
 const slots = useSlots()
-const { formFieldWrapper } = useDependencyInjectionSchema()
+const {
+  formFieldWrapper
+} = useDependencyInjectionSchema()
 
 provide(formFieldWrapper.name, props.name)
 

@@ -2,24 +2,24 @@
 </script>
 
 <template>
-  <base-card class="min-h-[60rem] items-center justify-center">
+  <base-card class="min-h-600 items-center justify-center">
     <img
       src="/svg/illustration-empty.svg"
-      class="mb-[5.3rem] max-w-[13rem]">
+      class="mb-54 max-w-130">
 
     <base-headline
       typography="title-1"
       align="center"
       color="navy"
       value="There is no feedback yet."
-      class="mb-[1.6rem]" />
+      class="mb-16" />
 
     <base-text
       typography="body-1"
       align="center"
       color="gray"
       value="Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app."
-      class="mb-[4.8rem] max-w-[43rem]" />
+      class="mb-48 max-w-430" />
 
     <base-button
       size="s2"

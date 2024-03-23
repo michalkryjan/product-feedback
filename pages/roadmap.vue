@@ -1,5 +1,7 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'board' })
+definePageMeta({
+  layout: 'board'
+})
 </script>
 
 <template>

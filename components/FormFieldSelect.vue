@@ -28,7 +28,7 @@ defineOptions({
 })
 
 const configGapSize: Record<NonNullable<IFormFieldSelectProps['gapSize']>, string> = {
-  s1: 'gap-x-[0.8rem] gap-y-[1.4rem]'
+  s1: 'gap-x-8 gap-y-14'
 }
 
 const wrapperClasses = computed(() => {

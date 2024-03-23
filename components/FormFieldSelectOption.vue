@@ -68,7 +68,7 @@ const fieldName = inject(formFieldWrapper.name, '')
 const classesInputWrapper = computed<string[] | null>(() => {
   return props.type === 'input'
     ? [
-      'flex justify-center items-center w-fit px-[1.6rem] py-[0.6rem] rounded-primary transition-colors duration-200 cursor-pointer select-none',
+      'flex justify-center items-center w-fit px-16 py-6 rounded-primary transition-colors duration-200 cursor-pointer select-none',
       props.isSelected ? configTheme[props.theme].inputWrapper.active : configTheme[props.theme].inputWrapper.idle
     ]
     : null

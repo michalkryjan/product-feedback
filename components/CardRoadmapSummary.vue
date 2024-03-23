@@ -10,7 +10,7 @@ const props = defineProps<IMainMenuRoadmapSummaryProps>()
 
 <template>
   <base-card>
-    <div class="mb-[2.4rem] w-full inline-flex items-center justify-between">
+    <div class="mb-24 w-full inline-flex items-center justify-between">
       <base-headline
         :level="2"
         typography="title-3"
@@ -22,7 +22,7 @@ const props = defineProps<IMainMenuRoadmapSummaryProps>()
         :href="data.button.href"
         size="fit"
         label-size="s2"
-        theme="only-text-blue" />
+        theme="text-blue" />
     </div>
 
     <list-summary :items="data.items" />

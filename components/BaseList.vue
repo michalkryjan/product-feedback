@@ -9,12 +9,12 @@ const props = withDefaults(defineProps<IBaseListProps>(), {
 })
 
 const configGapSize: Record<NonNullable<IBaseListProps['gapSize']>, string> = {
-  s1: '[&>li]:mb-[0.8rem]'
+  s1: '[&_li]:mb-[0.8rem]'
 }
 
 const classes = computed(() => {
   return [
-    'list-base m-0 p-0 [&>li:last-child]:mb-0',
+    'list-base',
     configGapSize[props.gapSize]
   ]
 })
@@ -31,15 +31,18 @@ const classes = computed(() => {
 <style lang="postcss">
 ul.list-base,
 ol.list-base {
-  @apply list-none;
-}
+  @apply list-none flex flex-col m-0 p-0;
 
-ul.list-base li,
-ol.list-base li {
-  @apply relative pl-[2.4rem];
+  & li {
+    @apply relative pl-24;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
 }
 
 ul.list-base li::before {
-  @apply absolute left-0 top-[0.6rem] content-[""] w-[0.8rem] h-[0.8rem] rounded-full bg-current;
+  @apply absolute left-0 top-6 content-[""] w-8 h-8 rounded-full bg-current;
 }
 </style>

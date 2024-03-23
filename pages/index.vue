@@ -3,12 +3,14 @@ import type { Content } from 'types/content'
 
 const {
   data: globalContent
-} = await useAsyncData('global',
+} = await useAsyncData(
+  'global',
   () => queryContent<Content.Global>('global').findOne()
 )
 const {
   data: pageContent
-} = await useAsyncData('homepage',
+} = await useAsyncData(
+  'homepage',
   () => queryContent<Content.Homepage>('homepage').findOne()
 )
 

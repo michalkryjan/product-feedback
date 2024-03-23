@@ -2,8 +2,8 @@
 </script>
 
 <template>
-  <div class="grid grid-cols-[26rem_1fr] mx-auto max-w-[111rem] w-full gap-x-[3rem] pt-[9rem]">
-    <div class="col-start-1 col-end-1 flex flex-col gap-[2.4rem]">
+  <div class="grid grid-cols-[26rem_1fr] mx-auto max-w-1110 w-full gap-x-30 pt-90">
+    <div class="col-start-1 col-end-1 flex flex-col gap-24">
       <slot name="sidebar" />
     </div>
 
