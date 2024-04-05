@@ -10,6 +10,7 @@
       "./types"
     ],
     "paths": {
+      "*": ["types/*.d.ts"],
       "#imports": [
         ".nuxt/imports.d.ts"
       ]

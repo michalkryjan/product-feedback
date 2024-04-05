@@ -101,7 +101,7 @@ function toggle (): void {
     <base-content
       :id="fieldName + '-' + data.value"
       tag="span"
-      typography="label-2"
+      typography="text-label-2"
       align="center"
       transition="color"
       :color="isSelected ? configTheme[theme].inputLabel.active : configTheme[theme].inputLabel.idle"

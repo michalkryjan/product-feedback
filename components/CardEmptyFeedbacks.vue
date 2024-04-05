@@ -16,7 +16,7 @@
     </base-headline>
 
     <base-content
-      typography="body-1"
+      typography="text-body-1"
       align="center"
       color="gray"
       class="mb-48 max-w-430">

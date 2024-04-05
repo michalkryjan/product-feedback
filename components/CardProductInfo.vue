@@ -19,7 +19,7 @@ const props = defineProps<IMainMenuProductInfoProps>()
         <span v-html="useOrphans(data.title)" />
       </base-headline>
 
-      <base-content typography="body-2">
+      <base-content typography="text-body-2">
         <span v-html="useOrphans(data.content)" />
       </base-content>
     </div>

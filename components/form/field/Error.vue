@@ -9,7 +9,7 @@ const props = defineProps<IFormFieldErrorProps>()
 <template>
   <base-content
     tag="span"
-    typography="label-3"
+    typography="text-label-3"
     color="red">
     <span v-html="useOrphans(message)" />
   </base-content>

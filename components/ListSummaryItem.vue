@@ -25,14 +25,14 @@ const classes = computed(() => {
   <li :class="classes">
     <base-content
       tag="span"
-      typography="body-1"
+      typography="text-body-1"
       color="gray">
       <span v-html="useOrphans(data.label)" />
     </base-content>
 
     <base-content
       tag="strong"
-      typography="body-1"
+      typography="text-body-1"
       color="gray">
       <span v-html="useOrphans(data.count.toString())" />
     </base-content>
