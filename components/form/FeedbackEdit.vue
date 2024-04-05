@@ -123,13 +123,15 @@ watch(values, () => {
           theme="red"
           label="Delete"
           is-one-line
-          class="mr-auto" />
+          class="mr-auto"
+          href="/" />
 
         <base-button
           size="s2"
           theme="navy"
           label="Cancel"
-          is-one-line />
+          is-one-line
+          href="/" />
 
         <base-button
           type="submit"

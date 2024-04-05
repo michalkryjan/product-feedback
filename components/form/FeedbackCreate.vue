@@ -103,7 +103,8 @@ watch(values, () => {
           size="s2"
           theme="navy"
           label="Cancel"
-          is-one-line />
+          is-one-line
+          href="/" />
 
         <base-button
           type="submit"
