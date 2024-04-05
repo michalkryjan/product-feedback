@@ -9,3 +9,11 @@ type Typography = |
   'text-label-1' |
   'text-label-2' |
   'text-label-3'
+
+type Feedback = {
+  id: string
+  title: string
+  category: string
+  status: string
+  details: string
+}
