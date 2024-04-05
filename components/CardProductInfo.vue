@@ -17,7 +17,7 @@ const props = defineProps<IMainMenuProductInfoProps>()
         :level="1"
         typography="title-2"
         :value="data.title" />
-      <base-text
+      <base-content
         typography="body-2"
         :value="data.content" />
     </div>

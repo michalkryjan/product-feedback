@@ -7,5 +7,5 @@ const props = defineProps<IFormFieldErrorProps>()
 </script>
 
 <template>
-  <base-text value="message" />
+  <base-content value="message" />
 </template>

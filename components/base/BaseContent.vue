@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export interface IBaseTextProps {
+export interface IBaseContentProps {
   value: string
   tag?: 'p' | 'div' | 'span' | 'label' | 'strong'
   typography?: 'body-1' | 'body-2' | 'body-3' | 'label-1' | 'label-2'
@@ -11,7 +11,7 @@ export interface IBaseTextProps {
   isUnderline?: boolean
 }
 
-const props = withDefaults(defineProps<IBaseTextProps>(), {
+const props = withDefaults(defineProps<IBaseContentProps>(), {
   tag: 'p',
   typography: 'body-1',
   color: 'white',
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<IBaseTextProps>(), {
   isUnderline: false
 })
 
-const configTypography: Record<NonNullable<IBaseTextProps['typography']>, string> = {
+const configTypography: Record<NonNullable<IBaseContentProps['typography']>, string> = {
   'body-1': 'text-body-1',
   'body-2': 'text-body-2',
   'body-3': 'text-body-3',
@@ -36,13 +36,13 @@ const configColor = {
   gray: 'text-gray-1'
 }
 
-const configAlign: Record<NonNullable<IBaseTextProps['align']>, string> = {
+const configAlign: Record<NonNullable<IBaseContentProps['align']>, string> = {
   left: 'text-left',
   center: 'text-center',
   right: 'text-right'
 }
 
-const configTransition: Record<NonNullable<IBaseTextProps['transition']>, string> = {
+const configTransition: Record<NonNullable<IBaseContentProps['transition']>, string> = {
   color: 'transition-color duration-200'
 }
 

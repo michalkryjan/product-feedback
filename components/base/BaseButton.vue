@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NuxtLinkProps } from 'nuxt/app'
-import type { IBaseTextProps } from './BaseText.vue'
+import type { IBaseContentProps } from './BaseContent.vue'
 
 export interface IBaseButtonProps {
   label?: string
@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<IBaseButtonProps>(), {
 
 const configTheme: {
   wrapper: Record<NonNullable<IBaseButtonProps['theme']>, string>
-  label: Record<NonNullable<IBaseButtonProps['theme']>, Partial<IBaseTextProps>>
+  label: Record<NonNullable<IBaseButtonProps['theme']>, Partial<IBaseContentProps>>
 } = {
   wrapper: {
     gray: 'btn-gray',
@@ -71,7 +71,7 @@ const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> =
   s2: 'px-[2.4rem] pt-[1.25rem] pb-[1.1rem] pb-[1.2rem]'
 }
 
-const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partial<IBaseTextProps>> = {
+const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partial<IBaseContentProps>> = {
   s1: {
     typography: 'label-1'
   },
@@ -110,7 +110,7 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
   }
 })
 
-const labelAttrs = computed<Partial<IBaseTextProps>>(() => {
+const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
   if (props.label) {
     return {
       tag: 'span',
@@ -136,7 +136,7 @@ const labelAttrs = computed<Partial<IBaseTextProps>>(() => {
     <span class="flex flex-row flex-nowrap items-center gap-x-[0.6rem]">
       <slot name="iconLeft" />
 
-      <base-text
+      <base-content
         v-if="label"
         :value="label"
         v-bind="labelAttrs"

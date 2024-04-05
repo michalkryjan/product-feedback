@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Data } from 'types/data'
-import type { IBaseButtonProps } from './BaseButton.vue'
-import type { IBaseTextProps } from './BaseText.vue'
+import type { IBaseButtonProps } from './base/BaseButton.vue'
+import type { IBaseContentProps } from './base/BaseContent.vue'
 
 export interface IFormFieldSelectOptionProps {
   data: Data.Components.FormFieldSelectOption
@@ -35,8 +35,8 @@ const configTheme: Record<NonNullable<IFormFieldSelectOptionProps['theme']>, {
     active: string
   }
   inputLabel: {
-    idle: IBaseTextProps['color']
-    active: IBaseTextProps['color']
+    idle: IBaseContentProps['color']
+    active: IBaseContentProps['color']
   }
   button: {
     idle: IBaseButtonProps['theme']
@@ -98,7 +98,7 @@ function toggle (): void {
       class="hidden"
       :aria-labelledby="fieldName + '-' + data.value">
 
-    <base-text
+    <base-content
       :id="fieldName + '-' + data.value"
       tag="span"
       typography="label-2"

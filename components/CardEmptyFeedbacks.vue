@@ -14,7 +14,7 @@
       value="There is no feedback yet."
       class="mb-16" />
 
-    <base-text
+    <base-content
       typography="body-1"
       align="center"
       color="gray"

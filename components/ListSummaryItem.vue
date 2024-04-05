@@ -23,13 +23,13 @@ const classes = computed(() => {
 
 <template>
   <li :class="classes">
-    <base-text
+    <base-content
       tag="span"
       typography="body-1"
       color="gray"
       :value="data.label" />
 
-    <base-text
+    <base-content
       tag="strong"
       typography="body-1"
       color="gray"
