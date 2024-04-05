@@ -88,8 +88,11 @@ export default {
       20: '2rem',
       24: '2.4rem',
       30: '3rem',
+      34: '3.4rem',
+      40: '4rem',
       48: '4.8rem',
       54: '5.4rem',
+      56: '5.6rem',
       90: '9rem',
       min: 'min-content',
       max: 'max-content'
@@ -115,7 +118,12 @@ export default {
       130: '13rem',
       320: '32rem',
       430: '43rem',
-      1110: '111rem'
+      588: '58.8rem',
+      620: '62rem',
+      778: '77.8rem',
+      810: '81rem',
+      1158: '115.8rem',
+      1190: '119rem'
     },
     minWidth: {
       full: '100%',
