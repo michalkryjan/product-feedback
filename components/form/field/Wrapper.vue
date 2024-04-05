@@ -4,15 +4,11 @@ import { RuleExpression, Field as VeeField } from 'vee-validate'
 interface IFormFieldWrapperProps {
   name?: string
   validationRules?: RuleExpression<unknown>
-  showErrors?: boolean
-  customErrorMessages?: string[]
 }
 
 const props = withDefaults(defineProps<IFormFieldWrapperProps>(), {
   name: '',
-  validationRules: undefined,
-  showErrors: true,
-  customErrorMessages: () => []
+  validationRules: undefined
 })
 
 const slots = useSlots()
@@ -50,9 +46,9 @@ const classes = computed<string[]>(() => {
         :handle-change="handleChange"
         :handle-blur="handleBlur" />
 
-      <div v-if="(errors.length && showErrors) || (customErrorMessages.length && showErrors)">
+      <div v-if="errors.length">
         <form-field-error
-          v-for="(error, index) in [...errors, ...customErrorMessages]"
+          v-for="(error, index) in errors"
           :key="index"
           :message="error" />
       </div>
