@@ -1,8 +1,8 @@
 <script setup lang="ts">
 export interface IBaseContentProps {
   tag?: 'p' | 'div' | 'span' | 'label' | 'strong'
-  typography?: 'body-1' | 'body-2' | 'body-3' | 'label-1' | 'label-2'
-  color?: 'white' | 'blue' | 'gray'
+  typography?: 'body-1' | 'body-2' | 'body-3' | 'label-1' | 'label-2' | 'label-3'
+  color?: 'white' | 'blue' | 'gray' | 'red'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
   isOneLine?: boolean
@@ -26,13 +26,15 @@ const configTypography: Record<NonNullable<IBaseContentProps['typography']>, str
   'body-2': 'text-body-2',
   'body-3': 'text-body-3',
   'label-1': 'text-label-1',
-  'label-2': 'text-label-2'
+  'label-2': 'text-label-2',
+  'label-3': 'text-label-3'
 }
 
 const configColor = {
   white: 'text-white',
   blue: 'text-blue-1',
-  gray: 'text-gray-1'
+  gray: 'text-gray-1',
+  red: 'text-red-1'
 }
 
 const configAlign: Record<NonNullable<IBaseContentProps['align']>, string> = {

@@ -148,6 +148,7 @@ export default {
     },
     transitionDuration: {
       DEFAULT: '300ms',
+      100: '100ms',
       200: '200ms'
     },
     flexGrow: {
@@ -172,6 +173,7 @@ export default {
     ],
     extend: {
       borderRadius: {
+        5: '0.5rem',
         primary: '1rem'
       },
     }

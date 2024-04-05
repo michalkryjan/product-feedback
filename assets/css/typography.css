@@ -34,3 +34,7 @@
 .text-label-2 {
   @apply font-semibold text-13 leading-100;
 }
+
+.text-label-3 {
+  @apply font-normal text-14 leading-100;
+}
