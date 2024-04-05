@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>
+  <layout-page-wrapper width-type="s">
     <slot />
-  </div>
+  </layout-page-wrapper>
 </template>

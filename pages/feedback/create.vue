@@ -1,9 +1,13 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'form'
-})
+
 </script>
 
 <template>
-  <div />
+  <nuxt-layout name="form">
+    <layout-page-wrapper
+      width-type="s"
+      class="pt-90">
+      <form-feedback-create />
+    </layout-page-wrapper>
+  </nuxt-layout>
 </template>
