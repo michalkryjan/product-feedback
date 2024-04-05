@@ -55,13 +55,15 @@ watch(values, () => {
 </script>
 
 <template>
-  <base-card>
+  <base-card class="pt-52">
+    <base-icon
+      name="new-feedback"
+      class="absolute top-0 -translate-y-1/2 w-56 h-56" />
     <base-header variant="1">
       <base-headline
         :level="1"
         typography="title-1"
-        color="navy"
-        class="mb-2">
+        color="navy">
         <span v-html="useOrphans('Create New Feedback')" />
       </base-headline>
     </base-header>
@@ -74,7 +76,7 @@ watch(values, () => {
               :level="2"
               typography="title-4"
               color="navy"
-              class="mb-2">
+              class="mb-6">
               <span v-html="useOrphans('Feedback Title')" />
             </base-headline>
             <base-content
@@ -97,7 +99,7 @@ watch(values, () => {
               :level="2"
               typography="title-4"
               color="navy"
-              class="mb-2">
+              class="mb-6">
               <span v-html="useOrphans('Category')" />
             </base-headline>
             <base-content
@@ -120,7 +122,7 @@ watch(values, () => {
               :level="2"
               typography="title-4"
               color="navy"
-              class="mb-2">
+              class="mb-6">
               <span v-html="useOrphans('Feedback Detail')" />
             </base-headline>
             <base-content

@@ -29,7 +29,7 @@ const configLayout: Record<NonNullable<IBaseCardProps['layout']>, string> = {
 
 const classes = computed<string[]>(() => {
   return [
-    'flex flex-nowrap w-full h-fit rounded-primary',
+    'relative flex flex-nowrap w-full h-fit rounded-primary',
     configVariant[props.variant],
     configTheme[props.theme],
     configLayout[props.layout]
