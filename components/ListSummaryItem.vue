@@ -26,13 +26,15 @@ const classes = computed(() => {
     <base-content
       tag="span"
       typography="body-1"
-      color="gray"
-      :value="data.label" />
+      color="gray">
+      <span v-html="useOrphans(data.label)" />
+    </base-content>
 
     <base-content
       tag="strong"
       typography="body-1"
-      color="gray"
-      :value="data.count + ''" />
+      color="gray">
+      <span v-html="useOrphans(data.count.toString())" />
+    </base-content>
   </li>
 </template>

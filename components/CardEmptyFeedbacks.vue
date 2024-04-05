@@ -3,23 +3,25 @@
 
 <template>
   <base-card class="min-h-600 items-center justify-center">
-    <img
+    <base-img
       src="/svg/illustration-empty.svg"
-      class="mb-54 max-w-130">
+      class="mb-54 max-w-130" />
 
     <base-headline
       typography="title-1"
       align="center"
       color="navy"
-      value="There is no feedback yet."
-      class="mb-16" />
+      class="mb-16">
+      <span v-html="useOrphans('There is no feedback yet.')" />
+    </base-headline>
 
     <base-content
       typography="body-1"
       align="center"
       color="gray"
-      value="Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app."
-      class="mb-48 max-w-430" />
+      class="mb-48 max-w-430">
+      <span v-html="useOrphans('Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.')" />
+    </base-content>
 
     <base-button
       size="s2"

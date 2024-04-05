@@ -1,6 +1,5 @@
 <script setup lang="ts">
 export interface IBaseHeadlineProps {
-  value: string
   type?: 'h' | 'span' | 'label'
   level?: 1 | 2 | 3 | 4 | 5 | 6
   typography?: 'title-1' | 'title-2' | 'title-3' | 'title-4'
@@ -59,6 +58,7 @@ const tag = computed<BaseHeadlineTag>(() => {
 <template>
   <component
     :is="tag"
-    :class="classes"
-    v-html="useOrphans(value)" />
+    :class="classes">
+    <slot />
+  </component>
 </template>

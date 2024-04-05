@@ -138,9 +138,10 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
 
       <base-content
         v-if="label"
-        :value="label"
         v-bind="labelAttrs"
-        class="label" />
+        class="label">
+        <span v-html="useOrphans(label)" />
+      </base-content>
 
       <slot name="iconRight" />
     </span>

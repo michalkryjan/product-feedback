@@ -14,8 +14,9 @@ const props = defineProps<IMainMenuRoadmapSummaryProps>()
       <base-headline
         :level="2"
         typography="title-3"
-        color="navy"
-        :value="data.title" />
+        color="navy">
+        <span v-html="useOrphans(data.title)" />
+      </base-headline>
 
       <base-button
         :label="data.button.label"

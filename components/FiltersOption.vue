@@ -105,8 +105,9 @@ function toggle (): void {
       align="center"
       transition="color"
       :color="isSelected ? configTheme[theme].inputLabel.active : configTheme[theme].inputLabel.idle"
-      is-one-line
-      :value="data.label" />
+      is-one-line>
+      <span v-html="useOrphans(data.label)" />
+    </base-content>
   </span>
 
   <base-button

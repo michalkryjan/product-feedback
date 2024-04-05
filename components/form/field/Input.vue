@@ -49,13 +49,14 @@ function handleBlur () {
   <label class="relative">
     <base-content
       v-if="placeholder"
-      :value="placeholder"
       tag="span"
       is-one-line
       class="bg-white transition-topWithFontSize pointer-events-none absolute left-8 top-1/2 select-none px-8 duration-200 -translate-y-1/2"
       :class="{
         '!top-0 !text-14': isPlaceholderOnTop
-      }" />
+      }">
+      <span v-html="useOrphans(placeholder)" />
+    </base-content>
 
     <base-input
       v-bind="$attrs"

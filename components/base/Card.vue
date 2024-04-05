@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<IBaseCardProps>(), {
 })
 
 const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = {
-  1: 'p-[2.4rem]'
+  1: 'p-24'
 }
 
 const configTheme: Record<NonNullable<IBaseCardProps['theme']>, string> = {

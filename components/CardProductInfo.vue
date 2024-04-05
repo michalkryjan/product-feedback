@@ -15,11 +15,13 @@ const props = defineProps<IMainMenuProductInfoProps>()
     <div class="mt-auto">
       <base-headline
         :level="1"
-        typography="title-2"
-        :value="data.title" />
-      <base-content
-        typography="body-2"
-        :value="data.content" />
+        typography="title-2">
+        <span v-html="useOrphans(data.title)" />
+      </base-headline>
+
+      <base-content typography="body-2">
+        <span v-html="useOrphans(data.content)" />
+      </base-content>
     </div>
   </base-card>
 </template>

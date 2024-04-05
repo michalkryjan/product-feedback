@@ -1,6 +1,5 @@
 <script setup lang="ts">
 export interface IBaseContentProps {
-  value: string
   tag?: 'p' | 'div' | 'span' | 'label' | 'strong'
   typography?: 'body-1' | 'body-2' | 'body-3' | 'label-1' | 'label-2'
   color?: 'white' | 'blue' | 'gray'
@@ -64,6 +63,7 @@ const classes = computed<string[]>(() => {
 <template>
   <component
     :is="tag"
-    :class="classes"
-    v-html="useOrphans(value)" />
+    :class="classes">
+    <slot />
+  </component>
 </template>
