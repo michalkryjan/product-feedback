@@ -1,6 +1,5 @@
 <script setup lang="ts">
 interface IFormWrapperProps {
-  showSubmitError?: boolean
   gapSize?: 's1' | 's2'
   onSubmit: (e?: Event | undefined) => (void | Promise<void> | Promise<Promise<void> | undefined>)
 }

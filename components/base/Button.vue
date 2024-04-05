@@ -73,10 +73,10 @@ const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> =
 
 const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partial<IBaseContentProps>> = {
   s1: {
-    typography: 'label-1'
+    typography: 'text-label-1'
   },
   s2: {
-    typography: 'label-2'
+    typography: 'text-label-2'
   }
 }
 

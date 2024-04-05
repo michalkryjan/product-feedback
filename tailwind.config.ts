@@ -72,6 +72,7 @@ export default {
     },
     lineHeight: {
       100: '100%',
+      120: '120%',
       145: '145%',
     },
     letterSpacing: {
@@ -81,6 +82,7 @@ export default {
     },
     spacing: {
       0: '0rem',
+      2: '0.2rem',
       6: '0.6rem',
       8: '0.8rem',
       14: '1.4rem',
@@ -88,6 +90,7 @@ export default {
       20: '2rem',
       24: '2.4rem',
       30: '3rem',
+      32: '3.2rem',
       34: '3.4rem',
       40: '4rem',
       48: '4.8rem',
