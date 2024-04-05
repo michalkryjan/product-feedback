@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { IBaseContentProps } from 'components/base/Content.vue'
 import { NuxtLinkProps } from 'nuxt/app'
-import type { IBaseContentProps } from './BaseContent.vue'
 
 export interface IBaseButtonProps {
   label?: string

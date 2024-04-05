@@ -7,7 +7,7 @@ export declare namespace Data {
   }
 
   namespace Components {
-    type FormFieldSelectOption = {
+    type FiltersOption = {
       label: string
       value: string
     }

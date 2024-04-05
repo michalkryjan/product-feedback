@@ -1,10 +1,10 @@
 <script setup lang="ts">
-interface IFormLabelProps {
+interface IFormFieldLabelProps {
   tag?: 'label' | 'span'
   value: string
 }
 
-const props = withDefaults(defineProps<IFormLabelProps>(), {
+const props = withDefaults(defineProps<IFormFieldLabelProps>(), {
   tag: 'label'
 })
 

@@ -1,35 +1,35 @@
 <script setup lang="ts">
+import type { IBaseButtonProps } from 'components/base/Button.vue'
+import type { IBaseContentProps } from 'components/base/Content.vue'
 import type { Data } from 'types/data'
-import type { IBaseButtonProps } from './base/BaseButton.vue'
-import type { IBaseContentProps } from './base/BaseContent.vue'
 
-export interface IFormFieldSelectOptionProps {
-  data: Data.Components.FormFieldSelectOption
+export interface IFiltersOptionProps {
+  data: Data.Components.FiltersOption
   type?: 'input' | 'button'
   theme?: 'gray'
   isSelected?: boolean
   isDisabled?: boolean
 }
 
-interface IFormFieldSelectOptionEmits {
+interface IFiltersOptionEmits {
   (e: 'select', val: string): void
   (e: 'unselect', val: string): void
 }
 
-const props = withDefaults(defineProps<IFormFieldSelectOptionProps>(), {
+const props = withDefaults(defineProps<IFiltersOptionProps>(), {
   type: 'input',
   theme: 'gray',
   isSelected: false,
   isDisabled: false
 })
 
-const emit = defineEmits<IFormFieldSelectOptionEmits>()
+const emit = defineEmits<IFiltersOptionEmits>()
 
 defineOptions({
   inheritAttrs: false
 })
 
-const configTheme: Record<NonNullable<IFormFieldSelectOptionProps['theme']>, {
+const configTheme: Record<NonNullable<IFiltersOptionProps['theme']>, {
   inputWrapper: {
     idle: string
     active: string

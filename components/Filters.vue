@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { IFormFieldSelectOptionProps } from './FormFieldSelectOption.vue'
+import type { IFiltersOptionProps } from 'components/FiltersOption.vue'
 
-interface IFormFieldSelectProps {
-  options: Array<IFormFieldSelectOptionProps['data']>
+interface IFiltersProps {
+  options: Array<IFiltersOptionProps['data']>
   value: string | string[] | undefined
-  optionType?: IFormFieldSelectOptionProps['type']
-  optionTheme?: IFormFieldSelectOptionProps['theme']
+  optionType?: IFiltersOptionProps['type']
+  optionTheme?: IFiltersOptionProps['theme']
   gapSize?: 's1'
   addOptionAll?: boolean
 }
@@ -14,7 +14,7 @@ interface IFormFieldSelectEmits {
   (e: 'change', val: typeof props.value): void
 }
 
-const props = withDefaults(defineProps<IFormFieldSelectProps>(), {
+const props = withDefaults(defineProps<IFiltersProps>(), {
   optionType: 'button',
   optionTheme: 'gray',
   gapSize: 's1',
@@ -27,7 +27,7 @@ defineOptions({
   inheritAttrs: false
 })
 
-const configGapSize: Record<NonNullable<IFormFieldSelectProps['gapSize']>, string> = {
+const configGapSize: Record<NonNullable<IFiltersProps['gapSize']>, string> = {
   s1: 'gap-x-8 gap-y-14'
 }
 
@@ -92,7 +92,7 @@ onBeforeMount(() => {
 
 <template>
   <div :class="wrapperClasses">
-    <form-field-select-option
+    <filters-option
       v-for="option in optionsComputed"
       :key="option.value"
       v-bind="$attrs"
