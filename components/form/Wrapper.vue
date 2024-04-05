@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface IFormWrapperProps {
+export interface IFormWrapperProps {
   gapSize?: 's1' | 's2'
   onSubmit: (e?: Event | undefined) => (void | Promise<void> | Promise<Promise<void> | undefined>)
 }

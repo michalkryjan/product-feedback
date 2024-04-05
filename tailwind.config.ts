@@ -82,7 +82,6 @@ export default {
     },
     spacing: {
       0: '0rem',
-      2: '0.2rem',
       6: '0.6rem',
       8: '0.8rem',
       14: '1.4rem',
@@ -94,7 +93,9 @@ export default {
       34: '3.4rem',
       40: '4rem',
       48: '4.8rem',
+      52: '5.2rem',
       54: '5.4rem',
+      56: '5.6rem',
       90: '9rem',
       min: 'min-content',
       max: 'max-content'
