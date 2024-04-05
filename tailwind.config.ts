@@ -92,7 +92,6 @@ export default {
       40: '4rem',
       48: '4.8rem',
       54: '5.4rem',
-      56: '5.6rem',
       90: '9rem',
       min: 'min-content',
       max: 'max-content'
