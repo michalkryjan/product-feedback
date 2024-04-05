@@ -29,7 +29,7 @@
       label="Add feedback"
       href="/feedback/create">
       <template #iconLeft>
-        <base-icon name="icon-plus" />
+        <base-icon name="plus" />
       </template>
     </base-button>
   </base-card>
