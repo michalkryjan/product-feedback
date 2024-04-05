@@ -36,12 +36,12 @@ const classes = computed<string[]>(() => {
 
     <vee-field
       v-if="hasField"
-      v-slot="{ field, errors, handleChange, handleBlur }"
+      v-slot="{ errors, handleChange, handleBlur}"
       :name="name"
       :rules="validationRules">
       <slot
+        :id="name"
         name="field"
-        :field="field"
         :errors="errors"
         :handle-change="handleChange"
         :handle-blur="handleBlur" />

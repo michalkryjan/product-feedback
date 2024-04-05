@@ -58,10 +58,11 @@ const props = defineProps<IFormTemplateCardProps>()
               <span v-html="useOrphans(item.label)" />
             </base-content>
           </template>
-          <template #field="{ field, handleChange }">
+          <template #field="{ id, errors, handleChange }">
             <slot
+              :id="id"
+              :errors="errors"
               :name="'field--' + item.id"
-              :field="field"
               :handle-change="handleChange" />
           </template>
         </form-field-wrapper>

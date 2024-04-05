@@ -92,27 +92,31 @@ watch(values, () => {
     icon-name="edit-feedback"
     :fields="configFields"
     :on-submit="onFormSubmit">
-    <template #field--title="{ field, handleChange }">
+    <template #field--title="{ id, errors, handleChange }">
       <base-input
-        v-bind="field"
+        :id="id"
+        :has-error="errors.length > 0"
         @update:model-value="handleChange" />
     </template>
 
-    <template #field--category="{ field, handleChange }">
+    <template #field--category="{ id, errors, handleChange }">
       <base-input
-        v-bind="field"
+        :id="id"
+        :has-error="errors.length > 0"
         @update:model-value="handleChange" />
     </template>
 
-    <template #field--status="{ field, handleChange }">
+    <template #field--status="{ id, errors, handleChange }">
       <base-input
-        v-bind="field"
+        :id="id"
+        :has-error="errors.length > 0"
         @update:model-value="handleChange" />
     </template>
 
-    <template #field--details="{ field, handleChange }">
+    <template #field--details="{ id, errors, handleChange }">
       <base-input
-        v-bind="field"
+        :id="id"
+        :has-error="errors.length > 0"
         @update:model-value="handleChange" />
     </template>
 
