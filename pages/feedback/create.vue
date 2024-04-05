@@ -4,10 +4,6 @@
 
 <template>
   <nuxt-layout name="form">
-    <layout-page-wrapper
-      width-type="s"
-      class="pt-90">
-      <form-feedback-create />
-    </layout-page-wrapper>
+    <form-feedback-create />
   </nuxt-layout>
 </template>
