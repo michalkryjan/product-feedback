@@ -103,16 +103,25 @@ export default {
     top: {
       6: '0.6rem'
     },
+    maxHeight: {
+      full: '100%',
+      fit: 'fit-content',
+      max: 'max-content'
+    },
     minHeight: {
       fit: 'fit-content',
       min: 'min-content',
       max: 'max-content',
       600: '60rem'
     },
-    maxHeight: {
+    height: {
       full: '100%',
       fit: 'fit-content',
-      max: 'max-content'
+      max: 'max-content',
+      8: '0.8rem',
+      48: '4.8rem',
+      56: '5.6rem',
+      96: '9.6rem'
     },
     maxWidth: {
       full: '100%',
@@ -137,7 +146,8 @@ export default {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content',
-      8: '0.8rem'
+      8: '0.8rem',
+      56: '5.6rem'
     },
     backgroundImage: {
       none: 'unset',

@@ -94,7 +94,7 @@ watch(values, () => {
     </template>
 
     <template #field--details="{ id, errors, handleChange }">
-      <base-input
+      <base-textarea
         :id="id"
         :has-error="errors.length > 0"
         @update:model-value="handleChange" />
