@@ -20,23 +20,25 @@ useHead({
 </script>
 
 <template>
-  <nuxt-layout name="board-with-sidebar">
-    <template #sidebar>
-      <card-product-info
-        v-if="pageContent?.productInfo"
-        :data="pageContent.productInfo" />
+  <div>
+    <nuxt-layout name="board-with-sidebar">
+      <template #sidebar>
+        <card-product-info
+          v-if="pageContent?.productInfo"
+          :data="pageContent.productInfo" />
 
-      <card-suggestions-filters
-        v-if="pageContent?.filters"
-        :data="pageContent.filters" />
+        <card-suggestions-filters
+          v-if="pageContent?.filters"
+          :data="pageContent.filters" />
 
-      <card-roadmap-summary
-        v-if="pageContent?.roadmapSummary"
-        :data="pageContent.roadmapSummary" />
-    </template>
+        <card-roadmap-summary
+          v-if="pageContent?.roadmapSummary"
+          :data="pageContent.roadmapSummary" />
+      </template>
 
-    <template #board>
-      <card-empty-feedbacks />
-    </template>
-  </nuxt-layout>
+      <template #board>
+        <card-empty-feedbacks />
+      </template>
+    </nuxt-layout>
+  </div>
 </template>
