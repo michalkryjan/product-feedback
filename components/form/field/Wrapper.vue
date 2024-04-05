@@ -25,7 +25,7 @@ provide(formFieldWrapper.name, props.name)
 const hasHeader = computed<boolean>(() => !!slots?.header)
 const hasField = computed<boolean>(() => !!slots?.field)
 
-const classes = computed(() => {
+const classes = computed<string[]>(() => {
   return [
     'flex flex-col flex-nowrap'
   ]

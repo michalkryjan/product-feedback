@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<IBaseIconProps>(), {
   fillContainer: true
 })
 
-const classes = computed(() => {
+const classes = computed<string[]>(() => {
   return [
     props.fillContainer ? '[&>svg]:!w-full [&>svg]:!h-full' : ''
   ]

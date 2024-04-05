@@ -80,7 +80,7 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partia
   }
 }
 
-const wrapperClasses = computed(() => {
+const wrapperClasses = computed<string[]>(() => {
   return [
     'flex flex-col flex-nowrap justify-center items-center border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
     props.noHoverEffect ? 'no-hover' : '',

@@ -12,7 +12,7 @@ const configGapSize: Record<NonNullable<IBaseListProps['gapSize']>, string> = {
   s1: '[&_li]:mb-[0.8rem]'
 }
 
-const classes = computed(() => {
+const classes = computed<string[]>(() => {
   return [
     'list-base',
     configGapSize[props.gapSize]

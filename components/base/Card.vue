@@ -27,7 +27,7 @@ const configLayout: Record<NonNullable<IBaseCardProps['layout']>, string> = {
   row: 'flex-row'
 }
 
-const classes = computed(() => {
+const classes = computed<string[]>(() => {
   return [
     'flex flex-nowrap w-full h-fit rounded-primary',
     configVariant[props.variant],
