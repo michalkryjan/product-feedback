@@ -9,6 +9,7 @@ export interface IFiltersOptionProps {
   theme?: 'gray'
   isSelected?: boolean
   isDisabled?: boolean
+  inputId?: string
 }
 
 interface IFiltersOptionEmits {
@@ -20,7 +21,8 @@ const props = withDefaults(defineProps<IFiltersOptionProps>(), {
   type: 'input',
   theme: 'gray',
   isSelected: false,
-  isDisabled: false
+  isDisabled: false,
+  inputId: undefined
 })
 
 const emit = defineEmits<IFiltersOptionEmits>()
@@ -59,12 +61,6 @@ const configTheme: Record<NonNullable<IFiltersOptionProps['theme']>, {
   }
 }
 
-const {
-  formFieldWrapper
-} = useDependencyInjectionSchema()
-
-const fieldName = inject(formFieldWrapper.name, '')
-
 const classesInputWrapper = computed<string[] | null>(() => {
   return props.type === 'input'
     ? [
@@ -93,13 +89,13 @@ function toggle (): void {
     @click="toggle">
     <input
       v-bind="$attrs"
-      :name="fieldName"
+      :id="inputId"
       type="checkbox"
       class="hidden"
-      :aria-labelledby="fieldName + '-' + data.value">
+      :aria-labelledby="inputId + '-' + data.value">
 
     <base-content
-      :id="fieldName + '-' + data.value"
+      :id="inputId + '-' + data.value"
       tag="span"
       typography="text-label-2"
       align="center"
