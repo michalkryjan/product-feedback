@@ -11,7 +11,7 @@ export interface IBaseButtonProps {
   href?: string
   isOneLine?: boolean
   disabled?: boolean
-  noHoverEffect?: boolean
+  inactive?: boolean
 }
 
 const props = withDefaults(defineProps<IBaseButtonProps>(), {
@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<IBaseButtonProps>(), {
   isOneLine: true,
   href: undefined,
   disabled: false,
-  noHoverEffect: false
+  inactive: false
 })
 
 const configTheme: {
@@ -83,7 +83,7 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partia
 const wrapperClasses = computed<string[]>(() => {
   return [
     'flex flex-col flex-nowrap justify-center items-center border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
-    props.noHoverEffect ? 'no-hover' : '',
+    props.inactive ? 'inactive' : '',
     configWrapperSize[props.size],
     configTheme.wrapper[props.theme]
   ]
@@ -152,7 +152,7 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
 .btn-gray {
   @apply bg-gray-2;
 
-  &:not(:disabled):not(.no-hover):hover {
+  &:not(:disabled):not(.inactive):hover {
     @apply bg-gray-4;
   }
 }
@@ -160,7 +160,7 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
 .btn-blue {
   @apply bg-blue-1;
 
-  &:not(:disabled):not(.no-hover):hover {
+  &:not(:disabled):not(.inactive):hover {
     @apply bg-blue-2;
   }
 }
@@ -168,7 +168,7 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
 .btn-navy {
   @apply bg-navy-1;
 
-  &:not(:disabled):not(.no-hover):hover {
+  &:not(:disabled):not(.inactive):hover {
     @apply bg-navy-2;
   }
 }
@@ -180,7 +180,7 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
 .btn-red {
   @apply bg-red-1;
 
-  &:not(:disabled):not(.no-hover):hover {
+  &:not(:disabled):not(.inactive):hover {
     @apply bg-red-2;
   }
 }
@@ -188,7 +188,7 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
 .btn-purple {
   @apply bg-purple-1;
 
-  &:not(:disabled):not(.no-hover):hover {
+  &:not(:disabled):not(.inactive):hover {
     @apply bg-purple-2;
   }
 }

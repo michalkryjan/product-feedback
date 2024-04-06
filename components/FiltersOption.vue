@@ -112,6 +112,6 @@ function toggle (): void {
     :disabled="isDisabled"
     label-size="s2"
     :theme="isSelected ? configTheme[theme].button.active : configTheme[theme].button.idle"
-    :no-hover-effect="isSelected"
+    :inactive="isSelected"
     @click="toggle" />
 </template>
