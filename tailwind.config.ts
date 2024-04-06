@@ -85,8 +85,12 @@ export default {
     },
     spacing: {
       0: '0rem',
+      5: '0.5rem',
       6: '0.6rem',
       8: '0.8rem',
+      9: '0.9rem',
+      11: '1.1rem',
+      12: '1.2rem',
       14: '1.4rem',
       16: '1.6rem',
       20: '2rem',
@@ -115,12 +119,14 @@ export default {
       fit: 'fit-content',
       min: 'min-content',
       max: 'max-content',
+      30: '3rem',
       600: '60rem'
     },
     height: {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content',
+      4: '0.4rem',
       8: '0.8rem',
       48: '4.8rem',
       56: '5.6rem',

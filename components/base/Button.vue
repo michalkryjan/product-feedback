@@ -6,8 +6,9 @@ export interface IBaseButtonProps {
   label?: string
   type?: 'button' | 'submit'
   theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'text-blue'
-  size?: 'fit' | 's1' | 's2'
+  size?: 'fit' | 's1' | 's2' | 's3' | 's4'
   labelSize?: 's1' | 's2'
+  labelColor?: 'blue' | 'white' | 'navy-1'
   href?: string
   isOneLine?: boolean
   disabled?: boolean
@@ -20,6 +21,7 @@ const props = withDefaults(defineProps<IBaseButtonProps>(), {
   theme: 'gray',
   size: 's1',
   labelSize: 's1',
+  labelColor: undefined,
   isOneLine: true,
   href: undefined,
   disabled: false,
@@ -66,9 +68,11 @@ const configTheme: {
 }
 
 const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> = {
-  fit: 'w-fit h-fit',
-  s1: 'px-[1.6rem] pt-[0.5rem] pb-[0.6rem] min-h-[3rem]',
-  s2: 'px-[2.4rem] pt-[1.25rem] pb-[1.1rem] pb-[1.2rem]'
+  fit: '',
+  s1: 'px-16 pt-5 pb-6 min-h-30',
+  s2: 'px-24 pt-11 pb-12',
+  s3: 'px-9 py-14',
+  s4: 'pl-16 pr-12 py-12'
 }
 
 const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partial<IBaseContentProps>> = {
@@ -82,7 +86,7 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partia
 
 const wrapperClasses = computed<string[]>(() => {
   return [
-    'flex flex-col flex-nowrap justify-center items-center border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
+    'flex flex-col flex-nowrap justify-center items-center gap-y-8 w-fit h-fit border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
     props.inactive ? 'inactive' : '',
     configWrapperSize[props.size],
     configTheme.wrapper[props.theme]
@@ -133,7 +137,7 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
     :class="wrapperClasses">
     <slot name="iconTop" />
 
-    <span class="flex flex-row flex-nowrap items-center gap-x-[0.6rem]">
+    <span class="flex flex-row flex-nowrap items-center gap-x-8">
       <slot name="iconLeft" />
 
       <base-content
