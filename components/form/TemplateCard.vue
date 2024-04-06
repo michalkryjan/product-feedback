@@ -48,16 +48,13 @@ const props = defineProps<IFormTemplateCardProps>()
               class="mb-6">
               <span v-html="useOrphans(item.title)" />
             </base-headline>
-            <base-content
+            <base-label
               v-if="item?.label"
-              tag="label"
-              :for="item.id"
-              typography="text-label-3"
-              color="gray"
-              class="block mb-16">
-              <span v-html="useOrphans(item.label)" />
-            </base-content>
+              :text="item.label"
+              :field-id="item.id"
+              class="mb-16" />
           </template>
+
           <template #field="{ id, errors, handleChange }">
             <slot
               :id="id"
