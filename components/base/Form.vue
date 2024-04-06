@@ -1,14 +1,14 @@
 <script setup lang="ts">
-export interface IFormWrapperProps {
+export interface IBaseFormProps {
   gapSize?: 's1' | 's2'
   onSubmit: (e?: Event | undefined) => (void | Promise<void> | Promise<Promise<void> | undefined>)
 }
 
-const props = withDefaults(defineProps<IFormWrapperProps>(), {
+const props = withDefaults(defineProps<IBaseFormProps>(), {
   gapSize: 's1'
 })
 
-const configGapSize: Record<NonNullable<IFormWrapperProps['gapSize']>, string> = {
+const configGapSize: Record<NonNullable<IBaseFormProps['gapSize']>, string> = {
   s1: 'gap-y-24 mb-32',
   s2: 'gap-y-16 mb-16'
 }

@@ -32,7 +32,7 @@ const props = defineProps<IFormTemplateCardProps>()
       </base-headline>
     </base-header>
 
-    <form-wrapper :on-submit="onSubmit">
+    <base-form :on-submit="onSubmit">
       <template #main>
         <form-field-wrapper
           v-for="item in fields"
@@ -69,6 +69,6 @@ const props = defineProps<IFormTemplateCardProps>()
       <template #footer>
         <slot name="footer" />
       </template>
-    </form-wrapper>
+    </base-form>
   </base-card>
 </template>
