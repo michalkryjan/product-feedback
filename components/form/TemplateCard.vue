@@ -21,7 +21,7 @@ const props = defineProps<IFormTemplateCardProps>()
 <template>
   <base-card class="pt-52">
     <base-icon
-      :name="iconName"
+      :name="icon"
       class="absolute top-0 -translate-y-1/2 w-56 h-56" />
     <base-header variant="1">
       <base-headline

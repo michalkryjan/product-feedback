@@ -86,7 +86,7 @@ watch(values, () => {
 <template>
   <form-template-card
     :title="`Editing '${ data.title }'`"
-    icon-name="edit-feedback"
+    icon="edit-feedback"
     :fields="configFields"
     :on-submit="onFormSubmit">
     <template #field--title="{ id, errors, handleChange }">

@@ -72,7 +72,7 @@ watch(values, () => {
 <template>
   <form-template-card
     title="Create New Feedback"
-    icon-name="new-feedback"
+    icon="new-feedback"
     :fields="configFields"
     :on-submit="onFormSubmit">
     <template #field--title="{ id, errors, handleChange }">
