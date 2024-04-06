@@ -2,7 +2,7 @@
 export interface IBaseContentProps {
   tag?: 'p' | 'div' | 'span' | 'label' | 'strong'
   typography?: Typography
-  color?: 'white' | 'blue' | 'gray' | 'red'
+  color?: 'white' | 'blue' | 'gray'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
   isOneLine?: boolean
@@ -24,8 +24,7 @@ const props = withDefaults(defineProps<IBaseContentProps>(), {
 const configColor = {
   white: 'text-white',
   blue: 'text-blue-1',
-  gray: 'text-gray-1',
-  red: 'text-red-1'
+  gray: 'text-gray-1'
 }
 
 const configAlign: Record<NonNullable<IBaseContentProps['align']>, string> = {

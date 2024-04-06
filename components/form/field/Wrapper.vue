@@ -12,24 +12,13 @@ const props = withDefaults(defineProps<IFormFieldWrapperProps>(), {
 })
 
 const slots = useSlots()
-const {
-  formFieldWrapper
-} = useDependencyInjectionSchema()
-
-provide(formFieldWrapper.name, props.name)
 
 const hasHeader = computed<boolean>(() => !!slots?.header)
 const hasField = computed<boolean>(() => !!slots?.field)
-
-const classes = computed<string[]>(() => {
-  return [
-    'flex flex-col flex-nowrap'
-  ]
-})
 </script>
 
 <template>
-  <div :class="classes">
+  <div class="flex flex-col flex-nowrap">
     <div v-if="hasHeader">
       <slot name="header" />
     </div>
@@ -46,8 +35,10 @@ const classes = computed<string[]>(() => {
         :handle-change="handleChange"
         :handle-blur="handleBlur" />
 
-      <div v-if="errors.length">
-        <form-field-error
+      <div
+        v-if="errors.length > 0"
+        class="mt-8 flex flex-col gap-y-8">
+        <base-error
           v-for="(error, index) in errors"
           :key="index"
           :message="error" />

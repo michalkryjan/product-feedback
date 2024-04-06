@@ -59,6 +59,9 @@ export default {
       red: {
         1: '#D73737',
         2: '#E98888'
+      },
+      green: {
+        1: '#4EDA64'
       }
     },
     fontSize: {
