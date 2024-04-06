@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BaseIconName } from 'components/base/Icon.vue'
 import type { IFormWrapperProps } from 'components/form/Wrapper.vue'
 
 export interface IFormTemplateCardField {
@@ -9,7 +10,7 @@ export interface IFormTemplateCardField {
 
 interface IFormTemplateCardProps {
   title: string
-  iconName: string
+  icon: BaseIconName
   fields: IFormTemplateCardField[]
   onSubmit: IFormWrapperProps['onSubmit']
 }

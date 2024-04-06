@@ -1,6 +1,19 @@
 <script setup lang="ts">
+export type BaseIconName = |
+  'arrow-down' |
+  'arrow-left' |
+  'arrow-up' |
+  'check' |
+  'close' |
+  'comments' |
+  'edit-feedback' |
+  'hamburger' |
+  'new-feedback' |
+  'plus' |
+  'suggestions'
+
 interface IBaseIconProps {
-  name: string
+  name: BaseIconName
   filled?: boolean
   fillContainer?: boolean
 }
