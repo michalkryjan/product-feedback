@@ -8,11 +8,7 @@ interface IFormFeedbackCreateEmits {
 
 const emit = defineEmits<IFormFeedbackCreateEmits>()
 
-export interface IFormFeedbackCreateValues {
-  title: string
-  category: string
-  details: string
-}
+export interface IFormFeedbackCreateValues extends Pick<Feedback, 'title' | 'category' | 'description'> {}
 
 const submitDisabled = ref<boolean>(false)
 
@@ -23,12 +19,12 @@ const {
   validationSchema: {
     title: '',
     category: '',
-    details: ''
+    description: ''
   },
   initialValues: {
     title: undefined,
     category: undefined,
-    details: undefined
+    description: undefined
   }
 })
 
@@ -44,7 +40,7 @@ const configFields: IFormTemplateCardField = [
     label: 'Choose a category for your feedback'
   },
   {
-    id: 'details',
+    id: 'description',
     title: 'Feedback Detail',
     label: 'Include any specific comments on what should be improved, added, etc.'
   }
@@ -93,7 +89,7 @@ watch(values, () => {
         @update:model-value="handleChange" />
     </template>
 
-    <template #field--details="{ id, errors, handleChange }">
+    <template #field--description="{ id, errors, handleChange }">
       <base-textarea
         :id="id"
         :has-error="errors.length > 0"

@@ -13,11 +13,8 @@ interface IFormFeedbackEditEmits {
 const props = defineProps<IFormFeedbackEditProps>()
 const emit = defineEmits<IFormFeedbackEditEmits>()
 
-export interface IFormFeedbackEditValues {
-  title: string
-  category: string
+export interface IFormFeedbackEditValues extends Pick<Feedback, 'title' | 'category' | 'description'> {
   status: string
-  details: string
 }
 
 const submitDisabled = ref<boolean>(false)
@@ -30,13 +27,13 @@ const {
     title: '',
     category: '',
     status: '',
-    details: ''
+    description: ''
   },
   initialValues: {
     title: props.data.title,
     category: props.data.category,
-    status: props.data.status,
-    details: props.data.details
+    status: props.data.status.name,
+    description: props.data.description
   }
 })
 
@@ -57,7 +54,7 @@ const configFields: IFormTemplateCardField = [
     label: 'Change Feedback state'
   },
   {
-    id: 'details',
+    id: 'description',
     title: 'Feedback Detail',
     label: 'Include any specific comments on what should be improved, added, etc.'
   }
@@ -113,7 +110,7 @@ watch(values, () => {
         @update:model-value="handleChange" />
     </template>
 
-    <template #field--details="{ id, errors, handleChange }">
+    <template #field--description="{ id, errors, handleChange }">
       <base-textarea
         :id="id"
         :has-error="errors.length > 0"
