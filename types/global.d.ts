@@ -11,9 +11,36 @@ type Typography = |
   'text-label-3'
 
 type Feedback = {
-  id: string
+  id: number
   title: string
   category: string
-  status: string
-  details: string
+  upvotes: number
+  status: FeedbackStatus
+  description: string
+  comments: Comment[]
+}
+
+type FeedbackStatus = {
+  id: number
+  name: string
+  color: string
+}
+
+type Comment = {
+  id: number
+  content: string
+  user: User
+  replies?: CommentReply[]
+}
+
+type CommentReply = {
+  content: string
+  replyingTo: string
+  user: string
+}
+
+type User = {
+  image: string
+  name: string
+  username: string
 }
