@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { IBaseContentProps } from 'components/base/Content.vue'
 import { NuxtLinkProps } from 'nuxt/app'
 
 export interface IBaseButtonProps {
   label?: string
   type?: 'button' | 'submit'
-  theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'text-blue'
   size?: 'fit' | 's1' | 's2' | 's3' | 's4'
+  theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'transparent'
   labelSize?: 's1' | 's2'
-  labelColor?: 'blue' | 'white' | 'navy-1'
+  labelTheme?: 'blue' | 'white' | 'navy'
   href?: string
+  isUnderline?: boolean
   isOneLine?: boolean
   disabled?: boolean
   inactive?: boolean
@@ -19,52 +19,23 @@ const props = withDefaults(defineProps<IBaseButtonProps>(), {
   label: undefined,
   type: 'button',
   theme: 'gray',
-  size: 's1',
+  size: 'fit',
   labelSize: 's1',
-  labelColor: undefined,
+  labelTheme: 'blue',
   isOneLine: true,
   href: undefined,
   disabled: false,
   inactive: false
 })
 
-const configTheme: {
-  wrapper: Record<NonNullable<IBaseButtonProps['theme']>, string>
-  label: Record<NonNullable<IBaseButtonProps['theme']>, Partial<IBaseContentProps>>
-} = {
-  wrapper: {
-    gray: 'btn-gray',
-    blue: 'btn-blue',
-    navy: 'btn-navy',
-    darkNavy: 'btn-darkNavy',
-    red: 'btn-red',
-    purple: 'btn-purple',
-    'text-blue': 'btn-text-blue'
-  },
-  label: {
-    gray: {
-      color: 'blue'
-    },
-    blue: {
-      color: 'white'
-    },
-    navy: {
-      color: 'white'
-    },
-    darkNavy: {
-      color: 'white'
-    },
-    red: {
-      color: 'white'
-    },
-    purple: {
-      color: 'white'
-    },
-    'text-blue': {
-      color: 'blue',
-      isUnderline: true
-    }
-  }
+const configWrapperTheme: Record<NonNullable<IBaseButtonProps['theme']>, string> = {
+  gray: 'btn-gray',
+  blue: 'btn-blue',
+  navy: 'btn-navy',
+  darkNavy: 'btn-darkNavy',
+  red: 'btn-red',
+  purple: 'btn-purple',
+  transparent: 'btn-transparent'
 }
 
 const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> = {
@@ -75,13 +46,15 @@ const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> =
   s4: 'pl-16 pr-12 py-12'
 }
 
-const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, Partial<IBaseContentProps>> = {
-  s1: {
-    typography: 'text-label-1'
-  },
-  s2: {
-    typography: 'text-label-2'
-  }
+const configLabelTheme: Record<NonNullable<IBaseButtonProps['labelTheme']>, string> = {
+  white: 'text-white',
+  blue: 'text-blue-1',
+  navy: 'text-navy-1'
+}
+
+const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, string> = {
+  s1: 'text-label-1',
+  s2: 'text-label-2'
 }
 
 const wrapperClasses = computed<string[]>(() => {
@@ -89,7 +62,16 @@ const wrapperClasses = computed<string[]>(() => {
     'flex flex-col flex-nowrap justify-center items-center gap-y-8 w-fit h-fit border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
     props.inactive ? 'inactive' : '',
     configWrapperSize[props.size],
-    configTheme.wrapper[props.theme]
+    configWrapperTheme[props.theme]
+  ]
+})
+
+const labelClasses = computed(() => {
+  return [
+    'u-text-nowrap text-center transition-colors',
+    configLabelSize[props.labelSize],
+    configLabelTheme[props.labelTheme],
+    props.isUnderline ? 'underline' : ''
   ]
 })
 
@@ -113,21 +95,6 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
     }
   }
 })
-
-const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
-  if (props.label) {
-    return {
-      tag: 'span',
-      align: 'center',
-      transition: 'color',
-      isOneLine: props.isOneLine,
-      ...configLabelSize[props.labelSize],
-      ...configTheme.label[props.theme]
-    }
-  } else {
-    return {}
-  }
-})
 </script>
 
 <template>
@@ -135,19 +102,17 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
     :is="wrapperTag"
     v-bind="wrapperAtrrs"
     :class="wrapperClasses">
-    <slot name="iconTop" />
+    <slot name="icon-top" />
 
     <span class="flex flex-row flex-nowrap items-center gap-x-8">
-      <slot name="iconLeft" />
+      <slot name="icon-left" />
 
-      <base-content
+      <span
         v-if="label"
-        v-bind="labelAttrs"
-        class="label">
-        <span v-html="useOrphans(label)" />
-      </base-content>
+        :class="labelClasses"
+        v-html="useOrphans(label)" />
 
-      <slot name="iconRight" />
+      <slot name="icon-right" />
     </span>
   </component>
 </template>
@@ -197,11 +162,7 @@ const labelAttrs = computed<Partial<IBaseContentProps>>(() => {
   }
 }
 
-.btn-text-blue {
+.btn-transparent {
   @apply bg-transparent;
-
-  &:hover .label {
-    @apply text-lightBlue-2;
-  }
 }
 </style>

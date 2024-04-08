@@ -40,7 +40,7 @@ const classes = computed<string[]>(() => {
     props.typography,
     configColor[props.color],
     configAlign[props.align],
-    props.isOneLine ? 'u-text-one-line' : '',
+    props.isOneLine ? 'u-text-nowrap' : '',
     props.isUppercase ? 'uppercase' : '',
     props.isUnderline ? 'underline underline-offset-2' : ''
   ]
