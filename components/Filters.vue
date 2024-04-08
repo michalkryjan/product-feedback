@@ -4,7 +4,6 @@ import type { IFiltersOptionProps } from 'components/FiltersOption.vue'
 interface IFiltersProps {
   options: Array<IFiltersOptionProps['data']>
   value: string | string[] | undefined
-  optionType?: IFiltersOptionProps['type']
   optionTheme?: IFiltersOptionProps['theme']
   gapSize?: 's1'
   addOptionAll?: boolean
@@ -15,7 +14,6 @@ interface IFormFieldSelectEmits {
 }
 
 const props = withDefaults(defineProps<IFiltersProps>(), {
-  optionType: 'button',
   optionTheme: 'gray',
   gapSize: 's1',
   addOptionAll: false
@@ -97,7 +95,6 @@ onBeforeMount(() => {
       :key="option.value"
       v-bind="$attrs"
       :data="option"
-      :type="optionType"
       :theme="optionTheme"
       :is-disabled="Array.isArray(valueModel) && valueModel.length === 1 && valueModel.includes('all') && option.value === 'all'"
       :is-selected="valueModel === option.value || (Array.isArray(valueModel) && valueModel.includes(option.value))"

@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { IBaseButtonProps } from 'components/base/Button.vue'
-import type { IBaseContentProps } from 'components/base/Content.vue'
 import type { Data } from 'types/data'
 
 export interface IFiltersOptionProps {
   data: Data.Components.FiltersOption
-  type?: 'input' | 'button'
   theme?: 'gray'
   isSelected?: boolean
   isDisabled?: boolean
@@ -18,7 +15,6 @@ interface IFiltersOptionEmits {
 }
 
 const props = withDefaults(defineProps<IFiltersOptionProps>(), {
-  type: 'input',
   theme: 'gray',
   isSelected: false,
   isDisabled: false,
@@ -29,45 +25,6 @@ const emit = defineEmits<IFiltersOptionEmits>()
 
 defineOptions({
   inheritAttrs: false
-})
-
-const configTheme: Record<NonNullable<IFiltersOptionProps['theme']>, {
-  inputWrapper: {
-    idle: string
-    active: string
-  }
-  inputLabel: {
-    idle: IBaseContentProps['color']
-    active: IBaseContentProps['color']
-  }
-  button: {
-    idle: IBaseButtonProps['theme']
-    active: IBaseButtonProps['theme']
-  }
-}> = {
-  gray: {
-    inputWrapper: {
-      idle: 'btn-gray',
-      active: 'btn-blue'
-    },
-    inputLabel: {
-      idle: 'blue',
-      active: 'white'
-    },
-    button: {
-      idle: 'gray',
-      active: 'blue'
-    }
-  }
-}
-
-const classesInputWrapper = computed<string[] | null>(() => {
-  return props.type === 'input'
-    ? [
-      'flex justify-center items-center w-fit px-16 py-6 rounded-primary transition-colors duration-200 cursor-pointer select-none',
-      props.isSelected ? configTheme[props.theme].inputWrapper.active : configTheme[props.theme].inputWrapper.idle
-    ]
-    : null
 })
 
 function toggle (): void {
@@ -82,36 +39,13 @@ function toggle (): void {
 </script>
 
 <template>
-  <span
-    v-if="type === 'input'"
-    :class="classesInputWrapper"
-    :disabled="isDisabled"
-    @click="toggle">
-    <input
-      v-bind="$attrs"
-      :id="inputId"
-      type="checkbox"
-      class="hidden"
-      :aria-labelledby="inputId + '-' + data.value">
-
-    <base-content
-      :id="inputId + '-' + data.value"
-      tag="span"
-      typography="text-label-2"
-      align="center"
-      transition="color"
-      :color="isSelected ? configTheme[theme].inputLabel.active : configTheme[theme].inputLabel.idle"
-      is-one-line>
-      <span v-html="useOrphans(data.label)" />
-    </base-content>
-  </span>
-
   <base-button
-    v-else
-    :label="data.label"
-    :disabled="isDisabled"
+    :text="data.label"
+    size="s1"
     label-size="s2"
-    :theme="isSelected ? configTheme[theme].button.active : configTheme[theme].button.idle"
-    :inactive="isSelected"
+    :theme="isSelected ? 'blue' : 'gray'"
+    :label-color="isSelected ? 'white' : 'blue'"
+    :is-inactive="isSelected"
+    :is-disabled="isDisabled"
     @click="toggle" />
 </template>
