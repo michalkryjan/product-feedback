@@ -9,6 +9,7 @@ interface IButtonUpvoteProps {
 
 interface IButtonVoteEmits {
   (e: 'update:active', val: boolean): void
+  (e: 'update:count', val: number): void
 }
 
 const props = withDefaults(defineProps<IButtonUpvoteProps>(), {
@@ -27,6 +28,7 @@ const iconClasses = computed(() => {
 })
 
 function toggle () {
+  emit('update:count', props.active ? props.count - 1 : props.count + 1)
   emit('update:active', !props.active)
 }
 </script>
