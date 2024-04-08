@@ -120,26 +120,26 @@ watch(values, () => {
     <template #footer>
       <div class="inline-flex gap-x-16 justify-end w-full">
         <base-button
+          text="Delete"
+          href="/"
           size="s2"
           theme="red"
-          label="Delete"
-          is-one-line
-          class="mr-auto"
-          href="/" />
+          label-color="white"
+          class="mr-auto" />
 
         <base-button
+          text="Cancel"
+          href="/"
           size="s2"
           theme="navy"
-          label="Cancel"
-          is-one-line
-          href="/" />
+          label-color="white" />
 
         <base-button
           type="submit"
+          text="Add Feedback"
           size="s2"
           theme="purple"
-          label="Add Feedback"
-          is-one-line />
+          label-color="white" />
       </div>
     </template>
   </form-template-card>

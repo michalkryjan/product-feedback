@@ -19,11 +19,12 @@ const props = defineProps<IMainMenuRoadmapSummaryProps>()
       </base-headline>
 
       <base-button
-        :label="data.button.label"
+        :text="data.button.label"
         :href="data.button.href"
-        size="fit"
         label-size="s2"
-        theme="text-blue" />
+        theme="transparent"
+        label-color="blue"
+        is-underline />
     </div>
 
     <list-summary :items="data.items" />

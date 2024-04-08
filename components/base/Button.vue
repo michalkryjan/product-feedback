@@ -2,30 +2,30 @@
 import { NuxtLinkProps } from 'nuxt/app'
 
 export interface IBaseButtonProps {
-  label?: string
+  text?: string
+  href?: string
   type?: 'button' | 'submit'
   size?: 'fit' | 's1' | 's2' | 's3' | 's4'
   theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'transparent'
   labelSize?: 's1' | 's2'
-  labelTheme?: 'blue' | 'white' | 'navy'
-  href?: string
+  labelColor?: 'blue' | 'white' | 'navy'
   isUnderline?: boolean
   isOneLine?: boolean
-  disabled?: boolean
-  inactive?: boolean
+  isDisabled?: boolean
+  isInactive?: boolean
 }
 
 const props = withDefaults(defineProps<IBaseButtonProps>(), {
-  label: undefined,
+  text: undefined,
+  href: undefined,
   type: 'button',
   theme: 'gray',
   size: 'fit',
   labelSize: 's1',
-  labelTheme: 'blue',
+  labelColor: 'blue',
   isOneLine: true,
-  href: undefined,
-  disabled: false,
-  inactive: false
+  isDisabled: false,
+  isInactive: false
 })
 
 const configWrapperTheme: Record<NonNullable<IBaseButtonProps['theme']>, string> = {
@@ -46,7 +46,7 @@ const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> =
   s4: 'pl-16 pr-12 py-12'
 }
 
-const configLabelTheme: Record<NonNullable<IBaseButtonProps['labelTheme']>, string> = {
+const configlabelColor: Record<NonNullable<IBaseButtonProps['labelColor']>, string> = {
   white: 'text-white',
   blue: 'text-blue-1',
   navy: 'text-navy-1'
@@ -60,7 +60,7 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, string
 const wrapperClasses = computed<string[]>(() => {
   return [
     'flex flex-col flex-nowrap justify-center items-center gap-y-8 w-fit h-fit border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
-    props.inactive ? 'inactive' : '',
+    props.isInactive ? 'inactive' : '',
     configWrapperSize[props.size],
     configWrapperTheme[props.theme]
   ]
@@ -70,7 +70,7 @@ const labelClasses = computed(() => {
   return [
     'u-text-nowrap text-center transition-colors',
     configLabelSize[props.labelSize],
-    configLabelTheme[props.labelTheme],
+    configlabelColor[props.labelColor],
     props.isUnderline ? 'underline' : ''
   ]
 })
@@ -91,7 +91,7 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
   } else {
     return {
       type: props.type,
-      disabled: props.disabled
+      disabled: props.isDisabled
     }
   }
 })
@@ -108,9 +108,9 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
       <slot name="icon-left" />
 
       <span
-        v-if="label"
+        v-if="text"
         :class="labelClasses"
-        v-html="useOrphans(label)" />
+        v-html="useOrphans(text)" />
 
       <slot name="icon-right" />
     </span>

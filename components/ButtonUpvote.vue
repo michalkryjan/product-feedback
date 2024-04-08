@@ -33,17 +33,17 @@ function toggle () {
 
 <template>
   <base-button
-    :label="count.toString()"
+    :text="count.toString()"
     :size="type === 'vertical' ? 's3' : 's4'"
     label-size="s1"
-    :disabled="disabled"
     :theme="active ? 'blue' : 'gray'"
-    :inactive="active"
-    :class="active ? '[&_.label]:text-white' : '[&_.label]:text-navy-1'"
+    :label-color="active ? 'white' : 'navy'"
+    :is-disabled="disabled"
+    :is-inactive="active"
     @click="toggle">
     <template
       v-if="type === 'vertical'"
-      #iconTop>
+      #icon-top>
       <base-icon
         name="arrow-up"
         :class="iconClasses" />
@@ -51,7 +51,7 @@ function toggle () {
 
     <template
       v-if="type === 'horizontal'"
-      #iconLeft>
+      #icon-left>
       <base-icon
         name="arrow-up"
         :class="iconClasses" />

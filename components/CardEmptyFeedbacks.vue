@@ -24,11 +24,12 @@
     </base-content>
 
     <base-button
+      text="Add feedback"
+      href="/feedback/create"
       size="s2"
       theme="purple"
-      label="Add feedback"
-      href="/feedback/create">
-      <template #iconLeft>
+      label-color="white">
+      <template #icon-left>
         <base-icon name="plus" />
       </template>
     </base-button>
