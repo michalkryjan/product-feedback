@@ -18,7 +18,7 @@ useHead({
   title: `${pageContent.value?.title ?? globalContent.value?.title}`,
 })
 
-const sampleData: Feedback[] = [
+const data: Feedback[] = [
   {
     id: 1,
     title: 'Add tags for solutions',
@@ -333,7 +333,10 @@ const sampleData: Feedback[] = [
       </template>
 
       <template #board>
-        <feedback-list-default :items="sampleData" />
+        <feedback-list-default
+          v-if="!!data?.length"
+          :items="data" />
+        <card-empty-feedbacks v-else />
       </template>
     </nuxt-layout>
   </div>
