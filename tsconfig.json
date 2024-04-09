@@ -4,7 +4,9 @@
     "baseUrl": ".",
     "strict": true,
     "verbatimModuleSyntax": false,
-    "types": [],
+    "types": [
+      "@pinia/nuxt"
+    ],
     "typeRoots": [
       "./node_modules",
       "./types"
