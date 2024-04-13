@@ -7,10 +7,10 @@
     "types": [
       "@pinia/nuxt"
     ],
-    "typeRoots": [
-      "./types"
-    ],
     "paths": {
+      "types/*": [
+        "./types/*"
+      ],
       "components/*": [
         "./components/*"
       ],
