@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { IFormTemplateCardField } from 'components/form/TemplateCard.vue'
-import { useForm } from 'vee-validate'
+import type { IFormTemplateCardField } from 'components/form/TemplateCard.vue';
+import { useForm } from 'vee-validate';
 
 interface IFormFeedbackCreateEmits {
   (e: 'success'): void
@@ -28,7 +28,7 @@ const {
   }
 })
 
-const configFields: IFormTemplateCardField = [
+const configFields: IFormTemplateCardField[] = [
   {
     id: 'title',
     title: 'Feedback Title',

@@ -8,14 +8,21 @@
       "@pinia/nuxt"
     ],
     "typeRoots": [
-      "./node_modules",
       "./types"
     ],
     "paths": {
-      "*": ["types/*.d.ts"],
+      "components/*": [
+        "./components/*"
+      ],
+      "*": [
+        "types/*.d.ts"
+      ],
       "#imports": [
         ".nuxt/imports.d.ts"
       ]
-    },
-  }
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

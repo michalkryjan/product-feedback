@@ -3,6 +3,9 @@ export default defineNuxtConfig({
     enabled: true
   },
   ssr: false,
+  alias: {
+    components: '/<srcDir>/components',
+  },
   app: {
     head: {
       meta: [
