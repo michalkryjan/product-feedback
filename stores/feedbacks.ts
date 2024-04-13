@@ -3,6 +3,10 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
 
   const feedbacks = ref<Feedback[]>([])
 
+  watch(feedbacks, () => {
+    sortFeedbacksByUpvotes()
+  })
+
   function addFeedback (data: Pick<Feedback, 'title' | 'category' | 'description'>): boolean {
     if (statusesStore.initialStatus) {
       // TODO: add api call
@@ -472,6 +476,10 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   function getFeedbackIndex (id: Feedback['id']): number | null {
     const index = feedbacks.value.findIndex(item => item.id === id)
     return index !== -1 ? index : null
+  }
+
+  function sortFeedbacksByUpvotes (): void {
+    feedbacks.value = feedbacks.value.sort((a, b) => (b.upvotes - a.upvotes))
   }
 
   return {
