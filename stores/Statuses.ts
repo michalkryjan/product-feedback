@@ -11,25 +11,25 @@ export const useStatusesStore = defineStore('statuses', () => {
         id: 1,
         order: 1,
         name: 'suggestion',
-        color: ''
+        color: '#CDD2EE'
       },
       {
         id: 2,
         order: 2,
         name: 'planned',
-        color: ''
+        color: '#F49F85'
       },
       {
         id: 3,
         order: 3,
         name: 'in-progress',
-        color: ''
+        color: '#AD1FEA'
       },
       {
         id: 4,
         order: 4,
         name: 'live',
-        color: ''
+        color: '#62BCFA'
       }
     ]
   }
