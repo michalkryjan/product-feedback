@@ -1,23 +1,29 @@
 export const useFeedbacksStore = defineStore('feedbacks', () => {
+  const statusesStore = useStatusesStore()
+
   const feedbacks = ref<Feedback[]>([])
 
-  function addFeedback (data: Pick<Feedback, 'title' | 'category' | 'description'>): void {
-    feedbacks.value.push({
-      id: 0,
-      title: data.title,
-      category: data.category,
-      upvotes: 0,
-      status: {
-        id: 1,
-        order: 1,
-        name: 'suggestion',
-        color: ''
-      },
-      description: data.description
-    })
+  function addFeedback (data: Pick<Feedback, 'title' | 'category' | 'description'>): boolean {
+    if (statusesStore.initialStatus) {
+      // TODO: add api call
+
+      feedbacks.value.push({
+        id: 0,
+        title: data.title,
+        category: data.category,
+        upvotes: 0,
+        status: statusesStore.initialStatus,
+        description: data.description
+      })
+      return true
+    } else {
+      return false
+    }
   }
 
   function fetchFeedbacks (): boolean {
+    // TODO: add api call
+
     feedbacks.value = [
       {
         id: 1,
@@ -427,6 +433,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     const index = getFeedbackIndex(id)
 
     if (index !== null) {
+      // TODO: add api call
       feedbacks.value.splice(index, 1)
       return true
     } else {
@@ -438,6 +445,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     const index = getFeedbackIndex(id)
 
     if (index !== null) {
+      // TODO: add api call
       Object.assign(feedbacks.value[index], data)
       return true
     } else {
