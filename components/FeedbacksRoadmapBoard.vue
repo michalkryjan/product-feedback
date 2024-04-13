@@ -21,7 +21,7 @@ const feedbacksGroupedByStatus = computed(() => {
           typography="title-3"
           color="navy"
           class="mb-4">
-          <span v-html="useCapitalized(useOrphans(group.status.name))" />
+          <span v-html="`${ useCapitalized(useOrphans(group.status.name)) } (${ group.feedbacks.length })`" />
         </base-headline>
 
         <base-content
