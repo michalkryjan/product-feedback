@@ -1,9 +1,9 @@
 <script setup lang="ts">
-interface ICardFeedbackListProps {
+interface IFeedbacksListDefaultProps {
   items: Feedback[]
 }
 
-const props = defineProps<ICardFeedbackListProps>()
+const props = defineProps<IFeedbacksListDefaultProps>()
 </script>
 
 <template>
