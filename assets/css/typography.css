@@ -14,6 +14,7 @@
   @apply font-bold text-14 leading-145 -tracking-020;
 }
 
+
 .text-body-1 {
   @apply font-normal text-16 leading-145;
 }
@@ -26,6 +27,7 @@
   @apply font-semibold text-13 leading-145;
 }
 
+
 .text-label-1 {
   @apply font-bold text-14 leading-100;
 }
@@ -36,4 +38,8 @@
 
 .text-label-3 {
   @apply font-normal text-14 leading-120;
+}
+
+.text-label-4 {
+  @apply font-bold text-16 leading-120;
 }
