@@ -8,7 +8,8 @@ type Typography = |
   'text-body-3' |
   'text-label-1' |
   'text-label-2' |
-  'text-label-3'
+  'text-label-3' |
+  'text-label-4'
 
 type Feedback = {
   id: number
