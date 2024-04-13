@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { IBaseFormProps } from 'components/base/Form.vue'
 import type { BaseIconName } from 'components/base/Icon.vue'
-import type { IFormWrapperProps } from 'components/form/Wrapper.vue'
 
 export interface IFormTemplateCardField {
   id: string
@@ -12,7 +12,7 @@ interface IFormTemplateCardProps {
   title: string
   icon: BaseIconName
   fields: IFormTemplateCardField[]
-  onSubmit: IFormWrapperProps['onSubmit']
+  onSubmit: IBaseFormProps['onSubmit']
 }
 
 const props = defineProps<IFormTemplateCardProps>()
