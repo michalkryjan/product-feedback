@@ -38,10 +38,10 @@ feedbacksStore.fetchFeedbacks()
       </template>
 
       <template #board>
-        <feedback-list-default
+        <feedbacks-list-default
           v-if="!!feedbacksStore.feedbacks?.length"
           :items="feedbacksStore.feedbacks" />
-        <card-empty-feedbacks v-else />
+        <feedbacks-not-found v-else />
       </template>
     </nuxt-layout>
   </div>
