@@ -8,10 +8,9 @@ const feedback = feedbacksStore.getFeedback(params?.id ? parseInt(params.id) : -
 
 <template>
   <div>
-    <nuxt-layout name="details">
-      <card-feedback
-        v-if="feedback"
-        :data="feedback" />
-    </nuxt-layout>
+    <card-feedback
+      v-if="feedback"
+      :data="feedback"
+      :link-to-details="false" />
   </div>
 </template>

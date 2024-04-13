@@ -11,19 +11,17 @@ const { data: pageContent } = await useAsyncData(
   () => queryContent<Content.Homepage>('homepage').findOne()
 )
 
+const { feedbacks } = storeToRefs(useFeedbacksStore())
+
 useHead({
   title: `${pageContent.value?.title ?? globalContent.value?.title}`,
 })
-
-const feedbacksStore = useFeedbacksStore()
-
-feedbacksStore.fetchFeedbacks()
 </script>
 
 <template>
-  <div>
-    <nuxt-layout name="board-with-sidebar">
-      <template #sidebar>
+  <layout-page-wrapper width-type="l">
+    <div class="grid grid-cols-[26rem_1fr] w-full gap-x-30 pt-90">
+      <div class="col-start-1 col-end-1 flex flex-col gap-24">
         <card-product-info
           v-if="pageContent?.productInfo"
           :data="pageContent.productInfo" />
@@ -35,14 +33,14 @@ feedbacksStore.fetchFeedbacks()
         <card-roadmap-summary
           v-if="pageContent?.roadmapSummary"
           :data="pageContent.roadmapSummary" />
-      </template>
+      </div>
 
-      <template #board>
+      <div class="col-start-2 col-end-2 h-fit flex flex-col">
         <feedbacks-list-default
-          v-if="!!feedbacksStore.feedbacks?.length"
-          :items="feedbacksStore.feedbacks" />
+          v-if="!!feedbacks?.length"
+          :items="feedbacks" />
         <feedbacks-not-found v-else />
-      </template>
-    </nuxt-layout>
-  </div>
+      </div>
+    </div>
+  </layout-page-wrapper>
 </template>

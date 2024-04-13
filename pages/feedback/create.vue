@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div>
-    <nuxt-layout name="form">
-      <form-feedback-create />
-    </nuxt-layout>
-  </div>
+  <layout-page-wrapper
+    width-type="s"
+    class="pt-90">
+    <form-feedback-create />
+  </layout-page-wrapper>
 </template>

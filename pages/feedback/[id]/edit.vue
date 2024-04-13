@@ -9,9 +9,9 @@ const dataSample = {
 </script>
 
 <template>
-  <div>
-    <nuxt-layout name="form">
-      <form-feedback-edit :data="dataSample" />
-    </nuxt-layout>
-  </div>
+  <layout-page-wrapper
+    width-type="s"
+    class="pt-90">
+    <form-feedback-edit :data="dataSample" />
+  </layout-page-wrapper>
 </template>
