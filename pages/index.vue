@@ -15,7 +15,9 @@ useHead({
   title: `${pageContent.value?.title ?? globalContent.value?.title}`,
 })
 
-const { feedbacks } = storeToRefs(useFeedbacksStore())
+const feedbacksStore = useFeedbacksStore()
+
+feedbacksStore.fetchFeedbacks()
 </script>
 
 <template>
@@ -37,8 +39,8 @@ const { feedbacks } = storeToRefs(useFeedbacksStore())
 
       <template #board>
         <feedback-list-default
-          v-if="!!feedbacks?.length"
-          :items="feedbacks" />
+          v-if="!!feedbacksStore.feedbacks?.length"
+          :items="feedbacksStore.feedbacks" />
         <card-empty-feedbacks v-else />
       </template>
     </nuxt-layout>
