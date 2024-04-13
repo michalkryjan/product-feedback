@@ -68,14 +68,6 @@ module.exports = {
       maxBOF: 0
     }],
     '@stylistic/object-curly-newline': ['error', {
-      ObjectExpression: {
-        multiline: true,
-        minProperties: 1
-      },
-      ObjectPattern: {
-        multiline: true,
-        minProperties: 1
-      },
       ImportDeclaration: 'never',
       ExportDeclaration: {
         multiline: true,
