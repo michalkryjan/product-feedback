@@ -37,6 +37,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 1,
           order: 1,
           name: 'suggestion',
+          description: 'Ideas added by users',
           color: ''
         },
         description: 'Easier to search for solutions based on a specific stack.',
@@ -73,6 +74,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 1,
           order: 1,
           name: 'suggestion',
+          description: 'Ideas added by users',
           color: ''
         },
         description: 'It would help people with light sensitivities and who prefer dark mode.',
@@ -129,6 +131,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 1,
           order: 1,
           name: 'suggestion',
+          description: 'Ideas added by users',
           color: ''
         },
         description: 'Challenge-specific Q&A would make for easy reference.',
@@ -156,6 +159,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 1,
           order: 1,
           name: 'suggestion',
+          description: 'Ideas added by users',
           color: ''
         },
         description: 'Images and screencasts can enhance comments on solutions.',
@@ -192,6 +196,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 1,
           order: 1,
           name: 'suggestion',
+          description: 'Ideas added by users',
           color: ''
         },
         description: 'Stay updated on comments and solutions other people post.',
@@ -239,6 +244,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 1,
           order: 1,
           name: 'suggestion',
+          description: 'Ideas added by users',
           color: ''
         },
         description: 'Challenge preview images are missing when you apply a filter.'
@@ -255,6 +261,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 2,
           order: 2,
           name: 'planned',
+          description: 'Ideas prioritized for research',
           color: ''
         },
         description: 'It would be great to see a more detailed breakdown of solutions.',
@@ -291,6 +298,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 2,
           order: 2,
           name: 'planned',
+          description: 'Ideas prioritized for research',
           color: ''
         },
         description: 'Sequenced projects for different goals to help people improve.',
@@ -318,6 +326,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 3,
           order: 3,
           name: 'in-progress',
+          description: 'Currently being developed',
           color: ''
         },
         description: 'Add ability to create professional looking portfolio from profile.',
@@ -345,6 +354,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 3,
           order: 3,
           name: 'in-progress',
+          description: 'Currently being developed',
           color: ''
         },
         description: 'Be able to bookmark challenges to take later on.',
@@ -372,6 +382,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 3,
           order: 3,
           name: 'in-progress',
+          description: 'Currently being developed',
           color: ''
         },
         description: 'Screenshots of solutions with animations don’t display correctly.'
@@ -388,6 +399,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           id: 4,
           order: 4,
           name: 'live',
+          description: 'Released features',
           color: ''
         },
         description: 'Small animations at specific points can add delight.',
@@ -429,6 +441,10 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }
   }
 
+  function getFeedbacksFilteredByStatus (id: FeedbackStatus['id']) {
+    return feedbacks.value.filter(item => item.status.id === id)
+  }
+
   function removeFeedback (id: Feedback['id']): boolean {
     const index = getFeedbackIndex(id)
 
@@ -462,6 +478,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     feedbacks,
     fetchFeedbacks,
     getFeedback,
+    getFeedbacksFilteredByStatus,
     addFeedback,
     removeFeedback,
     updateFeedback

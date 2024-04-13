@@ -25,6 +25,7 @@ type FeedbackStatus = {
   id: number
   order: number
   name: string
+  description: string
   color: string
 }
 
