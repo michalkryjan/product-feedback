@@ -66,11 +66,12 @@ const wrapperClasses = computed<string[]>(() => {
   ]
 })
 
-const labelClasses = computed(() => {
+const labelClasses = computed<string[]>(() => {
   return [
-    'u-text-nowrap text-center transition-colors',
+    'text-center transition-colors',
     configLabelSize[props.labelSize],
     configlabelColor[props.labelColor],
+    props.isOneLine ? 'u-text-nowrap' : '',
     props.isUnderline ? 'underline' : ''
   ]
 })
@@ -117,7 +118,7 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
   </component>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .btn-gray {
   @apply bg-gray-2;
 

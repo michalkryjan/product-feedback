@@ -1,6 +1,6 @@
 <script setup lang="ts">
 export interface IBaseCardProps {
-  tag?: 'div'
+  tag?: 'div' | 'NuxtLink'
   variant?: '1'
   theme?: 'white' | 'gradient-1'
   layout?: 'col' | 'row'
@@ -35,11 +35,13 @@ const classes = computed<string[]>(() => {
     configLayout[props.layout]
   ]
 })
+
+const resolvedTag = computed(() => props.tag === 'NuxtLink' ? resolveComponent('NuxtLink') : props.tag)
 </script>
 
 <template>
   <component
-    :is="tag"
+    :is="resolvedTag"
     :class="classes">
     <slot />
   </component>
