@@ -13,30 +13,36 @@ type Typography = |
 type Feedback = {
   id: number
   title: string
-  category: string
+  category: FeedbackCategory
   upvotes: number
   status: FeedbackStatus
   description: string
-  comments: Comment[]
+  comments?: Commentary[]
 }
 
 type FeedbackStatus = {
   id: number
+  order: number
   name: string
   color: string
 }
 
-type Comment = {
+type FeedbackCategory = {
+  id: number
+  name: string
+}
+
+type Commentary = {
   id: number
   content: string
   user: User
-  replies?: CommentReply[]
+  replies?: CommentaryReply[]
 }
 
-type CommentReply = {
+type CommentaryReply = {
   content: string
   replyingTo: string
-  user: string
+  user: User
 }
 
 type User = {
