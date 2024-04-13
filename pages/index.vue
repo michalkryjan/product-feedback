@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import type { Content } from 'types/content'
 
-const {
-  data: globalContent
-} = await useAsyncData(
+const { data: globalContent } = await useAsyncData(
   'global',
   () => queryContent<Content.Global>('global').findOne()
 )
-const {
-  data: pageContent
-} = await useAsyncData(
+
+const { data: pageContent } = await useAsyncData(
   'homepage',
   () => queryContent<Content.Homepage>('homepage').findOne()
 )
@@ -18,7 +15,7 @@ useHead({
   title: `${pageContent.value?.title ?? globalContent.value?.title}`,
 })
 
-const feedbacksStore = useFeedbacksStore()
+const { feedbacks } = storeToRefs(useFeedbacksStore())
 </script>
 
 <template>
@@ -40,8 +37,8 @@ const feedbacksStore = useFeedbacksStore()
 
       <template #board>
         <feedback-list-default
-          v-if="!!feedbacksStore.items?.length"
-          :items="feedbacksStore.items" />
+          v-if="!!feedbacks?.length"
+          :items="feedbacks" />
         <card-empty-feedbacks v-else />
       </template>
     </nuxt-layout>
