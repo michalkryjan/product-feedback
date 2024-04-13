@@ -17,7 +17,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     })
   }
 
-  function fetchFeedbacks (): void {
+  function fetchFeedbacks (): boolean {
     feedbacks.value = [
       {
         id: 1,
@@ -409,25 +409,51 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
         ]
       }
     ]
+
+    return true
   }
 
-  function removeFeedback (id: Feedback['id']): void {
+  function getFeedback (id: Feedback['id']): Feedback | null {
     const index = getFeedbackIndex(id)
-    feedbacks.value.splice(index, 1)
+
+    if (index !== null) {
+      return feedbacks.value[index]
+    } else {
+      return null
+    }
   }
 
-  function updateFeedback (id: Feedback['id'], data: Pick<Feedback, 'title' | 'category' | 'description'>): void {
+  function removeFeedback (id: Feedback['id']): boolean {
     const index = getFeedbackIndex(id)
-    Object.assign(feedbacks.value[index], data)
+
+    if (index !== null) {
+      feedbacks.value.splice(index, 1)
+      return true
+    } else {
+      return false
+    }
   }
 
-  function getFeedbackIndex (id: Feedback['id']) {
-    return feedbacks.value.findIndex(item => item.id === id)
+  function updateFeedback (id: Feedback['id'], data: Pick<Feedback, 'title' | 'category' | 'description'>): boolean {
+    const index = getFeedbackIndex(id)
+
+    if (index !== null) {
+      Object.assign(feedbacks.value[index], data)
+      return true
+    } else {
+      return false
+    }
+  }
+
+  function getFeedbackIndex (id: Feedback['id']): number | null {
+    const index = feedbacks.value.findIndex(item => item.id === id)
+    return index !== -1 ? index : null
   }
 
   return {
     feedbacks,
     fetchFeedbacks,
+    getFeedback,
     addFeedback,
     removeFeedback,
     updateFeedback
