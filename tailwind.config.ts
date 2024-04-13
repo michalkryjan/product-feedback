@@ -150,7 +150,8 @@ export default {
     minWidth: {
       full: '100%',
       fit: 'fit-content',
-      max: 'max-content'
+      max: 'max-content',
+      42: '4.2rem'
     },
     width: {
       full: '100%',

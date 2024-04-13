@@ -7,7 +7,7 @@ interface IButtonUpvoteProps {
   disabled?: boolean
 }
 
-interface IButtonVoteEmits {
+interface IButtonUpvoteEmits {
   (e: 'update:active', val: boolean): void
   (e: 'update:count', val: number): void
 }
@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<IButtonUpvoteProps>(), {
   disabled: false
 })
 
-const emit = defineEmits<IButtonVoteEmits>()
+const emit = defineEmits<IButtonUpvoteEmits>()
 
 const iconClasses = computed(() => {
   return [
@@ -42,6 +42,7 @@ function toggle () {
     :label-color="active ? 'white' : 'navy'"
     :is-disabled="disabled"
     :is-inactive="active"
+    class="min-w-42"
     @click="toggle">
     <template
       v-if="type === 'vertical'"
