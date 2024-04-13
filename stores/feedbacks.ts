@@ -38,7 +38,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 1,
           name: 'suggestion',
           description: 'Ideas added by users',
-          color: ''
+          color: '#CDD2EE'
         },
         description: 'Easier to search for solutions based on a specific stack.',
         comments: [
@@ -75,7 +75,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 1,
           name: 'suggestion',
           description: 'Ideas added by users',
-          color: ''
+          color: '#CDD2EE'
         },
         description: 'It would help people with light sensitivities and who prefer dark mode.',
         comments: [
@@ -132,7 +132,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 1,
           name: 'suggestion',
           description: 'Ideas added by users',
-          color: ''
+          color: '#CDD2EE'
         },
         description: 'Challenge-specific Q&A would make for easy reference.',
         comments: [
@@ -160,7 +160,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 1,
           name: 'suggestion',
           description: 'Ideas added by users',
-          color: ''
+          color: '#CDD2EE'
         },
         description: 'Images and screencasts can enhance comments on solutions.',
         comments: [
@@ -197,7 +197,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 1,
           name: 'suggestion',
           description: 'Ideas added by users',
-          color: ''
+          color: '#CDD2EE'
         },
         description: 'Stay updated on comments and solutions other people post.',
         comments: [
@@ -245,7 +245,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 1,
           name: 'suggestion',
           description: 'Ideas added by users',
-          color: ''
+          color: '#CDD2EE'
         },
         description: 'Challenge preview images are missing when you apply a filter.'
       },
@@ -262,7 +262,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 2,
           name: 'planned',
           description: 'Ideas prioritized for research',
-          color: ''
+          color: '#F49F85'
         },
         description: 'It would be great to see a more detailed breakdown of solutions.',
         comments: [
@@ -299,7 +299,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 2,
           name: 'planned',
           description: 'Ideas prioritized for research',
-          color: ''
+          color: '#F49F85'
         },
         description: 'Sequenced projects for different goals to help people improve.',
         comments: [
@@ -327,7 +327,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 3,
           name: 'in-progress',
           description: 'Currently being developed',
-          color: ''
+          color: '#AD1FEA'
         },
         description: 'Add ability to create professional looking portfolio from profile.',
         comments: [
@@ -355,7 +355,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 3,
           name: 'in-progress',
           description: 'Currently being developed',
-          color: ''
+          color: '#AD1FEA'
         },
         description: 'Be able to bookmark challenges to take later on.',
         comments: [
@@ -383,7 +383,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 3,
           name: 'in-progress',
           description: 'Currently being developed',
-          color: ''
+          color: '#AD1FEA'
         },
         description: 'Screenshots of solutions with animations don’t display correctly.'
       },
@@ -400,7 +400,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
           order: 4,
           name: 'live',
           description: 'Released features',
-          color: ''
+          color: '#62BCFA'
         },
         description: 'Small animations at specific points can add delight.',
         comments: [

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface IBaseCardProps {
   tag?: 'div' | 'NuxtLink'
-  variant?: '1'
+  variant?: '1' | '2'
   theme?: 'white' | 'gradient-1'
   layout?: 'col' | 'row'
 }
@@ -14,7 +14,8 @@ const props = withDefaults(defineProps<IBaseCardProps>(), {
 })
 
 const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = {
-  1: 'p-24'
+  1: 'p-24',
+  2: 'p-32'
 }
 
 const configTheme: Record<NonNullable<IBaseCardProps['theme']>, string> = {
@@ -29,7 +30,7 @@ const configLayout: Record<NonNullable<IBaseCardProps['layout']>, string> = {
 
 const classes = computed<string[]>(() => {
   return [
-    'relative flex flex-nowrap w-full h-fit rounded-primary',
+    'relative overflow-hidden flex flex-nowrap w-full h-fit rounded-primary',
     configVariant[props.variant],
     configTheme[props.theme],
     configLayout[props.layout]

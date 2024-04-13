@@ -47,6 +47,7 @@ const classes = computed<string[]>(() => {
 
 <template>
   <span
+    v-if="text"
     :class="classes"
     v-html="useOrphans(text)" />
 </template>

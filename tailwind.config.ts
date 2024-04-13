@@ -104,6 +104,7 @@ export default {
       52: '5.2rem',
       54: '5.4rem',
       56: '5.6rem',
+      78: '7.8rem',
       90: '9rem',
       min: 'min-content',
       max: 'max-content'
@@ -128,6 +129,7 @@ export default {
       fit: 'fit-content',
       max: 'max-content',
       4: '0.4rem',
+      6: '0.6rem',
       8: '0.8rem',
       48: '4.8rem',
       56: '5.6rem',
