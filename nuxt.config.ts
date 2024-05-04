@@ -1,3 +1,5 @@
+import { useEnv } from './utils/useEnv'
+
 export default defineNuxtConfig({
   devtools: {
     enabled: true
@@ -39,10 +41,21 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     'nuxt-icons',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    'nuxt-vuefire'
   ],
+  vuefire: {
+    auth: {
+      enabled: false
+    },
+    config: {
+      apiKey: useEnv().FIREBASE_API_KEY,
+      projectId: useEnv().FIREBASE_PROJECT_ID,
+      appId: useEnv().FIREBASE_APP_ID
+    },
+  },
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
     exposeConfig: true
-  },
+  }
 })

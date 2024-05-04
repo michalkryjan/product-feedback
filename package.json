@@ -6,21 +6,12 @@
     "node": "18.16.0"
   },
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "prepare": "nuxt prepare",
-    "cleanup": "nuxt cleanup"
-  },
-  "devDependencies": {
-    "@nuxt/eslint-config": "^0.2.0",
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "@savvywombat/tailwindcss-grid-areas": "^4.0.0",
-    "@stylistic/eslint-plugin": "^1.6.2",
-    "@typescript-eslint/parser": "^7.0.1",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3"
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "prepare": "nuxi prepare",
+    "cleanup": "nuxi cleanup"
   },
   "dependencies": {
     "@nuxt/content": "^2.12.0",
@@ -28,11 +19,23 @@
     "@vueuse/components": "^10.7.2",
     "@vueuse/core": "^10.7.2",
     "@vueuse/nuxt": "^10.7.2",
-    "nuxt": "^3.10.2",
+    "firebase": "^10.11.1",
+    "nuxt": "^3.11.2",
     "nuxt-icons": "^3.2.1",
+    "nuxt-vuefire": "^1.0.2",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.5",
     "vue": "^3.4.19",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vuefire": "^3.1.23"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@savvywombat/tailwindcss-grid-areas": "^4.0.0",
+    "@stylistic/eslint-plugin": "^1.6.2",
+    "@typescript-eslint/parser": "7.0.1",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
   }
 }
