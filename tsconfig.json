@@ -17,15 +17,15 @@
       "types/*": [
         "./types/*"
       ],
-      "components/*": [
-        "./components/*"
-      ],
       "*": [
         "types/*.d.ts"
       ],
       "#imports": [
         ".nuxt/imports.d.ts"
-      ]
+      ],
+      "~/*": [
+        "./*"
+      ],
     }
   },
   "exclude": [

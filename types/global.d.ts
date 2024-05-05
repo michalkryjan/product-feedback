@@ -1,3 +1,17 @@
+import { IRepository } from 'types/repository'
+
+interface IPluginInjections {
+  $repo: IRepository
+}
+
+declare module '#app' {
+  interface NuxtApp extends IPluginInjections {}
+}
+
+declare module 'nuxt/dist/app/nuxt' {
+  interface NuxtApp extends IPluginInjections {}
+}
+
 type Typography = |
   'title-1' |
   'title-2' |
@@ -14,15 +28,15 @@ type Typography = |
 type Feedback = {
   id: number
   title: string
-  category: FeedbackCategory
-  upvotes: number
-  status: FeedbackStatus
   description: string
+  upvotes: number
+  category: FeedbackCategory
+  status: FeedbackStatus
   comments?: Commentary[]
 }
 
 type FeedbackStatus = {
-  id: number
+  id: string
   order: number
   name: string
   description: string
@@ -30,12 +44,12 @@ type FeedbackStatus = {
 }
 
 type FeedbackCategory = {
-  id: number
+  id: string
   name: string
 }
 
 type Commentary = {
-  id: number
+  id: string
   content: string
   user: User
   replies?: CommentaryReply[]
@@ -43,7 +57,6 @@ type Commentary = {
 
 type CommentaryReply = {
   content: string
-  replyingTo: string
   user: User
 }
 

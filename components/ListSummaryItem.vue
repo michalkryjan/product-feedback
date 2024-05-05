@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Data } from 'types/data'
+import type { Data } from 'types/data';
 
 interface IListSummaryItemProps {
   data: Data.Components.ListSummaryItem

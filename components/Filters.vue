@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IFiltersOptionProps } from 'components/FiltersOption.vue'
+import type { IFiltersOptionProps } from '~/components/FiltersOption.vue';
 
 interface IFiltersProps {
   options: Array<IFiltersOptionProps['data']>

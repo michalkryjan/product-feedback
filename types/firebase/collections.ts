@@ -1,4 +1,4 @@
-import * as Docs from 'types/firestore/docs'
+import * as Docs from 'types/firebase/docs'
 
 export type Feedback = Array<Docs.Feedback>
 

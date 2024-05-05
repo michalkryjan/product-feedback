@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { IBaseFormProps } from 'components/base/Form.vue'
-import type { BaseIconName } from 'components/base/Icon.vue'
+import type { IBaseFormProps } from '~/components/base/Form.vue'
+import type { BaseIconName } from '~/components/base/Icon.vue'
 
 export interface IFormTemplateCardField {
   id: string

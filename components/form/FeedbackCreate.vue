@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { IFormTemplateCardField } from 'components/form/TemplateCard.vue';
 import { useForm } from 'vee-validate';
+import type { IFormTemplateCardField } from '~/components/form/TemplateCard.vue';
 
 interface IFormFeedbackCreateEmits {
   (e: 'success'): void
