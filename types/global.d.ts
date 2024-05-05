@@ -1,17 +1,5 @@
 import { IRepository } from 'types/repository'
 
-interface IPluginInjections {
-  $repo: IRepository
-}
-
-declare module '#app' {
-  interface NuxtApp extends IPluginInjections {}
-}
-
-declare module 'nuxt/dist/app/nuxt' {
-  interface NuxtApp extends IPluginInjections {}
-}
-
 type Typography = |
   'title-1' |
   'title-2' |
@@ -64,4 +52,16 @@ type User = {
   image: string
   name: string
   username: string
+}
+
+interface IPluginInjections {
+  $repo: IRepository
+}
+
+declare module '#app' {
+  interface NuxtApp extends IPluginInjections {}
+}
+
+declare module 'nuxt/dist/app/nuxt' {
+  interface NuxtApp extends IPluginInjections {}
 }
