@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <layout-page-wrapper
+  <layout-inner
     width-type="l"
     class="mt-78">
     <feedbacks-roadmap-board />
-  </layout-page-wrapper>
+  </layout-inner>
 </template>

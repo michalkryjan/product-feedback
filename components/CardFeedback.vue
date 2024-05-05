@@ -21,7 +21,7 @@ const wrapperClasses = computed(() => {
     'feedback-card flex flex-nowrap',
     props.type === 'roadmap'
       ? 'is-roadmap flex-col gap-y-16'
-      : 'is-default flex-row gap-x-40'
+      : 'flex-row gap-x-40'
   ]
 })
 </script>

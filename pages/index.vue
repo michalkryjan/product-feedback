@@ -19,7 +19,7 @@ useHead({
 </script>
 
 <template>
-  <layout-page-wrapper width-type="l">
+  <layout-inner width-type="l">
     <div class="grid grid-cols-[26rem_1fr] w-full gap-x-30 pt-90">
       <div class="col-start-1 col-end-1 flex flex-col gap-24">
         <card-product-info
@@ -42,5 +42,5 @@ useHead({
         <feedbacks-not-found v-else />
       </div>
     </div>
-  </layout-page-wrapper>
+  </layout-inner>
 </template>

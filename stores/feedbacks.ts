@@ -436,7 +436,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   }
 
   function getFeedback (id: Feedback['id']): Feedback | null {
-    const index = getFeedbackIndex(id)
+    const index = findFeedbackIndex(id)
 
     if (index !== null) {
       return feedbacks.value[index]
@@ -450,7 +450,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   }
 
   function removeFeedback (id: Feedback['id']): boolean {
-    const index = getFeedbackIndex(id)
+    const index = findFeedbackIndex(id)
 
     if (index !== null) {
       // TODO: add api call
@@ -462,7 +462,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   }
 
   function updateFeedback (id: Feedback['id'], data: Pick<Feedback, 'title' | 'category' | 'description'>): boolean {
-    const index = getFeedbackIndex(id)
+    const index = findFeedbackIndex(id)
 
     if (index !== null) {
       // TODO: add api call
@@ -473,7 +473,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }
   }
 
-  function getFeedbackIndex (id: Feedback['id']): number | null {
+  function findFeedbackIndex (id: Feedback['id']): number | null {
     const index = feedbacks.value.findIndex(item => item.id === id)
     return index !== -1 ? index : null
   }

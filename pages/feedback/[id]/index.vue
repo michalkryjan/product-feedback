@@ -7,10 +7,10 @@ const feedback = feedbacksStore.getFeedback(params?.id ? parseInt(params.id) : -
 </script>
 
 <template>
-  <layout-page-wrapper width-type="m">
+  <layout-inner width-type="m">
     <card-feedback
       v-if="feedback"
       :data="feedback"
       :link-to-details="false" />
-  </layout-page-wrapper>
+  </layout-inner>
 </template>

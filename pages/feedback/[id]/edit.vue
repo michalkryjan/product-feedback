@@ -9,9 +9,9 @@ const dataSample = {
 </script>
 
 <template>
-  <layout-page-wrapper
+  <layout-inner
     width-type="s"
     class="pt-90">
     <form-feedback-edit :data="dataSample" />
-  </layout-page-wrapper>
+  </layout-inner>
 </template>
