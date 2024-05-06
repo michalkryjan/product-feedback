@@ -6,5 +6,8 @@ import type { _RefFirestore } from 'vuefire'
 export default ($db: Firestore): IReplies => ({
   getCollection: () => {
     return useCollection(collection($db, 'replies')) as _RefFirestore<Array<DocumentData & Collections.Reply>>
+  },
+  addNewItem: (collection, options) => {
+
   }
 })

@@ -6,5 +6,8 @@ import type { _RefFirestore } from 'vuefire'
 export default ($db: Firestore): IComments => ({
   getCollection: () => {
     return useCollection(collection($db, 'comments')) as _RefFirestore<Array<DocumentData & Collections.Comment>>
+  },
+  addNewItem: (collection, options) => {
+
   }
 })

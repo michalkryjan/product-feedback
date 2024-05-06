@@ -6,5 +6,11 @@ import type { _RefFirestore } from 'vuefire'
 export default ($db: Firestore): IFeedbacks => ({
   getCollection: () => {
     return useCollection(collection($db, 'feedbacks')) as _RefFirestore<Array<DocumentData & Collections.Feedback>>
+  },
+  addNewItem: (collection, options) => {
+
+  },
+  updateItem: (collection, options) => {
+
   }
 })
