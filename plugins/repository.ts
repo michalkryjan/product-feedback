@@ -1,4 +1,4 @@
-import createRepository from '~/repository/Main'
+import createRepository from '~/repository/Firebase'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const $db = useFirestore()
