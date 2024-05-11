@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import type { Data } from 'types/data'
-
-interface IMainMenuProductInfoProps {
-  data: Data.Components.MainMenuProductInfo
+interface ITheProductInfoProps {
+  data: {
+    title: string
+    content: string
+  }
 }
 
-const props = defineProps<IMainMenuProductInfoProps>()
+const props = defineProps<ITheProductInfoProps>()
 </script>
 
 <template>

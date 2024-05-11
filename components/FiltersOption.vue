@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import type { Data } from 'types/data'
+export interface IFiltersOptionData {
+  id: string
+  name: string
+}
 
-export interface IFiltersOptionProps {
-  data: Data.Components.FiltersOption
+interface IFiltersOptionProps {
+  data: IFiltersOptionData
   theme?: 'gray'
   isSelected?: boolean
   isDisabled?: boolean
@@ -30,9 +33,9 @@ defineOptions({
 function toggle (): void {
   if (!props.isDisabled) {
     if (props.isSelected) {
-      emit('unselect', props.data.value)
+      emit('unselect', props.data.id)
     } else {
-      emit('select', props.data.value)
+      emit('select', props.data.id)
     }
   }
 }
@@ -40,7 +43,7 @@ function toggle (): void {
 
 <template>
   <base-button
-    :text="data.label"
+    :text="data.name"
     size="s1"
     label-size="s2"
     :theme="isSelected ? 'blue' : 'gray'"

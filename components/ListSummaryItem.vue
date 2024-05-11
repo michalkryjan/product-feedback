@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import type { Data } from 'types/data';
+export interface IListSummaryItemData {
+  label: string
+  count: number
+  markerColor: 'orange' | 'purple' | 'lightBlue'
+}
 
 interface IListSummaryItemProps {
-  data: Data.Components.ListSummaryItem
+  data: IListSummaryItemData
 }
 
 const props = defineProps<IListSummaryItemProps>()
 
-const configMarker: Record<Data.Components.ListSummaryItem['markerColor'], string> = {
+const configMarker: Record<IListSummaryItemData['markerColor'], string> = {
   orange: 'text-orange-1',
   purple: 'text-purple-1',
   lightBlue: 'text-lightBlue-1'
@@ -27,14 +31,14 @@ const classes = computed(() => {
       tag="span"
       typography="text-body-1"
       color="gray">
-      <span v-html="useOrphans(data.label)" />
+      {{ data.label }}
     </base-content>
 
     <base-content
       tag="strong"
       typography="text-body-1"
       color="gray">
-      <span v-html="useOrphans(data.count.toString())" />
+      {{ data.count.toString() }}
     </base-content>
   </li>
 </template>

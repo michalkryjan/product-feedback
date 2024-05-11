@@ -1,6 +1,9 @@
 <script setup lang="ts">
 interface ICardFeedbackProps {
-  data: Feedback
+  data: IFeedback & {
+    categories: ICategory[]
+    status: IStatus
+  }
   type?: 'default' | 'roadmap'
   linkToDetails?: boolean
 }
@@ -14,7 +17,7 @@ const isUpvoted = ref<boolean>(false)
 const upvotesCount = ref<number>(props.data.upvotes)
 
 const detailsUrl = computed(() => props.linkToDetails ? `/feedback/${props.data.id}` : undefined)
-const accentColor = computed(() => props.data.status.color)
+const accentColor = computed(() => props.data.status?.color)
 
 const wrapperClasses = computed(() => {
   return [
@@ -46,7 +49,7 @@ const wrapperClasses = computed(() => {
           typography="text-body-1"
           color="gray"
           class="order-1 pl-24 mb-12 relative leading-100 feedback-card__status">
-          <span v-html="useCapitalized(data.status.name)" />
+          <span v-html="useCapitalized(data.status?.name)" />
         </base-content>
 
         <base-content
@@ -60,7 +63,9 @@ const wrapperClasses = computed(() => {
         </base-content>
 
         <base-tag
-          :text="useCapitalized(data.category.name)"
+          v-for="category in data.categories"
+          :key="category.id"
+          :text="useCapitalized(category.name)"
           class="order-4" />
       </div>
 

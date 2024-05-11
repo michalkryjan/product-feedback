@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const feedbacksStore = useFeedbacksStore()
+const { feedbacks } = storeToRefs(useFeedbacksStore())
 
 const { params } = useRoute()
 
-const feedback = feedbacksStore.getFeedback(params?.id ? parseInt(params.id) : -1)
+const currentFeedback = computed(() => params?.id ? feedbacks.value.find(feedback => feedback.id === params.id) : undefined)
 </script>
 
 <template>
   <layout-inner width-type="m">
-    <card-feedback
-      v-if="feedback"
-      :data="feedback"
+    <feedback
+      v-if="currentFeedback"
+      :data="currentFeedback"
       :link-to-details="false" />
   </layout-inner>
 </template>

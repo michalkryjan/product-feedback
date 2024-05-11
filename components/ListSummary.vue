@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Data } from 'types/data';
+import { IListSummaryItemData } from './ListSummaryItem.vue'
 
 interface IBaseListSummaryProps {
-  items: Data.Components.ListSummaryItem[]
+  items: IListSummaryItemData[]
 }
 
 const props = defineProps<IBaseListSummaryProps>()

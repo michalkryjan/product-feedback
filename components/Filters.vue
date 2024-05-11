@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { IFiltersOptionProps } from '~/components/FiltersOption.vue';
+import type { IFiltersOptionData } from '~/components/FiltersOption.vue'
 
 interface IFiltersProps {
-  options: Array<IFiltersOptionProps['data']>
+  options: IFiltersOptionData[]
   value: string | string[] | undefined
-  optionTheme?: IFiltersOptionProps['theme']
   gapSize?: 's1'
   addOptionAll?: boolean
 }
@@ -40,8 +39,8 @@ const optionsComputed = computed(() => {
   return props.addOptionAll
     ? [
       {
-        label: 'All',
-        value: 'all'
+        id: 'all',
+        name: 'All'
       },
       ...props.options
     ]
@@ -92,12 +91,12 @@ onBeforeMount(() => {
   <div :class="wrapperClasses">
     <filters-option
       v-for="option in optionsComputed"
-      :key="option.value"
+      :key="option.id"
       v-bind="$attrs"
       :data="option"
-      :theme="optionTheme"
-      :is-disabled="Array.isArray(valueModel) && valueModel.length === 1 && valueModel.includes('all') && option.value === 'all'"
-      :is-selected="valueModel === option.value || (Array.isArray(valueModel) && valueModel.includes(option.value))"
+      theme="gray"
+      :is-disabled="Array.isArray(valueModel) && valueModel.length === 1 && valueModel.includes('all') && option.id === 'all'"
+      :is-selected="valueModel === option.id || (Array.isArray(valueModel) && valueModel.includes(option.id))"
       @select="handleSelect($event)"
       @unselect="handleUnselect($event)" />
   </div>

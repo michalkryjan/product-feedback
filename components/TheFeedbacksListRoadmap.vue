@@ -1,17 +1,11 @@
 <script setup lang="ts">
-const statusesStore = useStatusesStore()
-const feedbacksStore = useFeedbacksStore()
-
-const feedbacksGroupedByStatus = computed(() => {
-  return statusesStore.statuses.map(status => ({
-    status,
-    feedbacks: feedbacksStore.getFeedbacksFilteredByStatus(status.id)
-  }))
-})
+const { feedbacksGroupedByStatus } = storeToRefs(useFeedbacksStore())
 </script>
 
 <template>
-  <div class="inline-flex gap-x-30">
+  <div
+    v-if="feedbacksGroupedByStatus"
+    class="inline-flex gap-x-30">
     <section
       v-for="group in feedbacksGroupedByStatus.slice(1)"
       :key="group.status.id"
@@ -32,7 +26,7 @@ const feedbacksGroupedByStatus = computed(() => {
       </base-header>
 
       <div class="flex flex-col flex-nowrap gap-y-24">
-        <card-feedback
+        <feedback
           v-for="feedback in group.feedbacks"
           :key="feedback.id"
           type="roadmap"
