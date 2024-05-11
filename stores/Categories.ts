@@ -1,27 +1,14 @@
 export const useCategoriesStore = defineStore('categories', () => {
-  const categories = ref<FeedbackCategory[]>([])
+  const { $firebase } = useNuxtApp()
 
-  function fetchCategories () {
-    // TODO: add api call
+  const categories = useCollection($firebase.collections.categories.getCollection())
 
-    categories.value = [
-      {
-        id: 1,
-        name: 'enhancement'
-      },
-      {
-        id: 2,
-        name: 'feature'
-      },
-      {
-        id: 3,
-        name: 'bug'
-      }
-    ]
+  function getCategory (id: ICategory['id']) {
+    return categories.value.find(cat => cat.id === id)
   }
 
   return {
     categories,
-    fetchCategories
+    getCategory
   }
 })
