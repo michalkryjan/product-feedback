@@ -22,8 +22,9 @@ export const statusConverter = {
     return data
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<StatusDoc, StatusDoc>, options: SnapshotOptions) => {
-    const data = snapshot.data(options)
-
-    return new Status(data)
+    return new Status({
+      ...snapshot.data(options),
+      id: snapshot.id
+    })
   }
 }

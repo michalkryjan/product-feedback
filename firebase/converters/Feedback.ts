@@ -28,8 +28,9 @@ export const feedbackConverter = {
     return data
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<FeedbackDoc, FeedbackDoc>, options: SnapshotOptions) => {
-    const data = snapshot.data(options)
-
-    return new Feedback(data)
+    return new Feedback({
+      ...snapshot.data(options),
+      id: snapshot.id
+    })
   }
 }

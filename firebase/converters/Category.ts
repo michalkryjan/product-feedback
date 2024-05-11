@@ -16,8 +16,9 @@ export const categoryConverter = {
     return data
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<CategoryDoc, CategoryDoc>, options: SnapshotOptions) => {
-    const data = snapshot.data(options)
-
-    return new Category(data)
+    return new Category({
+      ...snapshot.data(options),
+      id: snapshot.id
+    })
   }
 }
