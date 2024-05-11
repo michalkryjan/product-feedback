@@ -55,7 +55,7 @@ type User = {
 }
 
 interface IPluginInjections {
-  $repo: IRepository
+  $firebase: IRepository
 }
 
 declare module '#app' {
