@@ -1,6 +1,5 @@
-import type { DocumentData } from 'firebase/firestore'
-import * as Collections from 'types/firebase/collections'
-import * as Docs from 'types/firebase/docs'
+import * as Collections from 'types/data/firebase/collections'
+import * as Docs from 'types/data/firebase/docs'
 import type { _RefFirestore } from 'vuefire'
 
 export interface IRepository {
@@ -14,41 +13,29 @@ export interface IRepository {
 
 
 export interface IFeedbacks {
-  getCollection: () => _RefFirestore<Array<DocumentData & Collections.Feedback>>
-  addNewItem: (
-    collection: _RefFirestore<Array<DocumentData & Collections.Feedback>>,
-    options: Omit<Docs.Feedback, 'id'>
-  ) => void
-  updateItem: (
-    collection: _RefFirestore<Array<DocumentData & Collections.Feedback>>,
-    options: Pick<Docs.Feedback, 'title' | 'categories' | 'status' | 'description'>
-  ) => void
+  getCollection: () => _RefFirestore<Collections.IFeedback>
+  addNewItem: (collection: _RefFirestore<Collections.IFeedback>, options: Omit<Docs.IFeedback, 'id'>) => void
+  updateItem: (collection: _RefFirestore<Collections.IFeedback>, options: Pick<Docs.IFeedback, 'title' | 'categories' | 'status' | 'description'>) => void
 }
 
 export interface ICategories {
-  getCollection: () => _RefFirestore<Array<DocumentData & Collections.Category>>
+  getCollection: () => _RefFirestore<Collections.ICategory>
 }
 
 export interface IStatuses {
-  getCollection: () => _RefFirestore<Array<DocumentData & Collections.Status>>
+  getCollection: () => _RefFirestore<Collections.IStatus>
 }
 
 export interface IComments {
-  getCollection: () => _RefFirestore<Array<DocumentData & Collections.Comment>>
-  addNewItem: (
-    collection: _RefFirestore<Array<DocumentData & Collections.Comment>>,
-    options: Omit<Docs.Comment, 'id'>
-  ) => void
+  getCollection: () => _RefFirestore<Collections.IComment>
+  addNewItem: (collection: _RefFirestore<Collections.IComment>, options: Omit<Docs.IComment, 'id'>) => void
 }
 
 export interface IReplies {
-  getCollection: () => _RefFirestore<Array<DocumentData & Collections.Reply>>
-  addNewItem: (
-    collection: _RefFirestore<Array<DocumentData & Collections.Reply>>,
-    options: Omit<Docs.Reply, 'id'>
-  ) => void
+  getCollection: () => _RefFirestore<Collections.IReply>
+  addNewItem: (collection: _RefFirestore<Collections.IReply>, options: Omit<Docs.IReply, 'id'>) => void
 }
 
 export interface IUsers {
-  getCollection: () => _RefFirestore<Array<DocumentData & Collections.User>>
+  getCollection: () => _RefFirestore<Collections.IUser>
 }
