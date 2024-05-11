@@ -1,4 +1,4 @@
-import { IRepository } from 'types/repository'
+import { IRepository } from 'types/firebase/repository'
 
 type Typography = |
   'title-1' |
