@@ -1,9 +1,8 @@
-import { addDoc, collection, doc, type Firestore } from 'firebase/firestore'
-import type { IReply as ReplyDoc } from 'types/firebase/data/docs'
-import type { IReplies as RepliesRepository } from 'types/firebase/repository'
+import { addDoc, collection, doc, type DocumentReference, type Firestore } from 'firebase/firestore'
+import type { IRepliesRepository } from 'types/firebase/repository'
 import { replyConverter } from '~/firebase/converters'
 
-export default ($db: Firestore): RepliesRepository => ({
+export default ($db: Firestore): IRepliesRepository => ({
   getCollection: () => getRepliesCollection($db),
   getDoc: (id) => getRepliesDoc($db, id),
   addNewDoc: (data) => addNewRepliesDoc($db, data)
@@ -17,6 +16,6 @@ function getRepliesDoc ($db: Firestore, id: string) {
   return doc($db, 'replies', id).withConverter(replyConverter)
 }
 
-function addNewRepliesDoc ($db: Firestore, data: ReplyDoc) {
-  return addDoc(getRepliesCollection($db), data)
+function addNewRepliesDoc ($db: Firestore, data: Omit<IReply, 'id'>) {
+  return addDoc(getRepliesCollection($db), data) as Promise<DocumentReference<IReply, IReply>>
 }

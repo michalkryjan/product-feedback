@@ -1,13 +1,12 @@
 import type { QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore'
-import type { IUser as UserDoc } from 'types/firebase/data/docs'
 
-class User implements UserDoc {
+class User implements IUser {
   readonly id
   readonly image_url
   readonly fullname
   readonly username
 
-  constructor (data: UserDoc) {
+  constructor (data: IUser) {
     this.id = data.id
     this.image_url = data.image_url
     this.fullname = data.fullname
@@ -16,10 +15,10 @@ class User implements UserDoc {
 }
 
 export const userConverter = {
-  toFirestore: (data: UserDoc) => {
+  toFirestore: (data: IUser) => {
     return data
   },
-  fromFirestore: (snapshot: QueryDocumentSnapshot<UserDoc, UserDoc>, options: SnapshotOptions) => {
+  fromFirestore: (snapshot: QueryDocumentSnapshot<IUser, IUser>, options: SnapshotOptions) => {
     return new User({
       ...snapshot.data(options),
       id: snapshot.id

@@ -1,8 +1,8 @@
 import { collection, doc, type Firestore } from 'firebase/firestore'
-import type { ICategories as CategoriesRepository } from 'types/firebase/repository'
+import type { ICategoriesRepository } from 'types/firebase/repository'
 import { categoryConverter } from '~/firebase/converters'
 
-export default ($db: Firestore): CategoriesRepository => ({
+export default ($db: Firestore): ICategoriesRepository => ({
   getCollection: () => getCategoriesCollection($db),
   getDoc: (id: string) => getCategoriesDoc($db, id)
 })

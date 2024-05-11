@@ -1,14 +1,13 @@
 import { QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore'
-import type { IStatus as StatusDoc } from 'types/firebase/data/docs'
 
-class Status implements StatusDoc {
+class Status implements IStatus {
   readonly id
   readonly order
   readonly name
   readonly description
   readonly color
 
-  constructor (data: StatusDoc) {
+  constructor (data: IStatus) {
     this.id = data.id
     this.order = data.order
     this.name = data.name
@@ -18,10 +17,10 @@ class Status implements StatusDoc {
 }
 
 export const statusConverter = {
-  toFirestore: (data: StatusDoc) => {
+  toFirestore: (data: IStatus) => {
     return data
   },
-  fromFirestore: (snapshot: QueryDocumentSnapshot<StatusDoc, StatusDoc>, options: SnapshotOptions) => {
+  fromFirestore: (snapshot: QueryDocumentSnapshot<IStatus, IStatus>, options: SnapshotOptions) => {
     return new Status({
       ...snapshot.data(options),
       id: snapshot.id

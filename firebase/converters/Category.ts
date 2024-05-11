@@ -1,21 +1,20 @@
 import type { QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore'
-import type { ICategory as CategoryDoc } from 'types/firebase/data/docs'
 
-class Category implements CategoryDoc {
+class Category implements ICategory {
   readonly id
   readonly name
 
-  constructor (data: CategoryDoc) {
+  constructor (data: ICategory) {
     this.id = data.id
     this.name = data.name
   }
 }
 
 export const categoryConverter = {
-  toFirestore: (data: CategoryDoc) => {
+  toFirestore: (data: ICategory) => {
     return data
   },
-  fromFirestore: (snapshot: QueryDocumentSnapshot<CategoryDoc, CategoryDoc>, options: SnapshotOptions) => {
+  fromFirestore: (snapshot: QueryDocumentSnapshot<ICategory, ICategory>, options: SnapshotOptions) => {
     return new Category({
       ...snapshot.data(options),
       id: snapshot.id

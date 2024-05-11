@@ -1,8 +1,8 @@
 import { type Firestore } from 'firebase/firestore'
-import type { IRepository } from 'types/firebase/repository'
+import type { IFirebaseRepository } from 'types/firebase/repository'
 import { Categories, Comments, Feedbacks, Replies, Statuses, Users } from '~/firebase/repository/collections'
 
-export default ($db: Firestore): IRepository => ({
+export default ($db: Firestore): IFirebaseRepository => ({
   collections: {
     feedbacks: Feedbacks($db),
     categories: Categories($db),

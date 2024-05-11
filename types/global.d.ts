@@ -1,6 +1,4 @@
-import { IRepository } from 'types/firebase/repository'
-
-type Typography = |
+type TTypography = |
   'title-1' |
   'title-2' |
   'title-3' |
@@ -13,17 +11,18 @@ type Typography = |
   'text-label-3' |
   'text-label-4'
 
-type Feedback = {
-  id: number
+interface IFeedback {
+  id: string
   title: string
   description: string
   upvotes: number
-  category: FeedbackCategory
-  status: FeedbackStatus
-  comments?: Commentary[]
+  created_by: IUser['id']
+  categories: Array<ICategory['id']>
+  status: IStatus['id']
+  comments?: Array<IComment['id']>
 }
 
-type FeedbackStatus = {
+interface IStatus {
   id: string
   order: number
   name: string
@@ -31,37 +30,27 @@ type FeedbackStatus = {
   color: string
 }
 
-type FeedbackCategory = {
+interface ICategory {
   id: string
   name: string
 }
 
-type Commentary = {
+interface IComment {
   id: string
   content: string
-  user: User
-  replies?: CommentaryReply[]
+  created_by: IUser['id']
+  replies?: Array<IReply['id']>
 }
 
-type CommentaryReply = {
+interface IReply {
+  id: string
   content: string
-  user: User
+  created_by: IUser['id']
 }
 
-type User = {
-  image: string
-  name: string
+interface IUser {
+  id: string
+  image_url: string
+  fullname: string
   username: string
-}
-
-interface IPluginInjections {
-  $firebase: IRepository
-}
-
-declare module '#app' {
-  interface NuxtApp extends IPluginInjections {}
-}
-
-declare module 'nuxt/dist/app/nuxt' {
-  interface NuxtApp extends IPluginInjections {}
 }

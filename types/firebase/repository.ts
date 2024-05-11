@@ -1,49 +1,49 @@
 import type { CollectionReference, DocumentReference } from 'firebase/firestore'
-import * as Docs from 'types/firebase/data/docs'
 
-export interface IRepository {
-  collections: ICollections
+export interface IFirebaseRepository {
+  collections: ICollectionsRepository
 }
 
-interface ICollections {
-  categories: ICategories
-  comments: IComments
-  feedbacks: IFeedbacks
-  replies: IReplies
-  statuses: IStatuses
-  users: IUsers
+interface ICollectionsRepository {
+  categories: ICategoriesRepository
+  comments: ICommentsRepository
+  feedbacks: IFeedbacksRepository
+  replies: IRepliesRepository
+  statuses: IStatusesRepository
+  users: IUsersRepository
 }
 
-export interface ICategories {
-  getCollection: () => CollectionReference<Docs.ICategory, Docs.ICategory>
-  getDoc: (id: string) => DocumentReference<Docs.ICategory, Docs.ICategory>
+export interface ICategoriesRepository {
+  getCollection: () => CollectionReference<ICategory, ICategory>
+  getDoc: (id: string) => DocumentReference<ICategory, ICategory>
 }
 
-export interface IComments {
-  getCollection: () => CollectionReference<Docs.IComment, Docs.IComment>
-  getDoc: (id: string) => DocumentReference<Docs.IComment, Docs.IComment>
-  addNewDoc: (data: Docs.IComment) => Promise<DocumentReference<Docs.IComment, Docs.IComment>>
+export interface ICommentsRepository {
+  getCollection: () => CollectionReference<IComment, IComment>
+  getDoc: (id: string) => DocumentReference<IComment, IComment>
+  addNewDoc: (data: Omit<IComment, 'id'>) => Promise<DocumentReference<IComment, IComment>>
 }
 
-export interface IFeedbacks {
-  getCollection: () => CollectionReference<Docs.IFeedback, Docs.IFeedback>
-  getDoc: (id: string) => DocumentReference<Docs.IFeedback, Docs.IFeedback>
-  addNewDoc: (data: Docs.IFeedback) => Promise<DocumentReference<Docs.IFeedback, Docs.IFeedback>>
-  updateDoc: (id: string, data: Pick<Docs.IFeedback, 'title' | 'categories' | 'status' | 'description'>) => Promise<void>
+export interface IFeedbacksRepository {
+  getCollection: () => CollectionReference<IFeedback, IFeedback>
+  getDoc: (id: string) => DocumentReference<IFeedback, IFeedback>
+  addNewDoc: (data: Omit<IFeedback, 'id'>) => Promise<DocumentReference<IFeedback, IFeedback>>
+  updateDoc: (id: string, data: Pick<IFeedback, 'title' | 'categories' | 'description'>) => Promise<void>,
+  deleteDoc: (id: string) => Promise<void>
 }
 
-export interface IReplies {
-  getCollection: () => CollectionReference<Docs.IReply, Docs.IReply>
-  getDoc: (id: string) => DocumentReference<Docs.IReply, Docs.IReply>
-  addNewDoc: (data: Docs.IReply) => Promise<DocumentReference<Docs.IReply, Docs.IReply>>
+export interface IRepliesRepository {
+  getCollection: () => CollectionReference<IReply, IReply>
+  getDoc: (id: string) => DocumentReference<IReply, IReply>
+  addNewDoc: (data: Omit<IReply, 'id'>) => Promise<DocumentReference<IReply, IReply>>
 }
 
-export interface IStatuses {
-  getCollection: () => CollectionReference<Docs.IStatus, Docs.IStatus>
-  getDoc: (id: string) => DocumentReference<Docs.IStatus, Docs.IStatus>
+export interface IStatusesRepository {
+  getCollection: () => CollectionReference<IStatus, IStatus>
+  getDoc: (id: string) => DocumentReference<IStatus, IStatus>
 }
 
-export interface IUsers {
-  getCollection: () => CollectionReference<Docs.IUser, Docs.IUser>
-  getDoc: (id: string) => DocumentReference<Docs.IUser, Docs.IUser>
+export interface IUsersRepository {
+  getCollection: () => CollectionReference<IUser, IUser>
+  getDoc: (id: string) => DocumentReference<IUser, IUser>
 }

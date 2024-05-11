@@ -1,8 +1,8 @@
 import { collection, doc, type Firestore } from 'firebase/firestore'
-import type { IStatuses as StatusesRepository } from 'types/firebase/repository'
+import type { IStatusesRepository } from 'types/firebase/repository'
 import { statusConverter } from '~/firebase/converters'
 
-export default ($db: Firestore): StatusesRepository => ({
+export default ($db: Firestore): IStatusesRepository => ({
   getCollection: () => getStatusesCollection($db),
   getDoc: (id) => getStatusesDoc($db, id)
 })

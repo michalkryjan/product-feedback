@@ -1,7 +1,6 @@
 import type { QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore'
-import type { IFeedback as FeedbackDoc } from 'types/firebase/data/docs'
 
-class Feedback implements FeedbackDoc {
+class Feedback implements IFeedback {
   readonly id
   readonly title
   readonly description
@@ -11,7 +10,7 @@ class Feedback implements FeedbackDoc {
   readonly status
   readonly comments
 
-  constructor (data: FeedbackDoc) {
+  constructor (data: IFeedback) {
     this.id = data.id
     this.title = data.title
     this.description = data.description
@@ -24,10 +23,10 @@ class Feedback implements FeedbackDoc {
 }
 
 export const feedbackConverter = {
-  toFirestore: (data: FeedbackDoc) => {
+  toFirestore: (data: IFeedback) => {
     return data
   },
-  fromFirestore: (snapshot: QueryDocumentSnapshot<FeedbackDoc, FeedbackDoc>, options: SnapshotOptions) => {
+  fromFirestore: (snapshot: QueryDocumentSnapshot<IFeedback, IFeedback>, options: SnapshotOptions) => {
     return new Feedback({
       ...snapshot.data(options),
       id: snapshot.id

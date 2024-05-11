@@ -1,13 +1,12 @@
 import type { QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore'
-import type { IComment as CommentDoc } from 'types/firebase/data/docs'
 
-class Comment implements CommentDoc {
+class Comment implements IComment {
   readonly id
   readonly content
   readonly created_by
   readonly replies
 
-  constructor (data: CommentDoc) {
+  constructor (data: IComment) {
     this.id = data.id
     this.content = data.content
     this.created_by = data.created_by
@@ -16,10 +15,10 @@ class Comment implements CommentDoc {
 }
 
 export const commentConverter = {
-  toFirestore: (data: CommentDoc) => {
+  toFirestore: (data: IComment) => {
     return data
   },
-  fromFirestore: (snapshot: QueryDocumentSnapshot<CommentDoc, CommentDoc>, options: SnapshotOptions) => {
+  fromFirestore: (snapshot: QueryDocumentSnapshot<IComment, IComment>, options: SnapshotOptions) => {
     return new Comment({
       ...snapshot.data(options),
       id: snapshot.id

@@ -2,7 +2,7 @@
 export interface IBaseHeadlineProps {
   type?: 'h' | 'span' | 'label'
   level?: 1 | 2 | 3 | 4 | 5 | 6
-  typography?: Typography
+  typography?: TTypography
   color?: 'white' | 'navy'
   align?: 'left' | 'center' | 'right'
   isOneLine?: boolean

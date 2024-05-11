@@ -1,7 +1,7 @@
 <script setup lang="ts">
 export interface IBaseContentProps {
   tag?: 'p' | 'div' | 'span' | 'label' | 'strong'
-  typography?: Typography
+  typography?: TTypography
   color?: 'white' | 'blue' | 'gray' | 'navy'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
