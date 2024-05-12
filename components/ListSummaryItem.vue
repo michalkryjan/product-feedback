@@ -7,17 +7,10 @@ export interface IListSummaryItemProps {
 
 const props = defineProps<IListSummaryItemProps>()
 
-const configMarkerColor: Record<NonNullable<IListSummaryItemProps['markerColor']>, string> = {
-  1: 'text-yellow-1',
-  2: 'text-orange-1',
-  3: 'text-purple-1',
-  4: 'text-lightBlue-1'
-}
-
 const classes = computed(() => {
   return [
     'inline-flex justify-between gap-x-20 w-full',
-    props.markerColor && Object.keys(configMarkerColor).includes(props.markerColor.toString()) ? configMarkerColor[props.markerColor] : 'text-gray-1'
+    props.markerColor ? useAccentColor(props.markerColor, 'textClass') : 'text-gray-1'
   ]
 })
 </script>

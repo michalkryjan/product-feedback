@@ -17,14 +17,32 @@ const isUpvoted = ref<boolean>(false)
 const upvotesCount = ref<number>(props.data.upvotes)
 
 const detailsUrl = computed(() => props.linkToDetails ? `/feedback/${props.data.id}` : undefined)
-const accentColor = computed(() => props.data.status?.color)
+const accentColor = computed(() => props.type === 'roadmap' ? useAccentColor(props.data.status.order, 'bgClass') : undefined)
 
-const wrapperClasses = computed(() => {
+const mainWrapperClasses = computed(() => {
   return [
-    'feedback-card flex flex-nowrap',
+    'flex flex-nowrap',
     props.type === 'roadmap'
-      ? 'is-roadmap flex-col gap-y-16'
+      ? 'flex-col gap-y-16 before:absolute before:top-0 before:left-0 before:w-full before:h-6 ' + ('before:' + accentColor.value)
       : 'flex-row gap-x-40'
+  ]
+})
+const textWrapperClasses = computed(() => props.type === 'roadmap' ? 'flex flex-col flex-nowrap' : 'order-2 flex-1')
+const groupWrapperClasses = computed(() => props.type === 'roadmap' ? 'inline-flex justify-between gap-x-32' : 'contents')
+
+const descriptionClasses = computed(() => {
+  return [
+    'order-3',
+    props.type === 'roadmap' ? 'mb-16' : 'mb-12'
+  ]
+})
+
+const statusClasses = computed(() => {
+  return [
+    'order-1 pl-24 mb-12 relative leading-100',
+    props.type === 'roadmap'
+      ? 'before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-8 before:h-8 before:rounded-full ' + ('before:' + accentColor.value)
+      : ''
   ]
 })
 </script>
@@ -34,8 +52,8 @@ const wrapperClasses = computed(() => {
     :variant="type === 'roadmap' ? '2' : '1'"
     :tag="linkToDetails ? 'NuxtLink' : 'div'"
     :to="detailsUrl">
-    <div :class="wrapperClasses">
-      <div :class="type === 'roadmap' ? 'flex flex-col flex-nowrap' : 'order-2 flex-1'">
+    <div :class="mainWrapperClasses">
+      <div :class="textWrapperClasses">
         <base-headline
           :level="type === 'roadmap' ? 2 : 3"
           typography="title-3"
@@ -48,17 +66,14 @@ const wrapperClasses = computed(() => {
           v-if="type === 'roadmap'"
           typography="text-body-1"
           color="gray"
-          class="order-1 pl-24 mb-12 relative leading-100 feedback-card__status">
+          :class="statusClasses">
           <span v-html="useCapitalized(data.status?.name)" />
         </base-content>
 
         <base-content
           typography="text-body-1"
           color="gray"
-          :class="[
-            'order-3',
-            type === 'roadmap' ? 'mb-16' : 'mb-12'
-          ]">
+          :class="descriptionClasses">
           <span v-html="useOrphans(data.description)" />
         </base-content>
 
@@ -69,7 +84,7 @@ const wrapperClasses = computed(() => {
           class="order-4" />
       </div>
 
-      <div :class="type === 'roadmap' ? 'inline-flex justify-between gap-x-32' : 'contents'">
+      <div :class="groupWrapperClasses">
         <button-upvote
           v-model:active="isUpvoted"
           v-model:count="upvotesCount"
@@ -89,21 +104,3 @@ const wrapperClasses = computed(() => {
     </div>
   </base-card>
 </template>
-
-<style lang="postcss" scoped>
-.feedback-card.is-roadmap {
-  --accentColor: v-bind(accentColor);
-
-  &::before {
-    content: '';
-    @apply absolute top-0 left-0 w-full h-6;
-    background-color: var(--accentColor);
-  }
-
-  .feedback-card__status::before {
-    content: '';
-    @apply absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full;
-    background-color: var(--accentColor);
-  }
-}
-</style>
