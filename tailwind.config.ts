@@ -107,7 +107,7 @@ export default {
       52: '5.2rem',
       54: '5.4rem',
       56: '5.6rem',
-      78: '7.8rem',
+      80: '8rem',
       90: '9rem',
       min: 'min-content',
       max: 'max-content'

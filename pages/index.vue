@@ -24,8 +24,10 @@ useHead({
 </script>
 
 <template>
-  <layout-inner width-type="l">
-    <div class="grid grid-cols-[26rem_1fr] w-full gap-x-30 pt-90">
+  <layout-page-inner
+    width-type="l"
+    vertical-padding-type="m">
+    <div class="grid grid-cols-[26rem_1fr] w-full gap-x-30">
       <div class="col-start-1 col-end-1 flex flex-col gap-24">
         <the-product-info
           v-if="pageContent?.productInfo"
@@ -47,5 +49,5 @@ useHead({
         <the-feedbacks-not-found v-else />
       </div>
     </div>
-  </layout-inner>
+  </layout-page-inner>
 </template>

@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <layout-inner
+  <layout-page-inner
     width-type="s"
-    class="pt-90">
+    vertical-padding-type="m">
     <form-feedback-create />
-  </layout-inner>
+  </layout-page-inner>
 </template>

@@ -7,10 +7,12 @@ const currentFeedback = computed(() => params?.id ? feedbacks.value.find(feedbac
 </script>
 
 <template>
-  <layout-inner width-type="m">
+  <layout-page-inner
+    width-type="m"
+    vertical-padding-type="s">
     <feedback
       v-if="currentFeedback"
       :data="currentFeedback"
-      :link-to-details="false" />
-  </layout-inner>
+      :add-link-to-details="false" />
+  </layout-page-inner>
 </template>

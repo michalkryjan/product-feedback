@@ -2,9 +2,9 @@
 </script>
 
 <template>
-  <layout-inner
+  <layout-page-inner
     width-type="l"
-    class="mt-78">
+    vertical-padding-type="s">
     <the-feedbacks-list-roadmap />
-  </layout-inner>
+  </layout-page-inner>
 </template>

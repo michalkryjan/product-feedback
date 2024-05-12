@@ -1,11 +1,12 @@
 <script setup lang="ts">
 interface ILayoutPageWrapperProps {
   widthType?: 's' | 'm' | 'l'
+  verticalPaddingType?: 's' | 'm'
 }
 
 const props = withDefaults(defineProps<ILayoutPageWrapperProps>(), {
   widthType: 'l',
-  paddingTopType: '1'
+  verticalPaddingType: 's'
 })
 
 const configWidthType: Record<NonNullable<ILayoutPageWrapperProps['widthType']>, string> = {
@@ -14,10 +15,16 @@ const configWidthType: Record<NonNullable<ILayoutPageWrapperProps['widthType']>,
   l: 'max-w-1158 m:max-w-1190'
 }
 
+const configVerticalPaddingType: Record<NonNullable<ILayoutPageWrapperProps['verticalPaddingType']>, string> = {
+  s: 'pt-80',
+  m: 'pt-90'
+}
+
 const classes = computed<string[]>(() => {
   return [
     'relative w-full px-24 m:px-40 mx-auto',
-    configWidthType[props.widthType]
+    configWidthType[props.widthType],
+    configVerticalPaddingType[props.verticalPaddingType]
   ]
 })
 </script>
