@@ -19,9 +19,13 @@ export const userConverter = {
     return data
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<IUser, IUser>, options: SnapshotOptions) => {
+    const data = snapshot.data(options)
+
     return new User({
-      ...snapshot.data(options),
-      id: snapshot.id
+      id: snapshot.id,
+      image_url: data.image_url,
+      fullname: data.fullname,
+      username: data.username
     })
   }
 }

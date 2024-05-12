@@ -19,9 +19,13 @@ export const commentConverter = {
     return data
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<IComment, IComment>, options: SnapshotOptions) => {
+    const data = snapshot.data(options)
+
     return new Comment({
-      ...snapshot.data(options),
-      id: snapshot.id
+      id: snapshot.id,
+      content: data.content,
+      created_by: data.created_by,
+      replies: data.replies
     })
   }
 }

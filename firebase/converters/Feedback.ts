@@ -27,9 +27,17 @@ export const feedbackConverter = {
     return data
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<IFeedback, IFeedback>, options: SnapshotOptions) => {
+    const data = snapshot.data(options)
+
     return new Feedback({
-      ...snapshot.data(options),
-      id: snapshot.id
+      id: snapshot.id,
+      title: data.title,
+      description: data.description,
+      upvotes: data.upvotes,
+      created_by: data.created_by,
+      categories: data.categories,
+      status: data.status,
+      comments: data.comments
     })
   }
 }

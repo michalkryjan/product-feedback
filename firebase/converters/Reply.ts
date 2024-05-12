@@ -17,9 +17,12 @@ export const replyConverter = {
     return data
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<IReply, IReply>, options: SnapshotOptions) => {
+    const data = snapshot.data(options)
+
     return new Reply({
-      ...snapshot.data(options),
-      id: snapshot.id
+      id: snapshot.id,
+      content: data.content,
+      created_by: data.created_by
     })
   }
 }
