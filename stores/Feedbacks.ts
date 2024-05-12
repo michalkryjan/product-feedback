@@ -8,7 +8,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
 
   const collection = useCollection(query($firebase.collections.feedbacks.getCollection(), orderBy('upvotes', 'desc')))
 
-  const feedbacks = computed<Array<IFeedback & {
+  const feedbacks = computed<Array<Omit<IFeedback, 'categories' | 'status'> & {
     categories: ICategory[]
     status: IStatus
   }>>(() => {

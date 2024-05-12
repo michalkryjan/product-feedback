@@ -12,7 +12,6 @@ const { data: pageContent } = await useAsyncData(
 )
 
 const { feedbacks } = storeToRefs(useFeedbacksStore())
-const { categories } = storeToRefs(useCategoriesStore())
 
 watch(feedbacks, () => {
   console.log(feedbacks.value)
@@ -33,9 +32,7 @@ useHead({
           v-if="pageContent?.productInfo"
           :data="pageContent.productInfo" />
 
-        <the-category-filters
-          v-if="!!categories?.length"
-          :data="categories" />
+        <the-category-filters />
 
         <the-roadmap-summary
           v-if="pageContent?.roadmapSummary"

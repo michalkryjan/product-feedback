@@ -1,21 +1,23 @@
 <script setup lang="ts">
-import type { IFiltersOptionData } from '~/components/FiltersOption.vue'
+const { categories, categoriesFilter } = storeToRefs(useCategoriesStore())
 
-interface ITheCategoryFiltersProps {
-  data: IFiltersOptionData[]
-}
+const selectedId = ref<string>('all')
 
-const props = defineProps<ITheCategoryFiltersProps>()
-
-const optionsSelected = ref<string[]>([])
+watch(selectedId, (newId) => {
+  if (newId === 'all') {
+    categoriesFilter.value = undefined
+  } else {
+    categoriesFilter.value = newId
+  }
+})
 </script>
 
 <template>
   <base-card>
     <filters
-      :value="optionsSelected"
-      :options="data"
+      :value="selectedId"
+      :options="categories"
       add-option-all
-      @change="optionsSelected = ($event as string[])" />
+      @change="selectedId = ($event as string)" />
   </base-card>
 </template>
