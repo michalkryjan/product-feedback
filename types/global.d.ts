@@ -27,7 +27,6 @@ interface IStatus {
   order: number
   name: string
   description: string
-  color: string
 }
 
 interface ICategory {

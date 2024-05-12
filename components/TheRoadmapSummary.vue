@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import type { IListSummaryItemProps } from './ListSummaryItem.vue'
+
 const { feedbacksGroupedByStatus } = storeToRefs(useFeedbacksStore())
 
-const listData = computed(() => {
+const listItems = computed<IListSummaryItemProps[]>(() => {
   if (feedbacksGroupedByStatus.value) {
     return feedbacksGroupedByStatus.value.map(group => {
       return {
         label: group.status.name,
         count: group.feedbacks.length,
-        markerColor: 'orange'
+        markerColor: group.status.order
       }
     })
   } else {
@@ -35,6 +37,6 @@ const listData = computed(() => {
         is-underline />
     </div>
 
-    <list-summary :items="listData" />
+    <list-summary :items="listItems" />
   </base-card>
 </template>

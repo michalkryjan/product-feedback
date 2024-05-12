@@ -62,6 +62,9 @@ export default {
       },
       green: {
         1: '#4EDA64'
+      },
+      yellow: {
+        1: '#FCEC52'
       }
     },
     fontSize: {

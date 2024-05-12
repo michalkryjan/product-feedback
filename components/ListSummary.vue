@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { IListSummaryItemData } from './ListSummaryItem.vue'
+import type { IListSummaryItemProps } from './ListSummaryItem.vue'
 
 interface IBaseListSummaryProps {
-  items: IListSummaryItemData[]
+  items: IListSummaryItemProps[]
 }
 
 const props = defineProps<IBaseListSummaryProps>()
@@ -13,6 +13,8 @@ const props = defineProps<IBaseListSummaryProps>()
     <list-summary-item
       v-for="(item, index) in items"
       :key="index"
-      :data="item" />
+      :label="item.label"
+      :count="item.count"
+      :marker-color="item.markerColor" />
   </base-list>
 </template>

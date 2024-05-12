@@ -1,26 +1,23 @@
 <script setup lang="ts">
-export interface IListSummaryItemData {
+export interface IListSummaryItemProps {
   label: string
   count: number
-  markerColor: 'orange' | 'purple' | 'lightBlue'
-}
-
-interface IListSummaryItemProps {
-  data: IListSummaryItemData
+  markerColor?: number
 }
 
 const props = defineProps<IListSummaryItemProps>()
 
-const configMarker: Record<IListSummaryItemData['markerColor'], string> = {
-  orange: 'text-orange-1',
-  purple: 'text-purple-1',
-  lightBlue: 'text-lightBlue-1'
+const configMarkerColor: Record<NonNullable<IListSummaryItemProps['markerColor']>, string> = {
+  1: 'text-yellow-1',
+  2: 'text-orange-1',
+  3: 'text-purple-1',
+  4: 'text-lightBlue-1'
 }
 
 const classes = computed(() => {
   return [
     'inline-flex justify-between gap-x-20 w-full',
-    configMarker[props.data.markerColor]
+    props.markerColor && Object.keys(configMarkerColor).includes(props.markerColor.toString()) ? configMarkerColor[props.markerColor] : 'text-gray-1'
   ]
 })
 </script>
@@ -31,14 +28,14 @@ const classes = computed(() => {
       tag="span"
       typography="text-body-1"
       color="gray">
-      {{ data.label }}
+      {{ useCapitalized(label) }}
     </base-content>
 
     <base-content
       tag="strong"
       typography="text-body-1"
       color="gray">
-      {{ data.count.toString() }}
+      {{ count }}
     </base-content>
   </li>
 </template>
