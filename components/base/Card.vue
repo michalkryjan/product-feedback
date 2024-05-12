@@ -4,13 +4,15 @@ export interface IBaseCardProps {
   variant?: '1' | '2'
   theme?: 'white' | 'gradient-1'
   layout?: 'col' | 'row'
+  overflow?: 'visible' | 'hidden'
 }
 
 const props = withDefaults(defineProps<IBaseCardProps>(), {
   tag: 'div',
   variant: '1',
   theme: 'white',
-  layout: 'col'
+  layout: 'col',
+  overflow: 'hidden'
 })
 
 const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = {
@@ -30,10 +32,11 @@ const configLayout: Record<NonNullable<IBaseCardProps['layout']>, string> = {
 
 const classes = computed<string[]>(() => {
   return [
-    'relative overflow-hidden flex flex-nowrap w-full h-fit rounded-primary',
+    'relative flex flex-nowrap w-full h-fit rounded-primary',
     configVariant[props.variant],
     configTheme[props.theme],
-    configLayout[props.layout]
+    configLayout[props.layout],
+    props.overflow === 'hidden' ? 'overflow-hidden' : 'overflow-visible'
   ]
 })
 

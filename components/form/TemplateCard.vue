@@ -19,7 +19,9 @@ const props = defineProps<IFormTemplateCardProps>()
 </script>
 
 <template>
-  <base-card class="pt-52">
+  <base-card
+    class="pt-52"
+    overflow="visible">
     <base-icon
       :name="icon"
       class="absolute top-0 -translate-y-1/2 w-56 h-56" />

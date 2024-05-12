@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate';
-import type { IFormTemplateCardField } from '~/components/form/TemplateCard.vue';
+import { useForm } from 'vee-validate'
+import type { IFormTemplateCardField } from '~/components/form/TemplateCard.vue'
 
 interface IFormFeedbackEditProps {
-  data: Feedback
+  data: IFeedback
 }
 
 interface IFormFeedbackEditEmits {
@@ -13,7 +13,7 @@ interface IFormFeedbackEditEmits {
 const props = defineProps<IFormFeedbackEditProps>()
 const emit = defineEmits<IFormFeedbackEditEmits>()
 
-export interface IFormFeedbackEditValues extends Pick<Feedback, 'title' | 'category' | 'description'> {
+export interface IFormFeedbackEditValues extends Pick<IFeedback, 'title' | 'category' | 'description' | 'status'> {
   status: string
 }
 
@@ -37,7 +37,7 @@ const {
   }
 })
 
-const configFields: IFormTemplateCardField = [
+const configFields: IFormTemplateCardField[] = [
   {
     id: 'title',
     title: 'Feedback Title',
