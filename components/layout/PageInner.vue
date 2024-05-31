@@ -16,8 +16,8 @@ const configWidthType: Record<NonNullable<ILayoutPageWrapperProps['widthType']>,
 }
 
 const configVerticalPaddingType: Record<NonNullable<ILayoutPageWrapperProps['verticalPaddingType']>, string> = {
-  s: 'pt-80',
-  m: 'pt-90'
+  s: 'py-80',
+  m: 'py-90'
 }
 
 const classes = computed<string[]>(() => {
