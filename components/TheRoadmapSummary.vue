@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { IListSummaryItemProps } from './ListSummaryItem.vue'
 
-const { feedbacksGroupedByStatus } = storeToRefs(useFeedbacksStore())
+const feedbacksStore = useFeedbacksStore()
 
 const listItems = computed<IListSummaryItemProps[]>(() => {
-  if (feedbacksGroupedByStatus.value) {
-    return feedbacksGroupedByStatus.value.filter(group => group.status.order !== 1).map(group => {
+  if (feedbacksStore.feedbacksGroupedByStatus) {
+    return feedbacksStore.feedbacksGroupedByStatus.filter(group => group.status.order !== 1).map(group => {
       return {
         label: group.status.name,
         count: group.feedbacks.length,

@@ -8,7 +8,7 @@ useHead({
 </script>
 
 <template>
-  <layout-page-inner
+  <page-inner
     width-type="l"
     vertical-padding-type="m">
     <div class="grid grid-cols-[26rem_1fr] w-full gap-x-30">
@@ -24,5 +24,5 @@ useHead({
         <the-feedbacks-not-found v-else />
       </div>
     </div>
-  </layout-page-inner>
+  </page-inner>
 </template>

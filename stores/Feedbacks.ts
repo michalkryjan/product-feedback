@@ -42,6 +42,10 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   const feedbacksCountAll = computed<number>(() => feedbacks.value?.length)
   const feedbacksCountFiltered = computed<number>(() => feedbacksFiltered.value?.length)
 
+  function getFeedback (id: IFeedback['id']) {
+    return feedbacks.value.find(feedback => feedback?.id === id)
+  }
+
   async function addNewFeedback (data: Pick<IFeedback, 'title' | 'categories' | 'status' | 'description'>): Promise<boolean> {
     try {
       const result = await $firebase.db.feedbacks.addNewDoc({
@@ -143,6 +147,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     feedbacksFilteredAndSorted,
     feedbacksCountAll,
     feedbacksCountFiltered,
+    getFeedback,
     addNewFeedback,
     deleteFeedback,
     updateFeedback

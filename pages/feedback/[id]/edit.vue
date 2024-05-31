@@ -9,9 +9,9 @@ const dataSample = {
 </script>
 
 <template>
-  <layout-page-inner
+  <page-inner
     width-type="s"
     vertical-padding-type="m">
     <form-feedback-edit :data="dataSample" />
-  </layout-page-inner>
+  </page-inner>
 </template>
