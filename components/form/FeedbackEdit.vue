@@ -3,8 +3,10 @@ import { useForm } from 'vee-validate'
 import type { IFormTemplateCardField } from '~/components/form/TemplateCard.vue'
 
 interface IFormFeedbackEditProps {
-  data: IFeedback
+  feedback: IFeedbackExtended
 }
+
+export interface IFormFeedbackEditValues extends Pick<IFeedbackExtended, 'title' | 'categories' | 'description' | 'status'> {}
 
 interface IFormFeedbackEditEmits {
   (e: 'success'): void
@@ -13,9 +15,7 @@ interface IFormFeedbackEditEmits {
 const props = defineProps<IFormFeedbackEditProps>()
 const emit = defineEmits<IFormFeedbackEditEmits>()
 
-export interface IFormFeedbackEditValues extends Pick<IFeedback, 'title' | 'category' | 'description' | 'status'> {
-  status: string
-}
+const categoriesStore = useCategoriesStore()
 
 const submitDisabled = ref<boolean>(false)
 
@@ -25,15 +25,15 @@ const {
 } = useForm<IFormFeedbackEditValues>({
   validationSchema: {
     title: '',
-    category: '',
+    categories: '',
     status: '',
     description: ''
   },
   initialValues: {
-    title: props.data.title,
-    category: props.data.category,
-    status: props.data.status.name,
-    description: props.data.description
+    title: props.feedback?.title,
+    categories: props.feedback?.categories,
+    status: props.feedback?.status,
+    description: props.feedback?.description
   }
 })
 
@@ -85,7 +85,7 @@ watch(values, () => {
 
 <template>
   <form-template-card
-    :title="`Editing '${ data.title }'`"
+    :title="`Editing '${ feedback?.title }'`"
     icon="edit-feedback"
     :fields="configFields"
     :on-submit="onFormSubmit">
@@ -97,10 +97,13 @@ watch(values, () => {
     </template>
 
     <template #field--category="{ id, errors, handleChange }">
-      <base-input
+      <dropdown-select-form
         :id="id"
+        :options="categoriesStore.categories"
         :has-error="errors.length > 0"
-        @update:model-value="handleChange" />
+        aria-label-opened="Hide available categories"
+        aria-label-closed="Show available categories"
+        @update-value="handleChange" />
     </template>
 
     <template #field--status="{ id, errors, handleChange }">
@@ -136,7 +139,7 @@ watch(values, () => {
 
         <base-button
           type="submit"
-          text="Add Feedback"
+          text="Save Feedback"
           size="s2"
           theme="purple"
           label-color="white" />

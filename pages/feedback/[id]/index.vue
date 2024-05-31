@@ -1,9 +1,5 @@
 <script setup lang="ts">
-const feedbacksStore = useFeedbacksStore()
-
-const { params } = useRoute()
-
-const currentFeedback = computed(() => params?.id ? feedbacksStore.getFeedback(params.id) : undefined)
+const currentFeedback = useCurrentRouteFeedback()
 </script>
 
 <template>

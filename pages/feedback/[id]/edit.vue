@@ -1,17 +1,11 @@
 <script setup lang="ts">
-const dataSample = {
-  id: 'test',
-  title: 'Add a dark theme option',
-  category: 'Feature',
-  status: 'Planned',
-  details: 'It would help people with light sensitivities and who prefer dark mode.'
-}
+const currentFeedback = useCurrentRouteFeedback()
 </script>
 
 <template>
   <page-inner
     width-type="s"
     vertical-padding-type="m">
-    <form-feedback-edit :data="dataSample" />
+    <form-feedback-edit :feedback="currentFeedback" />
   </page-inner>
 </template>
