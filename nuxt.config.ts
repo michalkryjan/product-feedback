@@ -38,13 +38,12 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/image',
-    '@nuxt/content',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    'nuxt-icons',
     '@pinia/nuxt',
     'nuxt-vuefire',
-    'nuxt-lodash'
+    'nuxt-lodash',
+    'nuxt-icons'
   ],
   image: {
     format: ['webp'],

@@ -1,12 +1,4 @@
 <script setup lang="ts">
-interface ITheProductInfoProps {
-  data: {
-    title: string
-    content: string
-  }
-}
-
-const props = defineProps<ITheProductInfoProps>()
 </script>
 
 <template>
@@ -17,11 +9,11 @@ const props = defineProps<ITheProductInfoProps>()
       <base-headline
         :level="1"
         typography="title-2">
-        <span v-html="useOrphans(data.title)" />
+        Frontend Mentor
       </base-headline>
 
       <base-content typography="text-body-2">
-        <span v-html="useOrphans(data.content)" />
+        Feedback Board
       </base-content>
     </div>
   </base-card>

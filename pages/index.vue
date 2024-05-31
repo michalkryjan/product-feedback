@@ -1,20 +1,9 @@
 <script setup lang="ts">
-import type { Content } from 'types/content'
-
-const { data: globalContent } = await useAsyncData(
-  'global',
-  () => queryContent<Content.Global>('global').findOne()
-)
-
-const { data: pageContent } = await useAsyncData(
-  'homepage',
-  () => queryContent<Content.Homepage>('homepage').findOne()
-)
 
 const feedbacksStore = useFeedbacksStore()
 
 useHead({
-  title: `${pageContent.value?.title ?? globalContent.value?.title}`,
+  title: 'Feedback board',
 })
 </script>
 
@@ -24,15 +13,9 @@ useHead({
     vertical-padding-type="m">
     <div class="grid grid-cols-[26rem_1fr] w-full gap-x-30">
       <div class="col-start-1 col-end-1 flex flex-col gap-24">
-        <the-product-info
-          v-if="pageContent?.productInfo"
-          :data="pageContent.productInfo" />
-
+        <the-product-info />
         <the-category-filters />
-
-        <the-roadmap-summary
-          v-if="pageContent?.roadmapSummary"
-          :data="pageContent.roadmapSummary" />
+        <the-roadmap-summary />
       </div>
 
       <div class="col-start-2 col-end-2 h-fit flex flex-col">
