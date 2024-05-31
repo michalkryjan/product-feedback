@@ -1,28 +1,6 @@
 <script setup lang="ts">
-import type { IDropdownSelectOption } from '~/components/DropdownSelect.vue'
-
 const feedbacksStore = useFeedbacksStore()
-
-const sortingOptions = [
-  {
-    id: 'upvotes-desc',
-    name: 'Most Upvotes'
-  },
-  {
-    id: 'upvotes-asc',
-    name: 'Least Upvotes'
-  },
-  {
-    id: 'comments-desc',
-    name: 'Most Comments'
-  },
-  {
-    id: 'comments-asc',
-    name: 'Least Comments'
-  }
-]
-
-const selectedSortingOption = ref<IDropdownSelectOption>(sortingOptions[0])
+const filtersStore = useFiltersStore()
 </script>
 
 <template>
@@ -39,12 +17,12 @@ const selectedSortingOption = ref<IDropdownSelectOption>(sortingOptions[0])
       :level="2"
       typography="title-3"
       class="mr-40">
-      {{ `${ feedbacksStore.feedbacksCount } Suggestions` }}
+      {{ `${ feedbacksStore.feedbacksCountAll } Suggestions` }}
     </base-headline>
 
     <dropdown-select-sort-by
-      v-model="selectedSortingOption"
-      :options="sortingOptions" />
+      v-model="filtersStore.sortBy"
+      :options="filtersStore.availableSortOptions" />
 
     <base-button
       text="Add feedback"

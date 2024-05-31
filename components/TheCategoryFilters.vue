@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const categoriesStore = useCategoriesStore()
+const filtersStore = useFiltersStore()
 
 const selectedId = ref<string>('all')
 
 watch(selectedId, (newId) => {
   if (newId === 'all') {
-    categoriesStore.filterId = undefined
+    filtersStore.filterBy.categoryId = undefined
   } else {
-    categoriesStore.filterId = newId
+    filtersStore.filterBy.categoryId = newId
   }
 })
 </script>
