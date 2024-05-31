@@ -71,7 +71,7 @@ module.exports = {
       ImportDeclaration: 'never',
       ExportDeclaration: {
         multiline: true,
-        minProperties: 2
+        minProperties: 5
       }
     }],
     '@stylistic/object-property-newline': 'error',
