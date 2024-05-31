@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     }
   },
   modules: [
+    '@nuxt/image',
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
@@ -44,6 +45,18 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-vuefire'
   ],
+  image: {
+    format: ['webp'],
+    screens: {
+      mxs: 370,
+      ms: 480,
+      m: 670,
+      tm: 980,
+      t: 1200,
+      ls: 1280,
+      l: 1920
+    }
+  },
   vuefire: {
     auth: {
       enabled: false

@@ -3,9 +3,11 @@
 
 <template>
   <base-card class="min-h-600 items-center justify-center">
-    <base-img
-      src="/svg/illustration-empty.svg"
-      class="mb-54 max-w-130" />
+    <base-image
+      src-desktop="/svg/illustration-empty.svg"
+      :width="130"
+      :is-full-width="false"
+      picture-class="mb-54" />
 
     <base-headline
       typography="title-1"

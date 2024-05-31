@@ -142,7 +142,6 @@ export default {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content',
-      130: '13rem',
       320: '32rem',
       430: '43rem',
       588: '58.8rem',
