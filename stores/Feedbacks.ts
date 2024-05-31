@@ -16,7 +16,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
       return collectionNonNullable.value.map(feedbackDoc => {
         return {
           ...feedbackDoc,
-          categories: feedbackDoc.categories.map(catId => categoriesStore.getCategory(catId)).filter(cat => cat !== undefined),
+          category: categoriesStore.getCategory(feedbackDoc.category) ?? {},
           status: statusesStore.getStatus(feedbackDoc.status)
         } as IFeedbackExtended
       })
@@ -46,14 +46,14 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     return feedbacks.value.find(feedback => feedback?.id === id)
   }
 
-  async function addNewFeedback (data: Pick<IFeedback, 'title' | 'categories' | 'status' | 'description'>): Promise<boolean> {
+  async function addNewFeedback (data: Pick<IFeedback, 'title' | 'category' | 'status' | 'description'>): Promise<boolean> {
     try {
       const result = await $firebase.db.feedbacks.addNewDoc({
         title: data.title,
         description: data.description,
         upvotes: 0,
         created_by: '0', // TO DO: add current user ID
-        categories: data.categories,
+        category: data.category,
         status: data.status,
         comments: []
       })
@@ -68,12 +68,12 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }
   }
 
-  async function updateFeedback (id: IFeedback['id'], data: Pick<IFeedback, 'title' | 'categories' | 'description'>): Promise<boolean> {
+  async function updateFeedback (id: IFeedback['id'], data: Pick<IFeedback, 'title' | 'category' | 'description'>): Promise<boolean> {
     try {
       await $firebase.db.feedbacks.updateDoc(id, {
         title: data.title,
         description: data.description,
-        categories: data.categories
+        category: data.category
       })
 
       console.log('Feedback with id ', id, ' successfully updated.')
@@ -106,7 +106,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
         return true
       }
 
-      return (feedback?.categories ?? []).some(cat => cat.id === filters.categoryId)
+      return feedback?.category?.id === filters.categoryId
     })
   }
 

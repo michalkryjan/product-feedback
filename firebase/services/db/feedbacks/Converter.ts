@@ -8,7 +8,7 @@ class FeedbacksConverter implements FirestoreDataConverter<IFeedback | null, IFe
     description: z.string(),
     upvotes: z.number(),
     created_by: z.string(),
-    categories: z.string().array(),
+    category: z.string(),
     status: z.string(),
     comments: z.string().array().optional()
   })
@@ -26,7 +26,7 @@ class FeedbacksConverter implements FirestoreDataConverter<IFeedback | null, IFe
       description: data?.description,
       upvotes: data?.upvotes,
       created_by: data?.created_by,
-      categories: data?.categories,
+      category: data?.category,
       status: data?.status,
       comments: data?.comments
     })

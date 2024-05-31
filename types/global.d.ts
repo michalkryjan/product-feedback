@@ -17,7 +17,7 @@ interface IFeedback {
   description: string
   upvotes: number
   created_by: IUser['id']
-  categories: Array<ICategory['id']>
+  category: ICategory['id']
   status: IStatus['id']
   comments?: Array<IComment['id']>
 }
@@ -54,8 +54,8 @@ interface IUser {
   username: string
 }
 
-interface IFeedbackExtended extends Omit<IFeedback, 'categories' | 'status'> {
-  categories?: Array<ICategory>
+interface IFeedbackExtended extends Omit<IFeedback, 'category' | 'status'> {
+  category?: ICategory
   status?: IStatus
 }
 

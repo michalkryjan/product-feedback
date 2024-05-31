@@ -5,7 +5,7 @@ interface IFeedbackService {
   getCollection: () => CollectionReference<IFeedback | null, IFeedback>
   getDoc: (id: string) => DocumentReference<IFeedback | null, IFeedback>
   addNewDoc: (data: Omit<IFeedback, 'id'>) => Promise<DocumentReference<IFeedback | null, IFeedback>>
-  updateDoc: (id: string, data: Pick<IFeedback, 'title' | 'categories' | 'description'>) => Promise<void>,
+  updateDoc: (id: string, data: Pick<IFeedback, 'title' | 'category' | 'description'>) => Promise<void>,
   deleteDoc: (id: string) => Promise<void>
 }
 
@@ -30,7 +30,7 @@ class FeedbacksService implements IFeedbackService {
     return addDoc(this.getCollection(), data) as Promise<DocumentReference<IFeedback | null, IFeedback>>
   }
 
-  public updateDoc (id: string, data: Pick<IFeedback, 'title' | 'categories' | 'description'>) {
+  public updateDoc (id: string, data: Pick<IFeedback, 'title' | 'category' | 'description'>) {
     return updateDoc(this.getDoc(id), data)
   }
 
