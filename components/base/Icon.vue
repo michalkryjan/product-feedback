@@ -36,3 +36,11 @@ const classes = computed<string[]>(() => {
     :filled="filled"
     :class="classes" />
 </template>
+
+<style lang="postcss">
+.nuxt-icon {
+  svg {
+    @apply mb-0;
+  }
+}
+</style>
