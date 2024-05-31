@@ -43,7 +43,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-icons',
     '@pinia/nuxt',
-    'nuxt-vuefire'
+    'nuxt-vuefire',
+    'nuxt-lodash'
   ],
   image: {
     format: ['webp'],
@@ -70,5 +71,10 @@ export default defineNuxtConfig({
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
     exposeConfig: true
+  },
+  lodash: {
+    prefix: 'ld_',
+    upperAfterPrefix: false,
+    prefixSkip: false
   }
 })

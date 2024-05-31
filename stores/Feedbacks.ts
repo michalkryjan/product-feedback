@@ -1,10 +1,12 @@
 import { orderBy, query } from 'firebase/firestore'
+import type { IFilterBy, ISortByOption } from '~/stores/Filters'
 
 export const useFeedbacksStore = defineStore('feedbacks', () => {
   const { $firebase } = useNuxtApp()
 
   const categoriesStore = useCategoriesStore()
   const statusesStore = useStatusesStore()
+  const filtersStore = useFiltersStore()
 
   const collection = useCollection<IFeedback>(query($firebase.db.feedbacks.getCollection(), orderBy('upvotes', 'desc')))
   const collectionNonNullable = computed<IFeedback[]>(() => collection.value.filter(item => item !== null))
@@ -12,11 +14,9 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   const feedbacks = computed<IFeedbackExtended[]>(() => {
     if (collectionNonNullable.value?.length > 0) {
       return collectionNonNullable.value.map(feedbackDoc => {
-        const currentFeedbackCategories = feedbackDoc.categories.map(catId => categoriesStore.getCategory(catId)).filter(cat => cat !== undefined)
-
         return {
           ...feedbackDoc,
-          categories: currentFeedbackCategories,
+          categories: feedbackDoc.categories.map(catId => categoriesStore.getCategory(catId)).filter(cat => cat !== undefined),
           status: statusesStore.getStatus(feedbackDoc.status)
         } as IFeedbackExtended
       })
@@ -31,19 +31,16 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }))
   })
 
-  const feedbacksFilteredByCategory = computed(() => {
-    const categoryFilterId = categoriesStore.filterId
-
-    return feedbacks.value.filter(feedback => {
-      if (!categoryFilterId) {
-        return true
-      }
-
-      return (feedback?.categories ?? []).some(cat => cat.id === categoryFilterId)
-    })
+  const feedbacksFiltered = computed(() => {
+    return filterFeedbacks(filtersStore.filterBy, feedbacks.value)
   })
 
-  const feedbacksCount = computed<number>(() => feedbacks.value?.length)
+  const feedbacksFilteredAndSorted = computed(() => {
+    return sortFeedbacks(filtersStore.sortBy.id, ld_cloneDeep(feedbacksFiltered.value))
+  })
+
+  const feedbacksCountAll = computed<number>(() => feedbacks.value?.length)
+  const feedbacksCountFiltered = computed<number>(() => feedbacksFiltered.value?.length)
 
   async function addNewFeedback (data: Pick<IFeedback, 'title' | 'categories' | 'status' | 'description'>): Promise<boolean> {
     try {
@@ -99,11 +96,53 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }
   }
 
+  function filterFeedbacks (filters: IFilterBy, feedbacks: IFeedbackExtended[]) {
+    return feedbacks.filter(feedback => {
+      if (!filters.categoryId) {
+        return true
+      }
+
+      return (feedback?.categories ?? []).some(cat => cat.id === filters.categoryId)
+    })
+  }
+
+  function sortFeedbacks (method: ISortByOption['id'], feedbacks: IFeedbackExtended[]) {
+    if (method === 'upvotes-desc') {
+      return sortFeedbacksByUpvotesDesc(feedbacks)
+    } else if (method === 'upvotes-asc') {
+      return sortFeedbacksByUpvotesAsc(feedbacks)
+    } else if (method === 'comments-desc') {
+      return sortFeedbacksByCommentsDesc(feedbacks)
+    } else if (method === 'comments-asc') {
+      return sortFeedbacksByCommentsAsc(feedbacks)
+    } else {
+      return feedbacks
+    }
+  }
+
+  function sortFeedbacksByUpvotesDesc (feedbacks: IFeedbackExtended[]) {
+    return feedbacks.sort((a, b) => b.upvotes - a.upvotes)
+  }
+
+  function sortFeedbacksByUpvotesAsc (feedbacks: IFeedbackExtended[]) {
+    return feedbacks.sort((a, b) => a.upvotes - b.upvotes)
+  }
+
+  function sortFeedbacksByCommentsDesc (feedbacks: IFeedbackExtended[]) {
+    return feedbacks.sort((a, b) => (b?.comments?.length ?? 0) - (a?.comments?.length ?? 0))
+  }
+
+  function sortFeedbacksByCommentsAsc (feedbacks: IFeedbackExtended[]) {
+    return feedbacks.sort((a, b) => (a?.comments?.length ?? 0) - (b?.comments?.length ?? 0))
+  }
+
   return {
     feedbacks,
     feedbacksGroupedByStatus,
-    feedbacksFilteredByCategory,
-    feedbacksCount,
+    feedbacksFiltered,
+    feedbacksFilteredAndSorted,
+    feedbacksCountAll,
+    feedbacksCountFiltered,
     addNewFeedback,
     deleteFeedback,
     updateFeedback

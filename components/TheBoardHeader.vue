@@ -17,7 +17,7 @@ const filtersStore = useFiltersStore()
       :level="2"
       typography="title-3"
       class="mr-40">
-      {{ `${ feedbacksStore.feedbacksCountAll } Suggestions` }}
+      {{ `${ feedbacksStore.feedbacksCountFiltered } Suggestions` }}
     </base-headline>
 
     <dropdown-select-sort-by
