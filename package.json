@@ -27,7 +27,8 @@
     "vee-validate": "^4.12.5",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5",
-    "vuefire": "^3.1.23"
+    "vuefire": "^3.1.23",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",

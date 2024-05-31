@@ -1,4 +1,4 @@
-import type { IFirebaseRepository } from './firebase/repository'
+import type { IFirebaseRepository } from '~/firebase/types'
 
 interface IPluginInjections {
   $firebase: IFirebaseRepository

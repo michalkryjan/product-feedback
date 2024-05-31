@@ -3,7 +3,7 @@ import { orderBy, query } from 'firebase/firestore'
 export const useStatusesStore = defineStore('statuses', () => {
   const { $firebase } = useNuxtApp()
 
-  const statuses = useCollection(query($firebase.collections.statuses.getCollection(), orderBy('order')))
+  const statuses = useCollection(query($firebase.db.statuses.getCollection(), orderBy('order')))
 
   const initialStatus = computed(() => statuses.value.find(item => item?.order === 1))
 

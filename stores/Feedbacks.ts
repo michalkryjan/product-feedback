@@ -6,7 +6,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   const categoriesStore = useCategoriesStore()
   const statusesStore = useStatusesStore()
 
-  const collection = useCollection(query($firebase.collections.feedbacks.getCollection(), orderBy('upvotes', 'desc')))
+  const collection = useCollection(query($firebase.db.feedbacks.getCollection(), orderBy('upvotes', 'desc')))
 
   const feedbacks = computed<Array<Omit<IFeedback, 'categories' | 'status'> & {
     categories: ICategory[]
@@ -38,7 +38,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
 
   async function addNewFeedback (data: Pick<IFeedback, 'title' | 'categories' | 'status' | 'description'>): Promise<boolean> {
     try {
-      const result = await $firebase.collections.feedbacks.addNewDoc({
+      const result = await $firebase.db.feedbacks.addNewDoc({
         title: data.title,
         description: data.description,
         upvotes: 0,
@@ -60,7 +60,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
 
   async function updateFeedback (id: IFeedback['id'], data: Pick<IFeedback, 'title' | 'categories' | 'description'>): Promise<boolean> {
     try {
-      await $firebase.collections.feedbacks.updateDoc(id, {
+      await $firebase.db.feedbacks.updateDoc(id, {
         title: data.title,
         description: data.description,
         categories: data.categories
@@ -78,7 +78,7 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
 
   async function deleteFeedback (id: IFeedback['id']): Promise<boolean> {
     try {
-      await $firebase.collections.feedbacks.deleteDoc(id)
+      await $firebase.db.feedbacks.deleteDoc(id)
 
       console.log('Feedback with id ', id, ' successfully updated.')
 

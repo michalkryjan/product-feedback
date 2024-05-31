@@ -1,7 +1,7 @@
 export const useCategoriesStore = defineStore('categories', () => {
   const { $firebase } = useNuxtApp()
 
-  const categories = useCollection($firebase.collections.categories.getCollection())
+  const categories = useCollection($firebase.db.categories.getCollection())
 
   const categoriesFilter = ref<ICategory['id'] | undefined>(undefined)
 
