@@ -85,10 +85,6 @@ onBeforeMount(() => {
     handleSelect('all')
   }
 })
-
-watch(valueModel, () => {
-  console.log(valueModel.value)
-})
 </script>
 
 <template>
