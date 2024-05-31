@@ -5,7 +5,7 @@ const { feedbacksGroupedByStatus } = storeToRefs(useFeedbacksStore())
 
 const listItems = computed<IListSummaryItemProps[]>(() => {
   if (feedbacksGroupedByStatus.value) {
-    return feedbacksGroupedByStatus.value.map(group => {
+    return feedbacksGroupedByStatus.value.filter(group => group.status.order !== 1).map(group => {
       return {
         label: group.status.name,
         count: group.feedbacks.length,
@@ -15,6 +15,16 @@ const listItems = computed<IListSummaryItemProps[]>(() => {
   } else {
     return []
   }
+})
+
+const isRoadmapDisabled = computed<boolean>(() => {
+  listItems.value.forEach(group => {
+    if (group.count > 0) {
+      return false
+    }
+  })
+
+  return true
 })
 </script>
 
@@ -34,7 +44,8 @@ const listItems = computed<IListSummaryItemProps[]>(() => {
         label-size="s2"
         theme="transparent"
         label-color="blue"
-        is-underline />
+        is-underline
+        :disabled="isRoadmapDisabled" />
     </div>
 
     <list-summary :items="listItems" />
