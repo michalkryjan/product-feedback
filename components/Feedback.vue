@@ -17,8 +17,9 @@ const detailsUrl = computed<string | undefined>(() => props.addLinkToDetails ? `
 const accentColorClass = computed<string | undefined>(() => {
   if (props.type === 'roadmap') {
     const order = props.data.status?.order
-    if (order) {
-      useAccentColor(order, 'beforeBgClass')
+
+    if (typeof order === 'number') {
+      return useAccentColor(order, 'beforeBgClass')
     }
   }
   return undefined
