@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { useForm } from 'vee-validate';
-import type { IFormTemplateCardField } from '~/components/form/TemplateCard.vue';
+import { useForm } from 'vee-validate'
+import type { IFormTemplateCardField } from '~/components/form/TemplateCard.vue'
+
+export interface IFormFeedbackCreateValues extends Pick<IFeedbackExtended, 'title' | 'categories' | 'description'> {}
 
 interface IFormFeedbackCreateEmits {
   (e: 'success'): void
@@ -8,7 +10,7 @@ interface IFormFeedbackCreateEmits {
 
 const emit = defineEmits<IFormFeedbackCreateEmits>()
 
-export interface IFormFeedbackCreateValues extends Pick<Feedback, 'title' | 'category' | 'description'> {}
+const categoriesStore = useCategoriesStore()
 
 const submitDisabled = ref<boolean>(false)
 
@@ -18,12 +20,12 @@ const {
 } = useForm<IFormFeedbackCreateValues>({
   validationSchema: {
     title: '',
-    category: '',
+    categories: '',
     description: ''
   },
   initialValues: {
     title: undefined,
-    category: undefined,
+    categories: undefined,
     description: undefined
   }
 })
@@ -83,10 +85,13 @@ watch(values, () => {
     </template>
 
     <template #field--category="{ id, errors, handleChange }">
-      <base-input
+      <dropdown-select-form
         :id="id"
+        :options="categoriesStore.categories"
         :has-error="errors.length > 0"
-        @update:model-value="handleChange" />
+        aria-label-opened="Hide available categories"
+        aria-label-closed="Show available categories"
+        @update-value="handleChange" />
     </template>
 
     <template #field--description="{ id, errors, handleChange }">

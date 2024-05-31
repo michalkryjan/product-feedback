@@ -6,10 +6,6 @@ export interface IBaseDropdownProps {
 
 const props = defineProps<IBaseDropdownProps>()
 
-defineOptions({
-  inheritAttrs: false
-})
-
 const triggerRef = ref<HTMLElement | null>(null)
 const contentRef = ref<HTMLElement | null>(null)
 
@@ -57,7 +53,7 @@ defineExpose({
       :aria-label="ariaLabel"
       aria-haspopup="listbox"
       :aria-expanded="isOpened"
-      class="outline-none"
+      class="w-full outline-none"
       @click="toggle">
       <slot name="trigger" />
     </button>

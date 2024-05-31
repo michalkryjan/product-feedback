@@ -2,7 +2,7 @@
 import type DropdownSelect from '~/components/DropdownSelect.vue'
 import type { IDropdownSelectOption, IDropdownSelectProps } from './DropdownSelect.vue'
 
-interface IDropdownSelectSortByProps extends IDropdownSelectProps {}
+interface IDropdownSelectSortByProps extends Omit<IDropdownSelectProps, 'ariaLabelOpened' | 'ariaLabelClosed'> {}
 
 interface IDropdownSelectSortByEmits {
   (e: 'update:modelValue', val: IDropdownSelectOption | undefined): void
