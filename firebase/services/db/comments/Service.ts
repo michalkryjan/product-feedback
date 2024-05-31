@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
-import { CommentsConverter } from './converter'
+import { CommentsConverter } from './Converter'
 
 interface ICommentsService {
   getCollection: () => CollectionReference<IComment | null, IComment>

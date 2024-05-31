@@ -1,7 +1,7 @@
 import { addDoc, collection, deleteDoc, doc, updateDoc, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
 import { FeedbacksConverter } from './Converter'
 
-interface IFeedbacksService {
+interface IFeedbackService {
   getCollection: () => CollectionReference<IFeedback | null, IFeedback>
   getDoc: (id: string) => DocumentReference<IFeedback | null, IFeedback>
   addNewDoc: (data: Omit<IFeedback, 'id'>) => Promise<DocumentReference<IFeedback | null, IFeedback>>
@@ -9,7 +9,7 @@ interface IFeedbacksService {
   deleteDoc: (id: string) => Promise<void>
 }
 
-class FeedbacksService implements IFeedbacksService {
+class FeedbacksService implements IFeedbackService {
   private readonly firestore: Firestore
   private readonly converter: FeedbacksConverter
 

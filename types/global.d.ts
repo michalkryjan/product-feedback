@@ -53,3 +53,17 @@ interface IUser {
   fullname: string
   username: string
 }
+
+interface IFeedbackExtended extends Omit<IFeedback, 'categories' | 'status'> {
+  categories?: Array<ICategory>
+  status?: IStatus
+}
+
+interface ICommentExtended extends Omit<IComment, 'replies'> {
+  replies?: Array<IReply>
+}
+
+interface IFeedbacksGroup {
+  feedbacks: IFeedbackExtended[]
+  status: IStatus
+}

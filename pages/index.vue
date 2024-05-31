@@ -11,11 +11,7 @@ const { data: pageContent } = await useAsyncData(
   () => queryContent<Content.Homepage>('homepage').findOne()
 )
 
-const { feedbacks } = storeToRefs(useFeedbacksStore())
-
-watch(feedbacks, () => {
-  console.log(feedbacks.value)
-})
+const feedbacksStore = useFeedbacksStore()
 
 useHead({
   title: `${pageContent.value?.title ?? globalContent.value?.title}`,
@@ -40,9 +36,7 @@ useHead({
       </div>
 
       <div class="col-start-2 col-end-2 h-fit flex flex-col">
-        <the-feedbacks-list-default
-          v-if="!!feedbacks?.length"
-          :items="feedbacks" />
+        <the-feedbacks-list-default v-if="feedbacksStore.feedbacksCount > 0" />
         <the-feedbacks-not-found v-else />
       </div>
     </div>

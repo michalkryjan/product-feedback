@@ -53,31 +53,11 @@ const valueModel = computed<string | string[] | undefined>({
 })
 
 function handleSelect (val: string): void {
-  if (Array.isArray(valueModel.value)) {
-    if (props.addOptionAll && val === 'all') {
-      valueModel.value = ['all']
-    } else {
-      valueModel.value = [...valueModel.value.filter(item => item !== 'all'), val]
-    }
-  } else {
-    valueModel.value = val
-  }
+  valueModel.value = val
 }
 
-function handleUnselect (val: string): void {
-  if (Array.isArray(valueModel.value)) {
-    if (props.addOptionAll && val !== 'all') {
-      valueModel.value = valueModel.value.filter(item => item !== val)
-
-      if (valueModel.value.length === 1) {
-        valueModel.value = ['all']
-      }
-    } else {
-      valueModel.value = valueModel.value.filter(item => item !== val)
-    }
-  } else {
-    valueModel.value = undefined
-  }
+function handleUnselect (): void {
+  valueModel.value = undefined
 }
 
 onBeforeMount(() => {
@@ -91,13 +71,13 @@ onBeforeMount(() => {
   <div :class="wrapperClasses">
     <filters-option
       v-for="option in optionsComputed"
-      :key="option.id"
+      :key="option?.id"
       v-bind="$attrs"
       :data="option"
       theme="gray"
-      :is-disabled="valueModel === 'all' && option.id === 'all'"
-      :is-selected="valueModel === option.id || (Array.isArray(valueModel) && valueModel.includes(option.id))"
-      @select="handleSelect($event)"
-      @unselect="handleUnselect($event)" />
+      :is-disabled="valueModel === 'all' && option?.id === 'all'"
+      :is-selected="valueModel === option?.id"
+      @select="handleSelect(option?.id)"
+      @unselect="handleUnselect()" />
   </div>
 </template>

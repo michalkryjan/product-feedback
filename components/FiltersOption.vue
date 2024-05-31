@@ -13,8 +13,8 @@ interface IFiltersOptionProps {
 }
 
 interface IFiltersOptionEmits {
-  (e: 'select', val: string): void
-  (e: 'unselect', val: string): void
+  (e: 'select'): void
+  (e: 'unselect'): void
 }
 
 const props = withDefaults(defineProps<IFiltersOptionProps>(), {
@@ -33,9 +33,9 @@ defineOptions({
 function toggle (): void {
   if (!props.isDisabled) {
     if (props.isSelected) {
-      emit('unselect', props.data.id)
+      emit('unselect')
     } else {
-      emit('select', props.data.id)
+      emit('select')
     }
   }
 }
@@ -43,7 +43,7 @@ function toggle (): void {
 
 <template>
   <base-button
-    :text="data.name"
+    :text="data?.name"
     size="s1"
     label-size="s2"
     :theme="isSelected ? 'blue' : 'gray'"

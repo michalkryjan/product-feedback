@@ -1,4 +1,4 @@
-import { collection, doc, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
+import { CollectionReference, DocumentReference, Firestore, collection, doc } from 'firebase/firestore'
 import { CategoriesConverter } from './Converter'
 
 interface ICategoriesService {

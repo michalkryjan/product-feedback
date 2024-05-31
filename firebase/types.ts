@@ -1,19 +1,19 @@
-import type { ICategoriesService } from './services/db/categories/types'
-import type { ICommentsService } from './services/db/comments/types'
-import type { IFeedbacksService } from './services/db/feedbacks/types'
-import type { IRepliesService } from './services/db/replies/types'
-import type { IStatusesService } from './services/db/statuses/types'
-import type { IUsersService } from './services/db/users/types'
+import type { CategoriesService } from './services/db/categories/Service'
+import type { CommentsService } from './services/db/comments/Service'
+import type { FeedbacksService } from './services/db/feedbacks/Service'
+import type { RepliesService } from './services/db/replies/Service'
+import type { StatusesService } from './services/db/statuses/Service'
+import type { UsersService } from './services/db/users/Service'
 
 export interface IFirebaseRepository {
   db: IDbService
 }
 
 interface IDbService {
-  categories: ICategoriesService
-  comments: ICommentsService
-  feedbacks: IFeedbacksService
-  replies: IRepliesService
-  statuses: IStatusesService
-  users: IUsersService
+  categories: CategoriesService
+  comments: CommentsService
+  feedbacks: FeedbacksService
+  replies: RepliesService
+  statuses: StatusesService
+  users: UsersService
 }

@@ -6,35 +6,44 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   const categoriesStore = useCategoriesStore()
   const statusesStore = useStatusesStore()
 
-  const collection = useCollection(query($firebase.db.feedbacks.getCollection(), orderBy('upvotes', 'desc')))
+  const collection = useCollection<IFeedback>(query($firebase.db.feedbacks.getCollection(), orderBy('upvotes', 'desc')))
+  const collectionNonNullable = computed<IFeedback[]>(() => collection.value.filter(item => item !== null))
 
-  const feedbacks = computed<Array<Omit<IFeedback, 'categories' | 'status'> & {
-    categories: ICategory[]
-    status: IStatus
-  }>>(() => {
-    if (collection.value?.length > 0) {
-      if (categoriesStore.categories?.length > 0) {
-        return collection.value.map(doc => {
-          return {
-            ...doc,
-            categories: doc.categories.map(catId => categoriesStore.getCategory(catId)),
-            status: statusesStore.getStatus(doc.status)
-          }
-        })
-      } else {
-        return collection.value
-      }
+  const feedbacks = computed<IFeedbackExtended[]>(() => {
+    if (collectionNonNullable.value?.length > 0) {
+      return collectionNonNullable.value.map(feedbackDoc => {
+        const currentFeedbackCategories = feedbackDoc.categories.map(catId => categoriesStore.getCategory(catId)).filter(cat => cat !== undefined)
+
+        return {
+          ...feedbackDoc,
+          categories: currentFeedbackCategories,
+          status: statusesStore.getStatus(feedbackDoc.status)
+        } as IFeedbackExtended
+      })
     }
-
     return []
   })
 
-  const feedbacksGroupedByStatus = computed(() => {
+  const feedbacksGroupedByStatus = computed<IFeedbacksGroup[]>(() => {
     return statusesStore.statuses.map(status => ({
-      status,
-      feedbacks: feedbacks.value.filter(feedback => feedback.status.id === status.id)
+      feedbacks: feedbacks.value.filter(feedback => feedback?.status?.id === status.id),
+      status
     }))
   })
+
+  const feedbacksFilteredByCategory = computed(() => {
+    const categoryFilterId = categoriesStore.filterId
+
+    return feedbacks.value.filter(feedback => {
+      if (!categoryFilterId) {
+        return true
+      }
+
+      return (feedback?.categories ?? []).some(cat => cat.id === categoryFilterId)
+    })
+  })
+
+  const feedbacksCount = computed<number>(() => feedbacks.value?.length)
 
   async function addNewFeedback (data: Pick<IFeedback, 'title' | 'categories' | 'status' | 'description'>): Promise<boolean> {
     try {
@@ -93,6 +102,8 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   return {
     feedbacks,
     feedbacksGroupedByStatus,
+    feedbacksFilteredByCategory,
+    feedbacksCount,
     addNewFeedback,
     deleteFeedback,
     updateFeedback

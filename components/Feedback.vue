@@ -1,9 +1,6 @@
 <script setup lang="ts">
 interface ICardFeedbackProps {
-  data: Omit<IFeedback, 'categories' | 'status'> & {
-    categories: ICategory[]
-    status: IStatus
-  }
+  data: IFeedbackExtended
   type?: 'default' | 'roadmap'
   addLinkToDetails?: boolean
 }
@@ -17,7 +14,15 @@ const isUpvoted = ref<boolean>(false)
 const upvotesCount = ref<number>(props.data.upvotes)
 
 const detailsUrl = computed<string | undefined>(() => props.addLinkToDetails ? `/feedback/${props.data.id}` : undefined)
-const accentColorClass = computed<string | undefined>(() => props.type === 'roadmap' ? useAccentColor(props.data.status.order, 'beforeBgClass') : undefined)
+const accentColorClass = computed<string | undefined>(() => {
+  if (props.type === 'roadmap') {
+    const order = props.data.status?.order
+    if (order) {
+      useAccentColor(order, 'beforeBgClass')
+    }
+  }
+  return undefined
+})
 
 const mainWrapperClasses = computed<string[]>(() => {
   const result: string[] = [
@@ -84,11 +89,11 @@ const buttonUpvoteClasses = computed<string[]>(() => {
         </base-headline>
 
         <base-content
-          v-if="type === 'roadmap'"
+          v-if="type === 'roadmap' && data.status?.name"
           typography="text-body-1"
           color="gray"
           :class="statusClasses">
-          <span v-html="useCapitalized(data.status?.name)" />
+          <span v-html="useCapitalized(data.status.name)" />
         </base-content>
 
         <base-content

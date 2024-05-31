@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const { categories, categoriesFilter } = storeToRefs(useCategoriesStore())
+const categoriesStore = useCategoriesStore()
 
 const selectedId = ref<string>('all')
 
 watch(selectedId, (newId) => {
   if (newId === 'all') {
-    categoriesFilter.value = undefined
+    categoriesStore.filterId = undefined
   } else {
-    categoriesFilter.value = newId
+    categoriesStore.filterId = newId
   }
 })
 </script>
@@ -16,7 +16,7 @@ watch(selectedId, (newId) => {
   <base-card>
     <filters
       :value="selectedId"
-      :options="categories"
+      :options="categoriesStore.categories"
       add-option-all
       @change="selectedId = ($event as string)" />
   </base-card>
