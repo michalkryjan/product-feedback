@@ -85,6 +85,10 @@ onBeforeMount(() => {
     handleSelect('all')
   }
 })
+
+watch(valueModel, () => {
+  console.log(valueModel.value)
+})
 </script>
 
 <template>
@@ -95,7 +99,7 @@ onBeforeMount(() => {
       v-bind="$attrs"
       :data="option"
       theme="gray"
-      :is-disabled="Array.isArray(valueModel) && valueModel.length === 1 && valueModel.includes('all') && option.id === 'all'"
+      :is-disabled="valueModel === 'all' && option.id === 'all'"
       :is-selected="valueModel === option.id || (Array.isArray(valueModel) && valueModel.includes(option.id))"
       @select="handleSelect($event)"
       @unselect="handleUnselect($event)" />

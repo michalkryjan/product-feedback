@@ -59,8 +59,9 @@ const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, string
 
 const wrapperClasses = computed<string[]>(() => {
   return [
-    'flex flex-col flex-nowrap justify-center items-center gap-y-8 w-fit h-fit border-0 rounded-primary transition-colors duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
+    'flex flex-col flex-nowrap justify-center items-center gap-y-8 w-fit h-fit border-0 rounded-primary duration-200 [&:not([disabled])]:cursor-pointer decoration-none',
     props.isInactive ? 'inactive' : '',
+    props.theme === 'transparent' ? 'transition-opacity' : 'transition-colors',
     configWrapperSize[props.size],
     configWrapperTheme[props.theme]
   ]
@@ -122,7 +123,9 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
 .btn-gray {
   @apply bg-gray-2;
 
-  &:not(:disabled):not(.inactive):hover {
+  &:not(:disabled):not(.inactive):hover,
+  &:not(:disabled):not(.inactive):focus,
+  &:not(:disabled):not(.inactive):active{
     @apply bg-gray-4;
   }
 }
@@ -130,7 +133,9 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
 .btn-blue {
   @apply bg-blue-1;
 
-  &:not(:disabled):not(.inactive):hover {
+  &:not(:disabled):not(.inactive):hover,
+  &:not(:disabled):not(.inactive):focus,
+  &:not(:disabled):not(.inactive):active {
     @apply bg-blue-2;
   }
 }
@@ -138,7 +143,9 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
 .btn-navy {
   @apply bg-navy-1;
 
-  &:not(:disabled):not(.inactive):hover {
+  &:not(:disabled):not(.inactive):hover,
+  &:not(:disabled):not(.inactive):focus,
+  &:not(:disabled):not(.inactive):active {
     @apply bg-navy-2;
   }
 }
@@ -150,7 +157,9 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
 .btn-red {
   @apply bg-red-1;
 
-  &:not(:disabled):not(.inactive):hover {
+  &:not(:disabled):not(.inactive):hover,
+  &:not(:disabled):not(.inactive):focus,
+  &:not(:disabled):not(.inactive):active {
     @apply bg-red-2;
   }
 }
@@ -158,12 +167,20 @@ const wrapperAtrrs = computed<NuxtLinkProps | HTMLButtonElement['attributes']>((
 .btn-purple {
   @apply bg-purple-1;
 
-  &:not(:disabled):not(.inactive):hover {
+  &:not(:disabled):not(.inactive):hover,
+  &:not(:disabled):not(.inactive):focus,
+  &:not(:disabled):not(.inactive):active {
     @apply bg-purple-2;
   }
 }
 
 .btn-transparent {
   @apply bg-transparent;
+
+  &:not(:disabled):not(.inactive):hover,
+  &:not(:disabled):not(.inactive):focus,
+  &:not(:disabled):not(.inactive):active {
+    @apply opacity-80;
+  }
 }
 </style>
