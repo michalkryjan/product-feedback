@@ -2,7 +2,7 @@
 export interface IBaseCardProps {
   tag?: 'div' | 'NuxtLink'
   variant?: '1' | '2'
-  theme?: 'white' | 'gradient-1'
+  theme?: 'white' | 'darkNavy' | 'gradient-1'
   layout?: 'col' | 'row'
   overflow?: 'visible' | 'hidden'
 }
@@ -22,6 +22,7 @@ const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = {
 
 const configTheme: Record<NonNullable<IBaseCardProps['theme']>, string> = {
   white: 'bg-white',
+  darkNavy: 'bg-darkNavy',
   'gradient-1': 'bg-gradientCardMobile mob:bg-gradientCardTablet tm:bg-gradientCardDesktop bg-cover bg-no-repeat'
 }
 

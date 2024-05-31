@@ -1,7 +1,7 @@
 @import 'reset.css';
 @import 'fonts.css';
 @import 'typography.css';
-/* @import 'transitions.css'; */
+@import 'transitions.css';
 
 @tailwind base;
 @tailwind components;

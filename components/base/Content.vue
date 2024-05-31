@@ -2,7 +2,7 @@
 export interface IBaseContentProps {
   tag?: 'p' | 'div' | 'span' | 'label' | 'strong'
   typography?: TTypography
-  color?: 'white' | 'blue' | 'gray' | 'navy'
+  color?: 'white' | 'light' | 'blue' | 'gray' | 'navy'
   align?: 'left' | 'center' | 'right'
   transition?: 'color'
   isOneLine?: boolean
@@ -23,6 +23,7 @@ const props = withDefaults(defineProps<IBaseContentProps>(), {
 
 const configColor = {
   white: 'text-white',
+  light: 'text-light-1',
   blue: 'text-blue-1',
   gray: 'text-gray-1',
   navy: 'text-navy-1'
