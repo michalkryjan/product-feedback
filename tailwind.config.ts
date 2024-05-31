@@ -30,6 +30,9 @@ export default {
       transparent: 'transparent',
       white: '#FFFFFF',
       black: '#000000',
+      light: {
+        1: '#F2F4FE'
+      },
       lightBlue: {
         1: '#62BCFA',
         2: '#8397F8'
@@ -42,7 +45,8 @@ export default {
         1: '#647196',
         2: '#F2F4FF',
         3: '#F7F8FD',
-        4: '#CFD7FF'
+        4: '#CFD7FF',
+        5: '#979797'
       },
       purple: {
         1: '#AD1FEA',
@@ -155,14 +159,19 @@ export default {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content',
-      42: '4.2rem'
+      42: '4.2rem',
+      250: '25rem'
     },
     width: {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content',
       8: '0.8rem',
+      12: '1.2rem',
       56: '5.6rem'
+    },
+    boxShadow: {
+      'dropdown-default': '0 1rem 4rem -0.7rem rgba(55, 63, 104, 0.35)'
     },
     backgroundImage: {
       none: 'unset',
