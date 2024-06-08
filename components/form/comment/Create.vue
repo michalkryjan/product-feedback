@@ -9,10 +9,6 @@ interface IFormCommentCreateEmits {
 
 const emit = defineEmits<IFormCommentCreateEmits>()
 
-const charsLimit = 250
-const charsCount = ref<number>(0)
-const submitDisabled = ref<boolean>(false)
-
 const {
   handleSubmit,
   values
@@ -21,13 +17,20 @@ const {
     content: ''
   },
   initialValues: {
-    content: undefined
+    content: ''
   }
 })
 
 const onFormSubmit = handleSubmit(async (values: IFormCommentCreateValues) => {
   await postFormData(values)
 })
+
+const { charsLeft } = useCharsCounter({
+  watch: computed<string>(() => values.content),
+  limit: 250
+})
+
+const submitDisabled = ref<boolean>(false)
 
 async function postFormData (values: IFormCommentCreateValues) {
   submitDisabled.value = true
@@ -42,10 +45,6 @@ async function postFormData (values: IFormCommentCreateValues) {
 
   submitDisabled.value = false
 }
-
-watch(() => values.content, () => {
-  charsCount.value = values.content.length
-})
 </script>
 
 <template>
@@ -67,7 +66,7 @@ watch(() => values.content, () => {
         <base-content
           typography="text-body-2"
           color="gray">
-          {{ (charsLimit - charsCount) + ' characters left' }}
+          {{ charsLeft + ' characters left' }}
         </base-content>
         <base-button
           text="Post comment"
