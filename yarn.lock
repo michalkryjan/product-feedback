@@ -3602,6 +3602,11 @@ error-stack-parser-es@^0.1.1:
   resolved "https://registry.yarnpkg.com/error-stack-parser-es/-/error-stack-parser-es-0.1.1.tgz#9c1d2bbfbba8b51670062e7fbf43c6bcfb6eb4da"
   integrity sha512-g/9rfnvnagiNf+DRMHEVGuGuIBlCIMDFoTA616HaP2l9PlCjGjVhD98PNbVSJvmK4TttqT5mV5tInMhoFgi+aA==
 
+es6-slide-up-down@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/es6-slide-up-down/-/es6-slide-up-down-1.0.0.tgz#45304916416f465881064e90eedf121d36664f5e"
+  integrity sha512-s86t2F+GjPRxiSodC59JRZZaP07Ht03EDU2RDrRCXYk9o3CfTCNjtwqrpoV1BjbCnzXcBoDGj1aZhzZkHzMpWQ==
+
 esbuild@^0.20.1, esbuild@^0.20.2:
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.20.2.tgz#9d6b2386561766ee6b5a55196c6d766d28c87ea1"
