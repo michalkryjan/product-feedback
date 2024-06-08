@@ -6,7 +6,7 @@ const currentFeedback = useCurrentRouteFeedback()
   <layout-page-inner
     width-type="m"
     vertical-padding-type="s">
-    <layout-grid variant="1col-v2">
+    <layout-grid type="1col-v2">
       <ui-feedback
         v-if="currentFeedback"
         :data="currentFeedback"
