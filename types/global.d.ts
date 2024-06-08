@@ -17,6 +17,7 @@ interface IFeedback {
   description: string
   upvotes: number
   created_by: IUser['id']
+  created_date: string
   category: ICategory['id']
   status: IStatus['id']
   comments?: Array<IComment['id']>
@@ -38,17 +39,13 @@ interface IComment {
   id: string
   content: string
   created_by: IUser['id']
-  replies?: Array<IReply['id']>
-}
-
-interface IReply {
-  id: string
-  content: string
-  created_by: IUser['id']
+  created_date: string
+  replies: Array<IComment['id']>
 }
 
 interface IUser {
   id: string
+  created_date: string
   image_url: string
   fullname: string
   username: string
@@ -60,7 +57,7 @@ interface IFeedbackExtended extends Omit<IFeedback, 'category' | 'status'> {
 }
 
 interface ICommentExtended extends Omit<IComment, 'replies'> {
-  replies?: Array<IReply>
+  replies: Array<ICommentExtended>
 }
 
 interface IFeedbacksGroup {

@@ -1,7 +1,6 @@
 import type { CategoriesService } from './services/db/categories/Service'
 import type { CommentsService } from './services/db/comments/Service'
 import type { FeedbacksService } from './services/db/feedbacks/Service'
-import type { RepliesService } from './services/db/replies/Service'
 import type { StatusesService } from './services/db/statuses/Service'
 import type { UsersService } from './services/db/users/Service'
 
@@ -13,7 +12,6 @@ interface IDbService {
   categories: CategoriesService
   comments: CommentsService
   feedbacks: FeedbacksService
-  replies: RepliesService
   statuses: StatusesService
   users: UsersService
 }
