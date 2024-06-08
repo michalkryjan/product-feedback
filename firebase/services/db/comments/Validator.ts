@@ -5,7 +5,10 @@ class CommentValidator {
     id: z.string(),
     content: z.string(),
     created_by: z.string(),
-    created_date: z.string(),
+    created_date: z.object({
+      seconds: z.number(),
+      nanoseconds: z.number()
+    }),
     replies: z.string().array()
   })
 

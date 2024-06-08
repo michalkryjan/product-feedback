@@ -7,7 +7,10 @@ class FeedbackValidator {
     description: z.string(),
     upvotes: z.number(),
     created_by: z.string(),
-    created_date: z.string(),
+    created_date: z.object({
+      seconds: z.number(),
+      nanoseconds: z.number()
+    }),
     category: z.string(),
     status: z.string(),
     comments: z.string().array().optional()
@@ -15,6 +18,7 @@ class FeedbackValidator {
 
   public validate (data: unknown) {
     try {
+      console.log(data)
       return this.SCHEMA.parse(data)
     } catch (e) {
       console.log(e)

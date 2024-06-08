@@ -17,7 +17,10 @@ interface IFeedback {
   description: string
   upvotes: number
   created_by: IUser['id']
-  created_date: string
+  created_date: {
+    seconds: number
+    nanoseconds: number
+  }
   category: ICategory['id']
   status: IStatus['id']
   comments?: Array<IComment['id']>
@@ -39,13 +42,19 @@ interface IComment {
   id: string
   content: string
   created_by: IUser['id']
-  created_date: string
+  created_date: {
+    seconds: number
+    nanoseconds: number
+  }
   replies: Array<IComment['id']>
 }
 
 interface IUser {
   id: string
-  created_date: string
+  created_date: {
+    seconds: number
+    nanoseconds: number
+  }
   image_url: string
   fullname: string
   username: string
