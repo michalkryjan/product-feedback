@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface IUiButtonUpvoteProps {
-  feedbackId: Feedback['id']
+  feedbackId: IFeedback['id']
   count: number
   type?: 'vertical' | 'horizontal'
   active?: boolean

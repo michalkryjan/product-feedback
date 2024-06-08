@@ -40,8 +40,8 @@ const configWrapperTheme: Record<NonNullable<IBaseButtonProps['theme']>, string>
 
 const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> = {
   fit: '',
-  s1: 'px-16 pt-5 pb-6 min-h-30',
-  s2: 'px-24 pt-11 pb-12',
+  s1: 'px-16 py-6 min-h-30',
+  s2: 'px-24 py-15',
   s3: 'px-9 py-14',
   s4: 'pl-16 pr-12 py-12'
 }

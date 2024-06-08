@@ -78,7 +78,7 @@ interface IFeedbackExtended extends Omit<IFeedback, 'category' | 'status'> {
 
 interface ICommentExtended extends Omit<IComment, 'replies' | 'created_by'> {
   created_by: IUser
-  replies: Array<ICommentExtended>
+  replies: Array<IReply>
 }
 
 interface IFeedbacksGroup {

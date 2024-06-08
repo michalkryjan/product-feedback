@@ -14,6 +14,7 @@ const isUpvoted = ref<boolean>(false)
 const upvotesCount = ref<number>(props.data.upvotes)
 
 const detailsUrl = computed<string | undefined>(() => props.addLinkToDetails ? `/feedback/${props.data.id}` : undefined)
+
 const accentColorClass = computed<string | undefined>(() => {
   if (props.type === 'roadmap') {
     const order = props.data.status?.order
@@ -90,7 +91,7 @@ const buttonUpvoteClasses = computed<string[]>(() => {
         </base-headline>
 
         <base-content
-          v-if="type === 'roadmap' && data.status?.name"
+          v-if="type === 'roadmap' && data?.status?.name"
           typography="text-body-1"
           color="gray"
           :class="statusClasses">
@@ -98,6 +99,7 @@ const buttonUpvoteClasses = computed<string[]>(() => {
         </base-content>
 
         <base-content
+          v-if="data?.description"
           typography="text-body-1"
           color="gray"
           :class="descriptionClasses">
@@ -105,9 +107,8 @@ const buttonUpvoteClasses = computed<string[]>(() => {
         </base-content>
 
         <base-tag
-          v-for="category in data.categories"
-          :key="category.id"
-          :text="useCapitalized(category.name)"
+          v-if="data?.category?.name"
+          :text="useCapitalized(data.category.name)"
           class="order-4" />
       </div>
 
