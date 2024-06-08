@@ -56,7 +56,8 @@ interface IFeedbackExtended extends Omit<IFeedback, 'category' | 'status'> {
   status?: IStatus
 }
 
-interface ICommentExtended extends Omit<IComment, 'replies'> {
+interface ICommentExtended extends Omit<IComment, 'replies' | 'created_by'> {
+  created_by: IUser
   replies: Array<ICommentExtended>
 }
 
