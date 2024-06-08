@@ -49,6 +49,17 @@ interface IComment {
   replies: Array<IComment['id']>
 }
 
+interface IReply {
+  id: string
+  content: string
+  created_by: IUser['id']
+  created_date: {
+    seconds: number
+    nanoseconds: number
+  }
+  replying_to: IUser['id']
+}
+
 interface IUser {
   id: string
   created_date: {
