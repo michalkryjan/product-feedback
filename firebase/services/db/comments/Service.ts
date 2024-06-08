@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
-import { CommentsConverter } from './Converter'
+import { CommentConverter } from './Converter'
 
 interface ICommentsService {
   getCollection: () => CollectionReference<IComment | null, IComment>
@@ -9,11 +9,11 @@ interface ICommentsService {
 
 class CommentsService implements ICommentsService {
   private readonly firestore: Firestore
-  private readonly converter: CommentsConverter
+  private readonly converter: CommentConverter
 
   constructor (firestore: Firestore) {
     this.firestore = firestore
-    this.converter = new CommentsConverter()
+    this.converter = new CommentConverter()
   }
 
   public getCollection () {

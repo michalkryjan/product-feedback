@@ -1,5 +1,5 @@
 import { CollectionReference, DocumentReference, Firestore, collection, doc } from 'firebase/firestore'
-import { CategoriesConverter } from './Converter'
+import { CategoryConverter } from './Converter'
 
 interface ICategoriesService {
   getCollection: () => CollectionReference<ICategory | null, ICategory>
@@ -8,11 +8,11 @@ interface ICategoriesService {
 
 class CategoriesService implements ICategoriesService {
   private readonly firestore: Firestore
-  private readonly converter: CategoriesConverter
+  private readonly converter: CategoryConverter
 
   constructor (firestore: Firestore) {
     this.firestore = firestore
-    this.converter = new CategoriesConverter()
+    this.converter = new CategoryConverter()
   }
 
   public getCollection () {

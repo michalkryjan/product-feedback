@@ -1,13 +1,12 @@
 import { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore'
-import { z } from 'zod'
+import { CommentValidator } from './Validator'
 
-class CommentsConverter implements FirestoreDataConverter<IComment | null, IComment> {
-  private readonly SCHEMA = z.object({
-    id: z.string(),
-    content: z.string(),
-    created_by: z.string(),
-    replies: z.string().array()
-  })
+class CommentConverter implements FirestoreDataConverter<IComment | null, IComment> {
+  validator: CommentValidator
+
+  constructor () {
+    this.validator = new CommentValidator()
+  }
 
   public toFirestore (data: IComment) {
     return data
@@ -16,23 +15,14 @@ class CommentsConverter implements FirestoreDataConverter<IComment | null, IComm
   public fromFirestore (snapshot: QueryDocumentSnapshot<DocumentData, IComment>, options: SnapshotOptions) {
     const data = snapshot.data(options)
 
-    return this.validateData({
+    return this.validator.validate({
       id: snapshot?.id,
       name: data?.name,
       created_by: data?.created_by,
+      created_date: data?.created_date,
       replies: data?.replies
     })
   }
-
-  public validateData (data: unknown) {
-    try {
-      return this.SCHEMA.parse(data)
-    } catch (e) {
-      console.log(e)
-
-      return null
-    }
-  }
 }
 
-export { CommentsConverter }
+export { CommentConverter }

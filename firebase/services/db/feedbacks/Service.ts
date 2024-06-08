@@ -1,5 +1,5 @@
 import { addDoc, collection, deleteDoc, doc, updateDoc, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
-import { FeedbacksConverter } from './Converter'
+import { FeedbackConverter } from './Converter'
 
 interface IFeedbackService {
   getCollection: () => CollectionReference<IFeedback | null, IFeedback>
@@ -11,11 +11,11 @@ interface IFeedbackService {
 
 class FeedbacksService implements IFeedbackService {
   private readonly firestore: Firestore
-  private readonly converter: FeedbacksConverter
+  private readonly converter: FeedbackConverter
 
   constructor (firestore: Firestore) {
     this.firestore = firestore
-    this.converter = new FeedbacksConverter()
+    this.converter = new FeedbackConverter()
   }
 
   public getCollection () {

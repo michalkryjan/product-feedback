@@ -1,0 +1,27 @@
+import { z } from 'zod'
+
+class FeedbackValidator {
+  private readonly SCHEMA = z.object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    upvotes: z.number(),
+    created_by: z.string(),
+    created_date: z.string(),
+    category: z.string(),
+    status: z.string(),
+    comments: z.string().array().optional()
+  })
+
+  public validate (data: unknown) {
+    try {
+      return this.SCHEMA.parse(data)
+    } catch (e) {
+      console.log(e)
+
+      return null
+    }
+  }
+}
+
+export { FeedbackValidator }

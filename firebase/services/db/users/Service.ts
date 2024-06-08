@@ -1,5 +1,5 @@
 import { collection, doc, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
-import { UsersConverter } from './Converter'
+import { UserConverter } from './Converter'
 
 interface IUsersService {
   getCollection: () => CollectionReference<IUser | null, IUser>
@@ -8,11 +8,11 @@ interface IUsersService {
 
 class UsersService implements IUsersService {
   private readonly firestore: Firestore
-  private readonly converter: UsersConverter
+  private readonly converter: UserConverter
 
   constructor (firestore: Firestore) {
     this.firestore = firestore
-    this.converter = new UsersConverter()
+    this.converter = new UserConverter()
   }
 
   public getCollection () {

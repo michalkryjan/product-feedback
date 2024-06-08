@@ -1,13 +1,12 @@
 import { type DocumentData, type FirestoreDataConverter, type QueryDocumentSnapshot, type SnapshotOptions } from 'firebase/firestore'
-import { z } from 'zod'
+import { UserValidator } from './Validator'
 
-class UsersConverter implements FirestoreDataConverter<IUser | null, IUser> {
-  private readonly SCHEMA = z.object({
-    id: z.string(),
-    image_url: z.string(),
-    fullname: z.string(),
-    username: z.string()
-  })
+class UserConverter implements FirestoreDataConverter<IUser | null, IUser> {
+  private readonly validator: UserValidator
+
+  constructor () {
+    this.validator = new UserValidator()
+  }
 
   public toFirestore (data: IUser) {
     return data
@@ -16,23 +15,16 @@ class UsersConverter implements FirestoreDataConverter<IUser | null, IUser> {
   public fromFirestore (snapshot: QueryDocumentSnapshot<DocumentData, IUser>, options: SnapshotOptions) {
     const data = snapshot.data(options)
 
-    return this.validateData({
+    return this.validator.validate({
       id: snapshot.id,
-      image_url: data.image_url,
-      fullname: data.fullname,
-      username: data.username
+      created_date: data?.created_date,
+      image_url: data?.image_url,
+      fullname: data?.fullname,
+      username: data?.username
     })
   }
 
-  public validateData (data: unknown) {
-    try {
-      return this.SCHEMA.parse(data)
-    } catch (e) {
-      console.log(e)
 
-      return null
-    }
-  }
 }
 
-export { UsersConverter }
+export { UserConverter }
