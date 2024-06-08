@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <base-card
+  <ui-card
     theme="gradient-1"
     class="min-h-130">
     <div class="mt-auto">
@@ -16,5 +16,5 @@
         Feedback Board
       </base-content>
     </div>
-  </base-card>
+  </ui-card>
 </template>

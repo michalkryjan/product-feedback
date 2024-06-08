@@ -4,7 +4,7 @@ export interface IFiltersOptionData {
   name: string
 }
 
-interface IFiltersOptionProps {
+interface IUiFiltersOptionProps {
   data: IFiltersOptionData
   theme?: 'gray'
   isSelected?: boolean
@@ -12,19 +12,19 @@ interface IFiltersOptionProps {
   inputId?: string
 }
 
-interface IFiltersOptionEmits {
+interface IUiFiltersOptionEmits {
   (e: 'select'): void
   (e: 'unselect'): void
 }
 
-const props = withDefaults(defineProps<IFiltersOptionProps>(), {
+const props = withDefaults(defineProps<IUiFiltersOptionProps>(), {
   theme: 'gray',
   isSelected: false,
   isDisabled: false,
   inputId: undefined
 })
 
-const emit = defineEmits<IFiltersOptionEmits>()
+const emit = defineEmits<IUiFiltersOptionEmits>()
 
 defineOptions({
   inheritAttrs: false

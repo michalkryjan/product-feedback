@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import type DropdownSelect from '~/components/DropdownSelect.vue'
-import type { IDropdownSelectOption, IDropdownSelectProps } from './DropdownSelect.vue'
+import type { IDropdownSelectOption, IUiDropdownSelectProps } from './DropdownSelect.vue'
 
-interface IDropdownSelectSortByProps extends Omit<IDropdownSelectProps, 'ariaLabelOpened' | 'ariaLabelClosed'> {}
+interface IUiDropdownSelectSortByProps extends Omit<IUiDropdownSelectProps, 'ariaLabelOpened' | 'ariaLabelClosed'> {}
 
-interface IDropdownSelectSortByEmits {
+interface IUiDropdownSelectSortByEmits {
   (e: 'update:modelValue', val: IDropdownSelectOption | undefined): void
 }
 
-const props = defineProps<IDropdownSelectSortByProps>()
-const emit = defineEmits<IDropdownSelectSortByEmits>()
+const props = defineProps<IUiDropdownSelectSortByProps>()
+const emit = defineEmits<IUiDropdownSelectSortByEmits>()
 
 const dropdownSelectRef = ref<InstanceType<typeof DropdownSelect> | null>(null)
 
@@ -20,7 +20,7 @@ const selectedOption = computed<IDropdownSelectOption | undefined>({
 </script>
 
 <template>
-  <dropdown-select
+  <ui-dropdown-select
     ref="dropdownSelectRef"
     v-model="selectedOption"
     :options="options"
@@ -50,5 +50,5 @@ const selectedOption = computed<IDropdownSelectOption | undefined>({
           ]" />
       </span>
     </template>
-  </dropdown-select>
+  </ui-dropdown-select>
 </template>

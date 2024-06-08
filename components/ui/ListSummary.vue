@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { IListSummaryItemProps } from './ListSummaryItem.vue'
+import type { IUiListSummaryItemProps } from './ListSummaryItem.vue'
 
-interface IBaseListSummaryProps {
-  items: IListSummaryItemProps[]
+interface IUiListSummaryProps {
+  items: IUiListSummaryItemProps[]
 }
 
-const props = defineProps<IBaseListSummaryProps>()
+const props = defineProps<IUiListSummaryProps>()
 </script>
 
 <template>
   <base-list tag="ul">
-    <list-summary-item
+    <ui-list-summary-item
       v-for="(item, index) in items"
       :key="index"
       :label="item.label"

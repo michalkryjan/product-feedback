@@ -3,12 +3,16 @@ const currentFeedback = useCurrentRouteFeedback()
 </script>
 
 <template>
-  <page-inner
+  <layout-page-inner
     width-type="m"
     vertical-padding-type="s">
-    <feedback
+    <ui-feedback
       v-if="currentFeedback"
       :data="currentFeedback"
       :add-link-to-details="false" />
-  </page-inner>
+
+    <block-comment-list class="mt-24" />
+
+    <block-comment-create class="mt-24" />
+  </layout-page-inner>
 </template>

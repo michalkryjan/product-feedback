@@ -85,7 +85,7 @@ watch(values, () => {
     </template>
 
     <template #field--category="{ id, errors, handleChange }">
-      <dropdown-select-form
+      <ui-dropdown-select-form
         :id="id"
         :options="categoriesStore.categories"
         :has-error="errors.length > 0"

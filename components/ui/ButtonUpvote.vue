@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface IButtonUpvoteProps {
+interface IUiButtonUpvoteProps {
   feedbackId: Feedback['id']
   count: number
   type?: 'vertical' | 'horizontal'
@@ -7,18 +7,18 @@ interface IButtonUpvoteProps {
   disabled?: boolean
 }
 
-interface IButtonUpvoteEmits {
+interface IUiButtonUpvoteEmits {
   (e: 'update:active', val: boolean): void
   (e: 'update:count', val: number): void
 }
 
-const props = withDefaults(defineProps<IButtonUpvoteProps>(), {
+const props = withDefaults(defineProps<IUiButtonUpvoteProps>(), {
   type: 'vertical',
   active: false,
   disabled: false
 })
 
-const emit = defineEmits<IButtonUpvoteEmits>()
+const emit = defineEmits<IUiButtonUpvoteEmits>()
 
 const iconClasses = computed(() => {
   return [

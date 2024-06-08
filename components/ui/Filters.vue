@@ -1,30 +1,30 @@
 <script setup lang="ts">
 import type { IFiltersOptionData } from '~/components/FiltersOption.vue'
 
-interface IFiltersProps {
+interface IUiFiltersProps {
   options: IFiltersOptionData[]
   value: string | string[] | undefined
   gapSize?: 's1'
   addOptionAll?: boolean
 }
 
-interface IFormFieldSelectEmits {
+interface IUiFiltersEmits {
   (e: 'change', val: typeof props.value): void
 }
 
-const props = withDefaults(defineProps<IFiltersProps>(), {
+const props = withDefaults(defineProps<IUiFiltersProps>(), {
   optionTheme: 'gray',
   gapSize: 's1',
   addOptionAll: false
 })
 
-const emit = defineEmits<IFormFieldSelectEmits>()
+const emit = defineEmits<IUiFiltersEmits>()
 
 defineOptions({
   inheritAttrs: false
 })
 
-const configGapSize: Record<NonNullable<IFiltersProps['gapSize']>, string> = {
+const configGapSize: Record<NonNullable<IUiFiltersProps['gapSize']>, string> = {
   s1: 'gap-x-8 gap-y-14'
 }
 
@@ -69,7 +69,7 @@ onBeforeMount(() => {
 
 <template>
   <div :class="wrapperClasses">
-    <filters-option
+    <ui-filters-option
       v-for="option in optionsComputed"
       :key="option?.id"
       v-bind="$attrs"

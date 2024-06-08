@@ -1,21 +1,21 @@
 <script setup lang="ts">
-interface ILayoutPageWrapperProps {
+interface ILayoutPageInnerProps {
   widthType?: 's' | 'm' | 'l'
   verticalPaddingType?: 's' | 'm'
 }
 
-const props = withDefaults(defineProps<ILayoutPageWrapperProps>(), {
+const props = withDefaults(defineProps<ILayoutPageInnerProps>(), {
   widthType: 'l',
   verticalPaddingType: 's'
 })
 
-const configWidthType: Record<NonNullable<ILayoutPageWrapperProps['widthType']>, string> = {
+const configWidthType: Record<NonNullable<ILayoutPageInnerProps['widthType']>, string> = {
   s: 'max-w-588 m:max-w-620',
   m: 'max-w-778 m:max-w-810',
   l: 'max-w-1158 m:max-w-1190'
 }
 
-const configVerticalPaddingType: Record<NonNullable<ILayoutPageWrapperProps['verticalPaddingType']>, string> = {
+const configVerticalPaddingType: Record<NonNullable<ILayoutPageInnerProps['verticalPaddingType']>, string> = {
   s: 'py-80',
   m: 'py-90'
 }

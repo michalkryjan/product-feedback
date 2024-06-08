@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { IListSummaryItemProps } from './ListSummaryItem.vue'
+import type { IUiListSummaryItemProps } from '~/components/ui/ListSummaryItem.vue'
 
 const feedbacksStore = useFeedbacksStore()
 
-const listItems = computed<IListSummaryItemProps[]>(() => {
+const listItems = computed<IUiListSummaryItemProps[]>(() => {
   if (feedbacksStore.feedbacksGroupedByStatus) {
     return feedbacksStore.feedbacksGroupedByStatus.filter(group => group.status.order !== 1).map(group => {
       return {
@@ -29,7 +29,7 @@ const isRoadmapDisabled = computed<boolean>(() => {
 </script>
 
 <template>
-  <base-card>
+  <ui-card>
     <div class="mb-24 w-full inline-flex items-center justify-between">
       <base-headline
         :level="2"
@@ -48,6 +48,6 @@ const isRoadmapDisabled = computed<boolean>(() => {
         :disabled="isRoadmapDisabled" />
     </div>
 
-    <list-summary :items="listItems" />
-  </base-card>
+    <ui-list-summary :items="listItems" />
+  </ui-card>
 </template>

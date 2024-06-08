@@ -7,17 +7,17 @@ export interface IDropdownSelectOption {
   name: string
 }
 
-export interface IDropdownSelectProps extends IBaseDropdownProps {
+export interface IUiDropdownSelectProps extends IBaseDropdownProps {
   modelValue: IDropdownSelectOption | undefined
   options: IDropdownSelectOption[]
 }
 
-interface IDropdownSelectEmits {
+interface IUiDropdownSelectEmits {
   (e: 'update:modelValue', val: IDropdownSelectOption): void
 }
 
-const props = defineProps<IDropdownSelectProps>()
-const emit = defineEmits<IDropdownSelectEmits>()
+const props = defineProps<IUiDropdownSelectProps>()
+const emit = defineEmits<IUiDropdownSelectEmits>()
 
 const dropdownRef = ref<InstanceType<typeof BaseDropdown> | null>(null)
 

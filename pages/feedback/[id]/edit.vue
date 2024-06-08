@@ -3,9 +3,9 @@ const currentFeedback = useCurrentRouteFeedback()
 </script>
 
 <template>
-  <page-inner
+  <layout-page-inner
     width-type="s"
     vertical-padding-type="m">
-    <form-feedback-edit :feedback="currentFeedback" />
-  </page-inner>
+    <block-feedback-edit :feedback="currentFeedback" />
+  </layout-page-inner>
 </template>

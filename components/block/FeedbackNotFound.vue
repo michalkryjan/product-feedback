@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <base-card class="min-h-600 items-center justify-center">
+  <ui-card class="min-h-600 items-center justify-center">
     <base-image
       src-desktop="/svg/illustration-empty.svg"
       :width="130"
@@ -35,5 +35,5 @@
         <base-icon name="plus" />
       </template>
     </base-button>
-  </base-card>
+  </ui-card>
 </template>

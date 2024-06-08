@@ -4,7 +4,7 @@ const filtersStore = useFiltersStore()
 </script>
 
 <template>
-  <base-card
+  <ui-card
     layout="row"
     theme="darkNavy"
     overflow="visible"
@@ -20,7 +20,7 @@ const filtersStore = useFiltersStore()
       {{ `${ feedbacksStore.feedbacksCountFiltered } Suggestions` }}
     </base-headline>
 
-    <dropdown-select-sort-by
+    <ui-dropdown-select-sort-by
       v-model="filtersStore.sortBy"
       :options="filtersStore.availableSortOptions" />
 
@@ -35,5 +35,5 @@ const filtersStore = useFiltersStore()
         <base-icon name="plus" />
       </template>
     </base-button>
-  </base-card>
+  </ui-card>
 </template>

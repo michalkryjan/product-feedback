@@ -3,7 +3,7 @@ const feedbacksStore = useFeedbacksStore()
 </script>
 
 <template>
-  <feedback
+  <ui-feedback
     v-for="item in feedbacksStore.feedbacksFilteredAndSorted"
     :key="item.id"
     :data="item"

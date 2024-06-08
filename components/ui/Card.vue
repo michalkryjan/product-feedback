@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export interface IBaseCardProps {
+export interface IUiCardProps {
   tag?: 'div' | 'NuxtLink'
   variant?: '1' | '2'
   theme?: 'white' | 'darkNavy' | 'gradient-1'
@@ -7,7 +7,7 @@ export interface IBaseCardProps {
   overflow?: 'visible' | 'hidden'
 }
 
-const props = withDefaults(defineProps<IBaseCardProps>(), {
+const props = withDefaults(defineProps<IUiCardProps>(), {
   tag: 'div',
   variant: '1',
   theme: 'white',
@@ -15,18 +15,18 @@ const props = withDefaults(defineProps<IBaseCardProps>(), {
   overflow: 'hidden'
 })
 
-const configVariant: Record<NonNullable<IBaseCardProps['variant']>, string> = {
+const configVariant: Record<NonNullable<IUiCardProps['variant']>, string> = {
   1: 'p-24',
   2: 'p-32'
 }
 
-const configTheme: Record<NonNullable<IBaseCardProps['theme']>, string> = {
+const configTheme: Record<NonNullable<IUiCardProps['theme']>, string> = {
   white: 'bg-white',
   darkNavy: 'bg-darkNavy',
   'gradient-1': 'bg-gradientCardMobile mob:bg-gradientCardTablet tm:bg-gradientCardDesktop bg-cover bg-no-repeat'
 }
 
-const configLayout: Record<NonNullable<IBaseCardProps['layout']>, string> = {
+const configLayout: Record<NonNullable<IUiCardProps['layout']>, string> = {
   col: 'flex-col',
   row: 'flex-row'
 }

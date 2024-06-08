@@ -1,11 +1,11 @@
 <script setup lang="ts">
-interface ICardFeedbackProps {
+interface IUiFeedbackProps {
   data: IFeedbackExtended
   type?: 'default' | 'roadmap'
   addLinkToDetails?: boolean
 }
 
-const props = withDefaults(defineProps<ICardFeedbackProps>(), {
+const props = withDefaults(defineProps<IUiFeedbackProps>(), {
   type: 'default',
   addLinkToDetails: true
 })
@@ -75,7 +75,7 @@ const buttonUpvoteClasses = computed<string[]>(() => {
 </script>
 
 <template>
-  <base-card
+  <ui-card
     :variant="type === 'roadmap' ? '2' : '1'"
     :tag="addLinkToDetails ? 'NuxtLink' : 'div'"
     :to="detailsUrl">
@@ -112,7 +112,7 @@ const buttonUpvoteClasses = computed<string[]>(() => {
       </div>
 
       <div :class="groupWrapperClasses">
-        <button-upvote
+        <ui-button-upvote
           v-model:active="isUpvoted"
           v-model:count="upvotesCount"
           :feedback-id="data.id"
@@ -129,5 +129,5 @@ const buttonUpvoteClasses = computed<string[]>(() => {
         </div>
       </div>
     </div>
-  </base-card>
+  </ui-card>
 </template>

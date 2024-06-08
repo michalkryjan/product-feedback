@@ -14,11 +14,11 @@ watch(selectedId, (newId) => {
 </script>
 
 <template>
-  <base-card>
-    <filters
+  <ui-card>
+    <ui-filters
       :value="selectedId"
       :options="categoriesStore.categories"
       add-option-all
       @change="selectedId = ($event as string)" />
-  </base-card>
+  </ui-card>
 </template>

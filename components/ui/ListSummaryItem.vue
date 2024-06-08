@@ -1,11 +1,11 @@
 <script setup lang="ts">
-export interface IListSummaryItemProps {
+export interface IUiListSummaryItemProps {
   label: string
   count: number
   markerColor?: number
 }
 
-const props = defineProps<IListSummaryItemProps>()
+const props = defineProps<IUiListSummaryItemProps>()
 
 const classes = computed(() => {
   return [

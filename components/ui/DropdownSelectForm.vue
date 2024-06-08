@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import type DropdownSelect from '~/components/DropdownSelect.vue'
-import type { IDropdownSelectOption, IDropdownSelectProps } from './DropdownSelect.vue'
+import type { IDropdownSelectOption, IUiDropdownSelectProps } from './DropdownSelect.vue'
 
-interface IDropdownSelectFormProps extends Omit<IDropdownSelectProps, 'modelValue'> {
+interface IUiDropdownSelectFormProps extends Omit<IUiDropdownSelectProps, 'modelValue'> {
   id: string
   initialValue?: IDropdownSelectOption
   hasError?: boolean
 }
 
-interface IDropdownSelectFormEmits {
+interface IUiDropdownSelectFormEmits {
   (e: 'update-value', val: IDropdownSelectOption | undefined): void
 }
 
-const props = withDefaults(defineProps<IDropdownSelectFormProps>(), {
+const props = withDefaults(defineProps<IUiDropdownSelectFormProps>(), {
   initialValue: undefined
 })
-const emit = defineEmits<IDropdownSelectFormEmits>()
+const emit = defineEmits<IUiDropdownSelectFormEmits>()
 
 const dropdownSelectRef = ref<InstanceType<typeof DropdownSelect> | null>(null)
 
@@ -30,7 +30,7 @@ const selectedOptionModel = computed<IDropdownSelectOption | undefined>({
 </script>
 
 <template>
-  <dropdown-select
+  <ui-dropdown-select
     ref="dropdownSelectRef"
     v-model="selectedOptionModel"
     :options="options"
@@ -68,5 +68,5 @@ const selectedOptionModel = computed<IDropdownSelectOption | undefined>({
         :value="selectedOption?.id"
         class="hidden">
     </template>
-  </dropdown-select>
+  </ui-dropdown-select>
 </template>

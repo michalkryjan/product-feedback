@@ -19,7 +19,7 @@ const props = defineProps<IFormTemplateCardProps>()
 </script>
 
 <template>
-  <base-card
+  <ui-card
     class="pt-52"
     overflow="visible">
     <base-icon
@@ -72,5 +72,5 @@ const props = defineProps<IFormTemplateCardProps>()
         <slot name="footer" />
       </template>
     </base-form>
-  </base-card>
+  </ui-card>
 </template>

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
-  <page-inner
+  <layout-page-inner
     width-type="s"
     vertical-padding-type="m">
-    <form-feedback-create />
-  </page-inner>
+    <block-feedback-create />
+  </layout-page-inner>
 </template>
