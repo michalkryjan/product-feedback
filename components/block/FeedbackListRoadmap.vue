@@ -25,13 +25,9 @@ const feedbacksStore = useFeedbacksStore()
         </base-content>
       </base-header>
 
-      <div class="flex flex-col flex-nowrap gap-y-24">
-        <ui-feedback
-          v-for="feedback in group.feedbacks"
-          :key="feedback.id"
-          type="roadmap"
-          :data="feedback" />
-      </div>
+      <ui-feedback-list
+        type="roadmap"
+        :items="group.feedbacks" />
     </section>
   </div>
 </template>

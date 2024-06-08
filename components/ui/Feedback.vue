@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface IUiFeedbackProps {
+export interface IUiFeedbackProps {
   data: IFeedbackExtended
   type?: 'default' | 'roadmap'
   addLinkToDetails?: boolean
