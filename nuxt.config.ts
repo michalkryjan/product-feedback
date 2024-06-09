@@ -58,15 +58,21 @@ export default defineNuxtConfig({
     }
   },
   vuefire: {
-    auth: {
-      enabled: false
-    },
     config: {
       apiKey: useEnv().FIREBASE_API_KEY,
       projectId: useEnv().FIREBASE_PROJECT_ID,
       appId: useEnv().FIREBASE_APP_ID,
       storageBucket: useEnv().STORAGE_BUCKET_ID
     },
+    // appCheck: {
+    //   debug: process.env.MODE === 'development',
+    //   isTokenAutoRefreshEnabled: true,
+    //   provider: 'ReCaptchaV3',
+    //   key: useEnv().APP_CHECK_KEY,
+    // },
+    auth: {
+      enabled: false
+    }
   },
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
