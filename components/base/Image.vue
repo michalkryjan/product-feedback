@@ -2,6 +2,7 @@
 import type { ImageOptions, ImageSizes } from '@nuxt/image'
 
 interface IBaseImageProps {
+  srcType?: 'local' | 'firebase'
   srcDesktop: string
   srcTablet?: string
   srcMobile?: string
@@ -26,6 +27,7 @@ interface IBaseImageProps {
 }
 
 const props = withDefaults(defineProps<IBaseImageProps>(), {
+  srcType: 'local',
   srcTablet: undefined,
   srcMobile: undefined,
   alt: '',
@@ -52,6 +54,7 @@ defineOptions({
   inheritAttrs: false
 })
 
+const nuxtApp = useNuxtApp()
 const imgService = useImage()
 
 const isSVG = computed<boolean>(() => {
@@ -79,13 +82,21 @@ const imgModifiers = computed<ImageOptions['modifiers']>(() => ({
   fit: props.fit
 }))
 
-const sizesDesktop = computed<ImageSizes | undefined>(() => props.sizes ? getSizesForSrc(props.srcDesktop) : undefined)
-const sizesTablet = computed<ImageSizes | undefined>(() => props.sizes && props.srcTablet ? getSizesForSrc(props.srcTablet) : undefined)
-const sizesMobile = computed<ImageSizes | undefined>(() => props.sizes && props.srcMobile ? getSizesForSrc(props.srcMobile) : undefined)
+const storageSrcDesktop = props.srcType === 'firebase' ? nuxtApp.$firebase.storage.getImage(props.srcDesktop) : undefined
+const storageSrcTablet = props.srcType === 'firebase' && props.srcTablet ? nuxtApp.$firebase.storage.getImage(props.srcTablet) : undefined
+const storageSrcMobile = props.srcType === 'firebase' && props.srcMobile ? nuxtApp.$firebase.storage.getImage(props.srcMobile) : undefined
 
-const srcDesktopOptimized = computed<string>(() => imgService(props.srcDesktop, imgModifiers.value))
-const srcTabletOptimized = computed<string | undefined>(() => props.srcTablet && !sizesTablet.value ? imgService(props.srcTablet, imgModifiers.value) : undefined)
-const srcMobileOptimized = computed<string | undefined>(() => props.srcMobile && !sizesMobile.value ? imgService(props.srcMobile, imgModifiers.value) : undefined)
+const desktopUrl = computed(() => props.srcType === 'firebase' && unref(storageSrcDesktop) ? unref(storageSrcDesktop) : props.srcDesktop)
+const tabletUrl = computed(() => props.srcType === 'firebase' && unref(storageSrcTablet) ? unref(storageSrcTablet) : props.srcTablet)
+const mobileUrl = computed(() => props.srcType === 'firebase' && unref(storageSrcMobile) ? unref(storageSrcMobile) : props.srcMobile)
+
+const sizesDesktop = computed<ImageSizes | undefined>(() => props.sizes && desktopUrl.value ? getSizesForSrc(desktopUrl.value) : undefined)
+const sizesTablet = computed<ImageSizes | undefined>(() => props.sizes && tabletUrl.value ? getSizesForSrc(tabletUrl.value) : undefined)
+const sizesMobile = computed<ImageSizes | undefined>(() => props.sizes && mobileUrl.value ? getSizesForSrc(mobileUrl.value) : undefined)
+
+const srcDesktopOptimized = computed<string>(() => desktopUrl.value ? imgService(desktopUrl.value, imgModifiers.value) : '')
+const srcTabletOptimized = computed<string | undefined>(() => tabletUrl.value && !sizesTablet.value ? imgService(tabletUrl.value, imgModifiers.value) : undefined)
+const srcMobileOptimized = computed<string | undefined>(() => mobileUrl.value && !sizesMobile.value ? imgService(mobileUrl.value, imgModifiers.value) : undefined)
 
 const classesPicture = computed<string[]>(() => {
   return [

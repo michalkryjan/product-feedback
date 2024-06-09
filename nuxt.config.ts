@@ -64,7 +64,8 @@ export default defineNuxtConfig({
     config: {
       apiKey: useEnv().FIREBASE_API_KEY,
       projectId: useEnv().FIREBASE_PROJECT_ID,
-      appId: useEnv().FIREBASE_APP_ID
+      appId: useEnv().FIREBASE_APP_ID,
+      storageBucket: useEnv().STORAGE_BUCKET_ID
     },
   },
   tailwindcss: {

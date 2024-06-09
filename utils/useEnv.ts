@@ -3,6 +3,7 @@ type ProjectEnv = {
   FIREBASE_API_KEY: string
   FIREBASE_PROJECT_ID: string
   FIREBASE_APP_ID: string
+  STORAGE_BUCKET_ID: string
 }
 
 export function useEnv (): NodeJS.Process['env'] & NodeJS.ProcessEnv & ProjectEnv {
