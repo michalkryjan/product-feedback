@@ -18,7 +18,6 @@ class FeedbackValidator {
 
   public validate (data: unknown) {
     try {
-      console.log(data)
       return this.SCHEMA.parse(data)
     } catch (e) {
       console.log(e)

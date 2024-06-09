@@ -1,12 +1,14 @@
-import type { CategoriesService } from './services/db/categories/Service'
-import type { CommentsService } from './services/db/comments/Service'
-import type { FeedbacksService } from './services/db/feedbacks/Service'
-import type { RepliesService } from './services/db/replies/Service'
-import type { StatusesService } from './services/db/statuses/Service'
-import type { UsersService } from './services/db/users/Service'
+import type { CategoriesService } from './services/db/collections/categories/Service'
+import type { CommentsService } from './services/db/collections/comments/Service'
+import type { FeedbacksService } from './services/db/collections/feedbacks/Service'
+import type { RepliesService } from './services/db/collections/replies/Service'
+import type { StatusesService } from './services/db/collections/statuses/Service'
+import type { UsersService } from './services/db/collections/users/Service'
+import type { StorageService } from './services/storage/Service'
 
 export interface IFirebaseRepository {
   db: IDbService
+  storage: StorageService
 }
 
 interface IDbService {
