@@ -1,6 +1,5 @@
 <script setup lang="ts">
 export interface IUiCardProps {
-  tag?: 'div' | 'NuxtLink'
   variant?: '1' | '2'
   theme?: 'white' | 'darkNavy' | 'gradient-1'
   layout?: 'col' | 'row'
@@ -40,14 +39,10 @@ const classes = computed<string[]>(() => {
     props.overflow === 'hidden' ? 'overflow-hidden' : 'overflow-visible'
   ]
 })
-
-const resolvedTag = computed(() => props.tag === 'NuxtLink' ? resolveComponent('NuxtLink') : props.tag)
 </script>
 
 <template>
-  <component
-    :is="resolvedTag"
-    :class="classes">
+  <div :class="classes">
     <slot />
-  </component>
+  </div>
 </template>

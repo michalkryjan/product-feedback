@@ -2,18 +2,18 @@
 export interface IUiFeedbackProps {
   data: IFeedbackExtended
   type?: 'default' | 'roadmap'
-  addLinkToDetails?: boolean
+  linkToDetails?: boolean
 }
 
 const props = withDefaults(defineProps<IUiFeedbackProps>(), {
   type: 'default',
-  addLinkToDetails: true
+  linkToDetails: true
 })
 
 const isUpvoted = ref<boolean>(false)
 const upvotesCount = ref<number>(props.data.upvotes)
 
-const detailsUrl = computed<string | undefined>(() => props.addLinkToDetails ? `/feedback/${props.data.id}` : undefined)
+const detailsUrl = computed<string | undefined>(() => props.linkToDetails ? `/feedback/${props.data.id}` : undefined)
 
 const accentColorClass = computed<string | undefined>(() => {
   if (props.type === 'roadmap') {
@@ -76,10 +76,7 @@ const buttonUpvoteClasses = computed<string[]>(() => {
 </script>
 
 <template>
-  <ui-card
-    :variant="type === 'roadmap' ? '2' : '1'"
-    :tag="addLinkToDetails ? 'NuxtLink' : 'div'"
-    :to="detailsUrl">
+  <ui-card :variant="type === 'roadmap' ? '2' : '1'">
     <div :class="mainWrapperClasses">
       <div :class="textWrapperClasses">
         <base-headline
@@ -87,7 +84,11 @@ const buttonUpvoteClasses = computed<string[]>(() => {
           typography="title-3"
           color="navy"
           class="mb-4 order-2">
-          <span v-html="useOrphans(data.title)" />
+          <nuxt-link
+            :to="detailsUrl"
+            class="transition-colors hover:text-blue-1">
+            <span v-html="useOrphans(data.title)" />
+          </nuxt-link>
         </base-headline>
 
         <base-content

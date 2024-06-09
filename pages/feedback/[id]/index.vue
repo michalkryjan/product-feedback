@@ -10,7 +10,7 @@ const currentFeedback = useCurrentRouteFeedback()
       <ui-feedback
         v-if="currentFeedback"
         :data="currentFeedback"
-        :add-link-to-details="false" />
+        :link-to-details="false" />
 
       <block-comment-list />
 
