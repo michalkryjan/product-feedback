@@ -53,7 +53,7 @@ export class FirebaseCommentsService implements IFirebaseCommentsService {
       }
 
       if (options?.merge?.user === true) {
-        comments = await this.mergeUserIntoComments(comments)
+        comments = await this.mergeUserIntoItems(comments)
       }
 
       return comments
@@ -77,7 +77,9 @@ export class FirebaseCommentsService implements IFirebaseCommentsService {
       try {
         const repliesCollectionRef = this.repliesCollection.getCollectionRef()
         const repliesDocsSnapshot = await getDocs(query(repliesCollectionRef, where('__name__', 'in', repliesIds)))
-        const replies = extractNonNullableDocsData(repliesDocsSnapshot.docs)
+        let replies = extractNonNullableDocsData(repliesDocsSnapshot.docs)
+
+        replies = this.mergeUserIntoItems(replies)
 
         const commentsMerged = comments.map(comment => ({
           ...comment,
@@ -97,11 +99,11 @@ export class FirebaseCommentsService implements IFirebaseCommentsService {
     return comments
   }
 
-  private async mergeUserIntoComments (comments: IComment[]) {
+  private async mergeUserIntoItems (items: IComment[] | IReply[]) {
     let usersIds: IUser['id'][] = []
 
-    comments.forEach(comment => {
-      usersIds.push(...comment.created_by)
+    items.forEach(item => {
+      usersIds.push(item.created_by)
     })
 
     usersIds = [... new Set(usersIds)]
@@ -111,14 +113,15 @@ export class FirebaseCommentsService implements IFirebaseCommentsService {
       const usersDocsSnapshot = await getDocs(query(usersCollectionRef, where('__name__', 'in', usersIds)))
       const users = extractNonNullableDocsData(usersDocsSnapshot.docs)
 
-      const commentsMerged = comments.map(comment => ({
-        ...comment,
-        created_by: users.find(user => user?.id === comment.created_by) as IUser
+      const itemsMerged = items.map(item => ({
+        ...item,
+        created_by: users.find(user => user?.id === item.created_by) as IUser
       }))
 
-      return commentsMerged
+      return itemsMerged
     } catch (e) {
-      return comments
+      console.log(e)
+      return items
     }
   }
 }

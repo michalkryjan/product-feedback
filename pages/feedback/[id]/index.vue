@@ -6,15 +6,16 @@ const currentFeedback = useCurrentRouteFeedback()
   <layout-page-inner
     width-type="m"
     vertical-padding-type="s">
-    <layout-grid type="1col-v2">
+    <layout-grid
+      v-if="currentFeedback"
+      type="1col-v2">
       <ui-feedback
-        v-if="currentFeedback"
         :data="currentFeedback"
         :link-to-details="false" />
 
-      <block-comment-list />
+      <block-comment-list :comments-ids="currentFeedback.comments" />
 
-      <block-comment-create />
+      <block-comment-create :feedback-id="currentFeedback.id" />
     </layout-grid>
   </layout-page-inner>
 </template>

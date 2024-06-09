@@ -23,7 +23,7 @@ interface IFeedback {
   }
   category: ICategory['id']
   status: IStatus['id']
-  comments?: Array<IComment['id']>
+  comments: Array<IComment['id']>
 }
 
 interface IStatus {
@@ -72,13 +72,17 @@ interface IUser {
 }
 
 interface IFeedbackExtended extends Omit<IFeedback, 'category' | 'status'> {
-  category?: ICategory
-  status?: IStatus
+  category: ICategory
+  status: IStatus
 }
 
 interface ICommentExtended extends Omit<IComment, 'replies' | 'created_by'> {
   created_by: IUser
   replies: Array<IReply>
+}
+
+interface IReplyExtended extends Omit<IReply, 'created_by'> {
+  created_by: IUser
 }
 
 interface IFeedbacksGroup {
