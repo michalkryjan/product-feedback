@@ -1,22 +1,37 @@
 import type { Firestore } from 'firebase/firestore'
 import type { FirebaseStorage } from 'firebase/storage'
-import { CategoriesService } from './services/db/collections/categories/Service'
-import { CommentsService } from './services/db/collections/comments/Service'
-import { FeedbacksService } from './services/db/collections/feedbacks/Service'
-import { RepliesService } from './services/db/collections/replies/Service'
-import { StatusesService } from './services/db/collections/statuses/Service'
-import { UsersService } from './services/db/collections/users/Service'
-import { StorageService } from './services/storage/Service'
-import type { IFirebaseRepository } from './types'
+import { FirebaseCategoriesService } from './services/db/CategoriesService'
+import { FirebaseCommentsService } from './services/db/CommentsService'
+import { FirebaseFeedbacksService } from './services/db/FeedbacksService'
+import { FirebaseStatusesService } from './services/db/StatusesService'
+import { FirebaseUsersService } from './services/db/UsersService'
+import { FirebaseStorageService } from './services/storage/StorageService'
 
-export default (firestore: Firestore, firebaseStorage: FirebaseStorage): IFirebaseRepository => ({
-  db: {
-    categories: new CategoriesService(firestore),
-    comments: new CommentsService(firestore),
-    replies: new RepliesService(firestore),
-    feedbacks: new FeedbacksService(firestore),
-    statuses: new StatusesService(firestore),
-    users: new UsersService(firestore)
-  },
-  storage: new StorageService(firebaseStorage)
-})
+interface IFirebaseDbService {
+  categories: FirebaseCategoriesService
+  comments: FirebaseCommentsService
+  feedbacks: FirebaseFeedbacksService
+  statuses: FirebaseStatusesService
+  users: FirebaseUsersService
+}
+
+interface IFirebaseRepository {
+  db: IFirebaseDbService
+  storage: FirebaseStorageService
+}
+
+export class FirebaseRepository implements IFirebaseRepository {
+  public db: IFirebaseDbService
+  public storage: FirebaseStorageService
+
+  constructor (firestore: Firestore, firebaseStorage: FirebaseStorage) {
+    this.db = {
+      categories: new FirebaseCategoriesService(firestore),
+      comments: new FirebaseCommentsService(firestore),
+      feedbacks: new FirebaseFeedbacksService(firestore),
+      statuses: new FirebaseStatusesService(firestore),
+      users: new FirebaseUsersService(firestore)
+    }
+    this.storage = new FirebaseStorageService(firebaseStorage)
+  }
+}

@@ -1,7 +1,7 @@
 import { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore'
 import { CommentValidator } from './Validator'
 
-class CommentConverter implements FirestoreDataConverter<IComment | null, IComment> {
+export class CommentConverter implements FirestoreDataConverter<IComment | null, IComment> {
   validator: CommentValidator
 
   constructor () {
@@ -17,12 +17,10 @@ class CommentConverter implements FirestoreDataConverter<IComment | null, IComme
 
     return this.validator.validate({
       id: snapshot?.id,
-      name: data?.name,
+      content: data?.content,
       created_by: data?.created_by,
       created_date: data?.created_date,
       replies: data?.replies
     })
   }
 }
-
-export { CommentConverter }

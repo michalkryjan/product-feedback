@@ -1,20 +1,22 @@
-import { orderBy, query } from 'firebase/firestore'
-
 export const useStatusesStore = defineStore('statuses', () => {
   const { $firebase } = useNuxtApp()
 
-  const collection = useCollection<IStatus>(query($firebase.db.statuses.getCollection(), orderBy('order')))
-  const collectionNonNullable = computed<IStatus[]>(() => collection.value.filter(item => item !== null))
+  const statuses = ref<IStatus[]>([])
 
-  const initialStatus = computed(() => collectionNonNullable.value.find(item => item?.order === 1))
+  const initialStatus = computed(() => statuses.value.find(item => item?.order === 1))
 
-  function getStatus (id: IStatus['id']) {
-    return collectionNonNullable.value.find(status => status.id === id)
+  async function updateStatuses () {
+    statuses.value = await $firebase.db.statuses.getStatuses()
+  }
+
+  function findStatus (id: IStatus['id']) {
+    return statuses.value.find(status => status.id === id)
   }
 
   return {
-    statuses: collectionNonNullable,
+    statuses,
     initialStatus,
-    getStatus
+    updateStatuses,
+    findStatus
   }
 })

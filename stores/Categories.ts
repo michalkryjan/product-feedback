@@ -1,15 +1,19 @@
 export const useCategoriesStore = defineStore('categories', () => {
   const { $firebase } = useNuxtApp()
 
-  const collection = useCollection<ICategory | null>($firebase.db.categories.getCollection())
-  const collectionNonNullable = computed<ICategory[]>(() => collection.value.filter(item => item !== null))
+  const categories = ref<ICategory[]>([])
 
-  function getCategory (id: ICategory['id']): ICategory | undefined {
-    return collectionNonNullable.value.find(cat => cat.id === id)
+  async function updateCategories () {
+    categories.value = await $firebase.db.categories.getCategories()
+  }
+
+  function findCategory (id: ICategory['id']): ICategory | undefined {
+    return categories.value.find(cat => cat.id === id)
   }
 
   return {
-    categories: collectionNonNullable,
-    getCategory
+    categories,
+    findCategory,
+    updateCategories
   }
 })

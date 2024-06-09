@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-class CommentValidator {
+export class CommentValidator {
   private readonly SCHEMA = z.object({
     id: z.string(),
     content: z.string(),
@@ -22,5 +22,3 @@ class CommentValidator {
     }
   }
 }
-
-export { CommentValidator }

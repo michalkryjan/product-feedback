@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-class UserValidator {
+export class UserValidator {
   private readonly SCHEMA = z.object({
     id: z.string(),
     created_date: z.object({
@@ -22,5 +22,3 @@ class UserValidator {
     }
   }
 }
-
-export { UserValidator }

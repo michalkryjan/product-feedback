@@ -1,28 +1,12 @@
-import { orderBy, query } from 'firebase/firestore'
 import type { IFilterBy, ISortByOption } from '~/stores/Filters'
 
 export const useFeedbacksStore = defineStore('feedbacks', () => {
   const { $firebase } = useNuxtApp()
 
-  const categoriesStore = useCategoriesStore()
   const statusesStore = useStatusesStore()
   const filtersStore = useFiltersStore()
 
-  const collection = useCollection<IFeedback>(query($firebase.db.feedbacks.getCollection(), orderBy('upvotes', 'desc')))
-  const collectionNonNullable = computed<IFeedback[]>(() => collection.value.filter(item => item !== null))
-
-  const feedbacks = computed<IFeedbackExtended[]>(() => {
-    if (collectionNonNullable.value?.length > 0) {
-      return collectionNonNullable.value.map(feedbackDoc => {
-        return {
-          ...feedbackDoc,
-          category: categoriesStore.getCategory(feedbackDoc.category) ?? {},
-          status: statusesStore.getStatus(feedbackDoc.status)
-        } as IFeedbackExtended
-      })
-    }
-    return []
-  })
+  const feedbacks = ref<IFeedbackExtended[]>([])
 
   const feedbacksGroupedByStatus = computed<IFeedbacksGroup[]>(() => {
     return statusesStore.statuses.map(status => ({
@@ -42,8 +26,20 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   const feedbacksCountAll = computed<number>(() => feedbacks.value?.length)
   const feedbacksCountFiltered = computed<number>(() => feedbacksFiltered.value?.length)
 
-  function getFeedback (id: IFeedback['id']) {
+  function findFeedback (id: IFeedback['id']) {
     return feedbacks.value.find(feedback => feedback?.id === id)
+  }
+
+  async function updateFeedbacks () {
+    feedbacks.value = await $firebase.db.feedbacks.getFeedbacks({
+      orderBy: {
+        upvotes: 'desc'
+      },
+      merge: {
+        category: true,
+        status: true
+      }
+    })
   }
 
   async function addNewFeedback (data: Pick<IFeedback, 'title' | 'category' | 'status' | 'description'>): Promise<boolean> {
@@ -53,6 +49,10 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
         description: data.description,
         upvotes: 0,
         created_by: '0', // TO DO: add current user ID
+        created_date: {
+          seconds: 0,
+          nanoseconds: 0
+        },
         category: data.category,
         status: data.status,
         comments: []
@@ -147,7 +147,8 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     feedbacksFilteredAndSorted,
     feedbacksCountAll,
     feedbacksCountFiltered,
-    getFeedback,
+    updateFeedbacks,
+    findFeedback,
     addNewFeedback,
     deleteFeedback,
     updateFeedback

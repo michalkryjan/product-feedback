@@ -1,8 +1,7 @@
 import { type DocumentData, type FirestoreDataConverter, type QueryDocumentSnapshot, type SnapshotOptions } from 'firebase/firestore'
 import { StatusValidator } from './Validator'
 
-
-class StatusConverter implements FirestoreDataConverter<IStatus | null, IStatus> {
+export class StatusConverter implements FirestoreDataConverter<IStatus | null, IStatus> {
   private readonly validator: StatusValidator
 
   constructor () {
@@ -24,5 +23,3 @@ class StatusConverter implements FirestoreDataConverter<IStatus | null, IStatus>
     })
   }
 }
-
-export { StatusConverter }

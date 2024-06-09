@@ -1,8 +1,7 @@
 import { type DocumentData, type FirestoreDataConverter, type QueryDocumentSnapshot, type SnapshotOptions } from 'firebase/firestore'
 import { ReplyValidator } from './Validator'
 
-
-class ReplyConverter implements FirestoreDataConverter<IReply | null, IReply> {
+export class ReplyConverter implements FirestoreDataConverter<IReply | null, IReply> {
   private readonly validator: ReplyValidator
 
   constructor () {
@@ -19,11 +18,9 @@ class ReplyConverter implements FirestoreDataConverter<IReply | null, IReply> {
     return this.validator.validate({
       id: snapshot?.id,
       content: data?.content,
-      created_by: data?.created_by
+      created_by: data?.created_by,
+      created_date: data?.created_date,
+      replying_to: data?.replying_to
     })
   }
-
-
 }
-
-export { ReplyConverter }

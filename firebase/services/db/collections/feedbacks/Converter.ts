@@ -1,7 +1,7 @@
 import { type DocumentData, type FirestoreDataConverter, type QueryDocumentSnapshot, type SnapshotOptions } from 'firebase/firestore'
 import { FeedbackValidator } from './Validator'
 
-class FeedbackConverter implements FirestoreDataConverter<IFeedback | null, IFeedback> {
+export class FeedbackConverter implements FirestoreDataConverter<IFeedback | null, IFeedback> {
   private readonly validator: FeedbackValidator
 
   constructor () {
@@ -28,5 +28,3 @@ class FeedbackConverter implements FirestoreDataConverter<IFeedback | null, IFee
     })
   }
 }
-
-export { FeedbackConverter }

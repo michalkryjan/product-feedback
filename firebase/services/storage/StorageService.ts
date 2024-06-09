@@ -1,11 +1,11 @@
 import { FirebaseStorage, ref as storageRef } from 'firebase/storage'
 import { useStorageFile } from 'vuefire'
 
-interface IStorageService {
+interface IFirebaseStorageService {
   getImage: (path: string) => Ref<string | undefined | null>
 }
 
-class StorageService implements IStorageService {
+class FirebaseStorageService implements IFirebaseStorageService {
   private readonly storage: FirebaseStorage
 
   constructor (firebaseStorage: FirebaseStorage) {
@@ -19,4 +19,4 @@ class StorageService implements IStorageService {
   }
 }
 
-export { StorageService }
+export { FirebaseStorageService }

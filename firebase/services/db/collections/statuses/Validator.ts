@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-class StatusValidator {
+export class StatusValidator {
   private readonly SCHEMA = z.object({
     id: z.string(),
     order: z.number(),
@@ -18,5 +18,3 @@ class StatusValidator {
     }
   }
 }
-
-export { StatusValidator }

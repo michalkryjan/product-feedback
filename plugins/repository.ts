@@ -1,9 +1,10 @@
-import createRepository from '~/firebase/repository'
+import { FirebaseRepository } from '~/firebase/repository'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const firestore = useFirestore()
   const firebaseStorage = useFirebaseStorage()
-  const firebaseRepository = createRepository(firestore, firebaseStorage)
+
+  const firebaseRepository = new FirebaseRepository(firestore, firebaseStorage)
 
   nuxtApp.provide('firebase', firebaseRepository)
 })

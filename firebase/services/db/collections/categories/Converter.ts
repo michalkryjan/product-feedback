@@ -1,7 +1,7 @@
 import { type DocumentData, type FirestoreDataConverter, type QueryDocumentSnapshot, type SnapshotOptions } from 'firebase/firestore'
 import { CategoryValidator } from './Validator'
 
-class CategoryConverter implements FirestoreDataConverter<ICategory | null, ICategory> {
+export class CategoryConverter implements FirestoreDataConverter<ICategory | null, ICategory> {
   private readonly validator: CategoryValidator
 
   constructor () {
@@ -21,5 +21,3 @@ class CategoryConverter implements FirestoreDataConverter<ICategory | null, ICat
     })
   }
 }
-
-export { CategoryConverter }

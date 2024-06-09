@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-class FeedbackValidator {
+export class FeedbackValidator {
   private readonly SCHEMA = z.object({
     id: z.string(),
     title: z.string(),
@@ -26,5 +26,3 @@ class FeedbackValidator {
     }
   }
 }
-
-export { FeedbackValidator }

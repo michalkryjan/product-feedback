@@ -1,7 +1,7 @@
-import type { IFirebaseRepository } from '~/firebase/types'
+import type { FirebaseRepository } from '~/firebase/repository'
 
 interface IPluginInjections {
-  $firebase: IFirebaseRepository
+  $firebase: FirebaseRepository
 }
 
 declare module '#app' {

@@ -1,18 +1,17 @@
 <script setup lang="ts">
-const feedbacksStore = useFeedbacksStore()
 const categoriesStore = useCategoriesStore()
 const statusesStore = useStatusesStore()
+const feedbacksStore = useFeedbacksStore()
 
-async function updateData () {
-  feedbacksStore.fetchFeedbacks()
-  categoriesStore.fetchCategories()
-  statusesStore.fetchStatuses()
+async function updateStoresData () {
+  await Promise.all([
+    categoriesStore.updateCategories(),
+    statusesStore.updateStatuses(),
+    feedbacksStore.updateFeedbacks()
+  ])
 }
 
-await useAsyncData(
-  'apiData',
-  () => updateData()
-).then(() => true)
+await useAsyncData('stores_data', () => updateStoresData()).then(() => true)
 </script>
 
 <template>

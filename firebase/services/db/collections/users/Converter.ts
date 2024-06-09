@@ -1,7 +1,7 @@
 import { type DocumentData, type FirestoreDataConverter, type QueryDocumentSnapshot, type SnapshotOptions } from 'firebase/firestore'
 import { UserValidator } from './Validator'
 
-class UserConverter implements FirestoreDataConverter<IUser | null, IUser> {
+export class UserConverter implements FirestoreDataConverter<IUser | null, IUser> {
   private readonly validator: UserValidator
 
   constructor () {
@@ -23,8 +23,4 @@ class UserConverter implements FirestoreDataConverter<IUser | null, IUser> {
       username: data?.username
     })
   }
-
-
 }
-
-export { UserConverter }
