@@ -39,7 +39,7 @@ export class FirebaseFeedbacksService implements IFirebaseFeedbacksService {
     return addDoc(this.getCollectionRef(), data) as Promise<DocumentReference<Models.IFeedback | null, Models.IFeedback>>
   }
 
-  public updateDoc (id: string, data: Pick<Models.IFeedback, 'title' | 'category' | 'description'>) {
+  public updateDoc (id: string, data: Pick<Models.IFeedback, 'title' | 'description' | 'category_name' >) {
     return updateDoc(this.getDocRef(id), data)
   }
 
