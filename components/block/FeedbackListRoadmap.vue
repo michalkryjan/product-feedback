@@ -5,7 +5,7 @@ const feedbacksStore = useFeedbacksStore()
 <template>
   <div
     v-if="feedbacksStore.feedbacksGroupedByStatus?.length > 0"
-    class="inline-flex gap-x-30">
+    class="inline-flex gap-x-30 w-full">
     <section
       v-for="group in feedbacksStore.feedbacksGroupedByStatus.slice(1)"
       :key="group.status.id"

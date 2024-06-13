@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type DropdownSelect from '~/components/DropdownSelect.vue'
+import type DropdownSelect from '~/components/ui/DropdownSelect.vue'
 import type { IDropdownSelectOption, IUiDropdownSelectProps } from './DropdownSelect.vue'
 
 interface IUiDropdownSelectSortByProps extends Omit<IUiDropdownSelectProps, 'ariaLabelOpened' | 'ariaLabelClosed'> {}

@@ -1,35 +1,37 @@
+import type { Models } from 'types/models'
+
 export interface ISortByOption {
-  id: `${keyof Omit<IFeedback, 'id'>}-${'asc'|'desc'}`
+  id: `${keyof Omit<Models.IFeedback, 'id'>}-${'asc'|'desc'}`
   name: string
 }
 
 export interface IFilterBy {
-  categoryId: ICategory['id'] | undefined
+  categoryName: string | undefined
 }
 
 export const useFiltersStore = defineStore('filters', () => {
   const availableSortOptions: ISortByOption[] = [
     {
-      id: 'upvotes-desc',
+      id: 'upvotes_count-desc',
       name: 'Most Upvotes'
     },
     {
-      id: 'upvotes-asc',
+      id: 'upvotes_count-asc',
       name: 'Least Upvotes'
     },
     {
-      id: 'comments-desc',
+      id: 'comments_count-desc',
       name: 'Most Comments'
     },
     {
-      id: 'comments-asc',
+      id: 'comments_count-asc',
       name: 'Least Comments'
     }
   ]
 
   const sortBy = ref<ISortByOption>(availableSortOptions[0])
   const filterBy = reactive<IFilterBy>({
-    categoryId: undefined
+    categoryName: undefined
   })
 
   return {

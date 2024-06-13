@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { Models } from 'types/models'
 import { useForm } from 'vee-validate'
 import type { IFormTemplateCardField } from '~/components/form/TemplateCard.vue'
 
-export interface IFormFeedbackCreateValues extends Pick<IFeedbackExtended, 'title' | 'categories' | 'description'> {}
+export interface IFormFeedbackCreateValues extends Pick<Models.IFeedback, 'title' | 'category_name' | 'description'> {}
 
 interface IFormFeedbackCreateEmits {
   (e: 'success'): void
@@ -20,12 +21,12 @@ const {
 } = useForm<IFormFeedbackCreateValues>({
   validationSchema: {
     title: '',
-    categories: '',
+    category: '',
     description: ''
   },
   initialValues: {
     title: undefined,
-    categories: undefined,
+    category_name: undefined,
     description: undefined
   }
 })

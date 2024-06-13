@@ -1,4 +1,12 @@
+import { Timestamp, getDocs } from 'firebase/firestore'
+import type { Models } from 'types/models'
+import { extractNonNullableDocs } from '~/firebase/helpers'
 import type { IFilterBy, ISortByOption } from '~/stores/Filters'
+
+interface IFeedbacksGroupedByStatus {
+  feedbacks: Models.IFeedback[]
+  status: Models.IStatus
+}
 
 export const useFeedbacksStore = defineStore('feedbacks', () => {
   const { $firebase } = useNuxtApp()
@@ -6,11 +14,11 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   const statusesStore = useStatusesStore()
   const filtersStore = useFiltersStore()
 
-  const feedbacks = ref<IFeedbackExtended[]>([])
+  const feedbacks = ref<Models.IFeedback[]>([])
 
-  const feedbacksGroupedByStatus = computed<IFeedbacksGroup[]>(() => {
+  const feedbacksGroupedByStatus = computed<IFeedbacksGroupedByStatus[]>(() => {
     return statusesStore.statuses.map(status => ({
-      feedbacks: feedbacks.value.filter(feedback => feedback?.status?.id === status.id),
+      feedbacks: feedbacks.value.filter(feedback => feedback?.status_name === status.name),
       status
     }))
   })
@@ -26,35 +34,25 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   const feedbacksCountAll = computed<number>(() => feedbacks.value?.length)
   const feedbacksCountFiltered = computed<number>(() => feedbacksFiltered.value?.length)
 
-  function findFeedback (id: IFeedback['id']) {
+  function findFeedback (id: Models.IFeedback['id']) {
     return feedbacks.value.find(feedback => feedback?.id === id)
   }
 
   async function updateFeedbacks () {
-    feedbacks.value = await $firebase.db.feedbacks.getFeedbacks({
-      orderBy: {
-        upvotes: 'desc'
-      },
-      merge: {
-        category: true,
-        status: true
-      }
-    })
+    const querySnapshot = await getDocs($firebase.db.feedbacks.getCollectionRef())
+    feedbacks.value = extractNonNullableDocs(querySnapshot.docs)
   }
 
-  async function addNewFeedback (data: Pick<IFeedback, 'title' | 'category' | 'status' | 'description'>): Promise<boolean> {
+  async function addNewFeedback (data: Pick<Models.IFeedback, 'title' | 'description' | 'category_name' | 'status_name'>): Promise<boolean> {
     try {
       const result = await $firebase.db.feedbacks.addNewDoc({
         title: data.title,
         description: data.description,
         upvotes: 0,
         created_by: '0', // TO DO: add current user ID
-        created_date: {
-          seconds: 0,
-          nanoseconds: 0
-        },
-        category: data.category,
-        status: data.status,
+        created_date: Timestamp.fromDate(new Date()),
+        category: data.category_name,
+        status: data.status_name,
         comments: []
       })
 
@@ -68,16 +66,14 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }
   }
 
-  async function updateFeedback (id: IFeedback['id'], data: Pick<IFeedback, 'title' | 'category' | 'description'>): Promise<boolean> {
+  async function updateFeedback (id: Models.IFeedback['id'], data: Pick<Models.IFeedback, 'title' | 'description' | 'category_name'>): Promise<boolean> {
     try {
       await $firebase.db.feedbacks.updateDoc(id, {
         title: data.title,
         description: data.description,
-        category: data.category
+        category: data.category_name
       })
-
       console.log('Feedback with id ', id, ' successfully updated.')
-
       return true
     } catch (e) {
       console.log(e)
@@ -86,12 +82,10 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }
   }
 
-  async function deleteFeedback (id: IFeedback['id']): Promise<boolean> {
+  async function deleteFeedback (id: Models.IFeedback['id']): Promise<boolean> {
     try {
       await $firebase.db.feedbacks.deleteDoc(id)
-
       console.log('Feedback with id ', id, ' successfully updated.')
-
       return true
     } catch (e) {
       console.log(e)
@@ -100,44 +94,44 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
     }
   }
 
-  function filterFeedbacks (filters: IFilterBy, feedbacks: IFeedbackExtended[]) {
+  function filterFeedbacks (filters: IFilterBy, feedbacks: Models.IFeedback[]) {
     return feedbacks.filter(feedback => {
-      if (!filters.categoryId) {
+      if (!filters.categoryName) {
         return true
       }
 
-      return feedback?.category?.id === filters.categoryId
+      return feedback?.category_name === filters.categoryName
     })
   }
 
-  function sortFeedbacks (method: ISortByOption['id'], feedbacks: IFeedbackExtended[]) {
-    if (method === 'upvotes-desc') {
+  function sortFeedbacks (method: ISortByOption['id'], feedbacks: Models.IFeedback[]) {
+    if (method === 'upvotes_count-desc') {
       return sortFeedbacksByUpvotesDesc(feedbacks)
-    } else if (method === 'upvotes-asc') {
+    } else if (method === 'upvotes_count-asc') {
       return sortFeedbacksByUpvotesAsc(feedbacks)
-    } else if (method === 'comments-desc') {
+    } else if (method === 'comments_count-desc') {
       return sortFeedbacksByCommentsDesc(feedbacks)
-    } else if (method === 'comments-asc') {
+    } else if (method === 'comments_count-asc') {
       return sortFeedbacksByCommentsAsc(feedbacks)
     } else {
       return feedbacks
     }
   }
 
-  function sortFeedbacksByUpvotesDesc (feedbacks: IFeedbackExtended[]) {
-    return feedbacks.sort((a, b) => b.upvotes - a.upvotes)
+  function sortFeedbacksByUpvotesDesc (feedbacks: Models.IFeedback[]) {
+    return feedbacks.sort((a, b) => b.upvotes_count - a.upvotes_count)
   }
 
-  function sortFeedbacksByUpvotesAsc (feedbacks: IFeedbackExtended[]) {
-    return feedbacks.sort((a, b) => a.upvotes - b.upvotes)
+  function sortFeedbacksByUpvotesAsc (feedbacks: Models.IFeedback[]) {
+    return feedbacks.sort((a, b) => a.upvotes_count - b.upvotes_count)
   }
 
-  function sortFeedbacksByCommentsDesc (feedbacks: IFeedbackExtended[]) {
-    return feedbacks.sort((a, b) => (b?.comments?.length ?? 0) - (a?.comments?.length ?? 0))
+  function sortFeedbacksByCommentsDesc (feedbacks: Models.IFeedback[]) {
+    return feedbacks.sort((a, b) => b.comments_count - a.comments_count)
   }
 
-  function sortFeedbacksByCommentsAsc (feedbacks: IFeedbackExtended[]) {
-    return feedbacks.sort((a, b) => (a?.comments?.length ?? 0) - (b?.comments?.length ?? 0))
+  function sortFeedbacksByCommentsAsc (feedbacks: Models.IFeedback[]) {
+    return feedbacks.sort((a, b) => a.comments_count - b.comments_count)
   }
 
   return {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IUiListSummaryItemProps } from './ListSummaryItem.vue'
+import type { IUiListSummaryItemProps } from '~/components/ui/ListSummaryItem.vue'
 
 interface IUiListSummaryProps {
   items: IUiListSummaryItemProps[]

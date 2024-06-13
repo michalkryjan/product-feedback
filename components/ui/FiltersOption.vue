@@ -43,7 +43,7 @@ function toggle (): void {
 
 <template>
   <base-button
-    :text="data?.name"
+    :text="useCapitalized(data.name)"
     size="s1"
     label-size="s2"
     :theme="isSelected ? 'blue' : 'gray'"

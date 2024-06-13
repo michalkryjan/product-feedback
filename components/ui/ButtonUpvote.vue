@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { Models } from 'types/models'
+
 interface IUiButtonUpvoteProps {
-  feedbackId: IFeedback['id']
+  feedbackId: Models.IFeedback['id']
   count: number
   type?: 'vertical' | 'horizontal'
   active?: boolean

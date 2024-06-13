@@ -6,9 +6,9 @@ const selectedId = ref<string>('all')
 
 watch(selectedId, (newId) => {
   if (newId === 'all') {
-    filtersStore.filterBy.categoryId = undefined
+    filtersStore.filterBy.categoryName = undefined
   } else {
-    filtersStore.filterBy.categoryId = newId
+    filtersStore.filterBy.categoryName = newId
   }
 })
 </script>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { Models } from 'types/models'
 import { useForm } from 'vee-validate'
 
-interface IFormCommentCreateValues extends Pick<IComment, 'content'> {}
+interface IFormCommentCreateValues extends Pick<Models.IComment, 'content'> {}
 
 interface IFormCommentCreateEmits {
   (e: 'success'): void
@@ -53,7 +54,7 @@ async function postFormData (values: IFormCommentCreateValues) {
     :on-submit="onFormSubmit">
     <template #main>
       <form-field-wrapper name="content">
-        <template #field="{ id, errors, handleChange }">
+        <template #field="{ id, handleChange }">
           <base-textarea
             :id="id"
             @update:model-value="handleChange" />

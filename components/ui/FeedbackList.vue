@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { Models } from 'types/models'
 import type { IUiFeedbackProps } from '~/components/ui/Feedback.vue'
 
 interface IUiFeedbackListDefaultProps {
   type?: IUiFeedbackProps['type']
-  items: IFeedbackExtended[]
+  items: Models.IFeedback[]
 }
 
 const props = withDefaults(defineProps<IUiFeedbackListDefaultProps>(), {
@@ -14,9 +15,10 @@ const props = withDefaults(defineProps<IUiFeedbackListDefaultProps>(), {
 <template>
   <layout-grid type="1col-v2">
     <ui-feedback
-      v-for="item in items"
+      v-for="(item, index) in items"
       :key="item.id"
       :type="type"
-      :data="item" />
+      :data="item"
+      :accent-color="index + 2" />
   </layout-grid>
 </template>

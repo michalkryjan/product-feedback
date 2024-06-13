@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IFiltersOptionData } from '~/components/FiltersOption.vue'
+import type { IFiltersOptionData } from '~/components/ui/FiltersOption.vue'
 
 interface IUiFiltersProps {
   options: IFiltersOptionData[]

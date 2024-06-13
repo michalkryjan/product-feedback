@@ -1,29 +1,30 @@
 <script setup lang="ts">
+import type { Models } from 'types/models'
+
 export interface IUiFeedbackProps {
-  data: IFeedbackExtended
+  data: Models.IFeedback
   type?: 'default' | 'roadmap'
   linkToDetails?: boolean
+  accentColor?: number
 }
 
 const props = withDefaults(defineProps<IUiFeedbackProps>(), {
   type: 'default',
-  linkToDetails: true
+  linkToDetails: true,
+  accentColor: 1
 })
 
 const isUpvoted = ref<boolean>(false)
-const upvotesCount = ref<number>(props.data.upvotes)
+const upvotesCount = ref<number>(props.data.upvotes_count)
 
 const detailsUrl = computed<string | undefined>(() => props.linkToDetails ? `/feedback/${props.data.id}` : undefined)
 
 const accentColorClass = computed<string | undefined>(() => {
-  if (props.type === 'roadmap') {
-    const order = props.data.status?.order
-
-    if (typeof order === 'number') {
-      return useAccentColor(order, 'beforeBgClass')
-    }
+  if (props.type === 'default') {
+    return
   }
-  return undefined
+
+  return useAccentColor(props.accentColor, 'beforeBgClass')
 })
 
 const mainWrapperClasses = computed<string[]>(() => {
@@ -92,11 +93,11 @@ const buttonUpvoteClasses = computed<string[]>(() => {
         </base-headline>
 
         <base-content
-          v-if="type === 'roadmap' && data?.status?.name"
+          v-if="type === 'roadmap' && data.status_name"
           typography="text-body-1"
           color="gray"
           :class="statusClasses">
-          <span v-html="useCapitalized(data.status.name)" />
+          <span v-html="useCapitalized(data.status_name)" />
         </base-content>
 
         <base-content
@@ -108,8 +109,8 @@ const buttonUpvoteClasses = computed<string[]>(() => {
         </base-content>
 
         <base-tag
-          v-if="data?.category?.name"
-          :text="useCapitalized(data.category.name)"
+          v-if="data?.category_name"
+          :text="useCapitalized(data.category_name)"
           class="order-4" />
       </div>
 
@@ -121,12 +122,14 @@ const buttonUpvoteClasses = computed<string[]>(() => {
           :type="type === 'roadmap' ? 'horizontal' : 'vertical'"
           :class="buttonUpvoteClasses" />
 
-        <div class="inline-flex gap-x-8 my-auto order-3">
+        <div
+          v-if="data?.comments_count"
+          class="inline-flex gap-x-8 my-auto order-3">
           <base-icon name="comments" />
           <base-content
             typography="text-label-4"
             color="navy">
-            {{ (data?.comments ?? []).length }}
+            {{ data.comments_count }}
           </base-content>
         </div>
       </div>

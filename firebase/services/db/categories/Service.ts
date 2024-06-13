@@ -1,16 +1,17 @@
 import { CollectionReference, DocumentReference, Firestore, collection, doc } from 'firebase/firestore'
+import type { Models } from 'types/models'
 import { CategoryConverter } from './Converter'
 
-interface IFirebaseCategoriesCollection {
-  getCollectionRef: () => CollectionReference<ICategory | null, ICategory>
-  getDocRef: (id: string) => DocumentReference<ICategory | null, ICategory>
+interface IFirebaseCategoriesService {
+  getCollectionRef: () => CollectionReference<Models.ICategory | null, Models.ICategory>
+  getDocRef: (id: string) => DocumentReference<Models.ICategory | null, Models.ICategory>
 }
 
-export class FirebaseCategoriesCollection implements IFirebaseCategoriesCollection {
+export class FirebaseCategoriesService implements IFirebaseCategoriesService {
   private readonly firestore: Firestore
   private readonly converter: CategoryConverter
 
-  private collectionRef: CollectionReference<ICategory | null, ICategory> | undefined
+  private collectionRef: CollectionReference<Models.ICategory | null, Models.ICategory> | undefined
 
   constructor (firestore: Firestore) {
     this.firestore = firestore

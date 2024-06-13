@@ -1,29 +1,11 @@
 <script setup lang="ts">
+import { Models } from 'types/models'
+
 interface IBlockCommentListProps {
-  feedbackId: IFeedback['id']
-  commentsIds: IComment['id'][]
+  data: Models.IComment[]
 }
 
 const props = defineProps<IBlockCommentListProps>()
-
-const { $firebase } = useNuxtApp()
-
-const { data } = await useAsyncData(`${props.feedbackId}/comments-list`, () => getCommentsData())
-
-async function getCommentsData () {
-  return $firebase.db.comments.getComments({
-    filterBy: {
-      ids: props.commentsIds
-    },
-    orderBy: {
-      created_date: 'asc'
-    },
-    merge: {
-      replies: true,
-      user: true
-    }
-  })
-}
 </script>
 
 <template>

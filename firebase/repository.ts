@@ -1,16 +1,16 @@
 import type { Firestore } from 'firebase/firestore'
 import type { FirebaseStorage } from 'firebase/storage'
-import { FirebaseCategoriesService } from './services/db/CategoriesService'
-import { FirebaseCommentsService } from './services/db/CommentsService'
-import { FirebaseFeedbacksService } from './services/db/FeedbacksService'
-import { FirebaseStatusesService } from './services/db/StatusesService'
-import { FirebaseUsersService } from './services/db/UsersService'
-import { FirebaseStorageService } from './services/storage/StorageService'
+
+import { FirebaseCategoriesService } from './services/db/categories/Service'
+import { FirebaseFeedbacksService } from './services/db/feedbacks/Service'
+import { FirebaseStatusesService } from './services/db/statuses/Service'
+import { FirebaseUsersService } from './services/db/users/Service'
+
+import { FirebaseStorageService } from './services/storage/Service'
 
 interface IFirebaseDbService {
-  categories: FirebaseCategoriesService
-  comments: FirebaseCommentsService
   feedbacks: FirebaseFeedbacksService
+  categories: FirebaseCategoriesService
   statuses: FirebaseStatusesService
   users: FirebaseUsersService
 }
@@ -26,9 +26,8 @@ export class FirebaseRepository implements IFirebaseRepository {
 
   constructor (firestore: Firestore, firebaseStorage: FirebaseStorage) {
     this.db = {
-      categories: new FirebaseCategoriesService(firestore),
-      comments: new FirebaseCommentsService(firestore),
       feedbacks: new FirebaseFeedbacksService(firestore),
+      categories: new FirebaseCategoriesService(firestore),
       statuses: new FirebaseStatusesService(firestore),
       users: new FirebaseUsersService(firestore)
     }

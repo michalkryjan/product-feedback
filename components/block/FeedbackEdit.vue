@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { Models } from 'types/models'
+
 interface IBlockFeedbackEditProps {
-  feedback: IFeedbackExtended
+  feedback: Models.IFeedback
 }
 
 const props = defineProps<IBlockFeedbackEditProps>()
