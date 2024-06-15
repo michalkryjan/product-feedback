@@ -23,6 +23,7 @@ const props = defineProps<IUiCommentListProps>()
       <ui-comment
         v-for="item in data"
         :key="item.id"
+        type="comment"
         :data="item"
         class="after:w-full after:h-1 after:bg-gray-7 after:bg-opacity-25 after:my-32 last:after:hidden" />
     </div>

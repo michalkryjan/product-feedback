@@ -6,6 +6,7 @@ export interface ICommentWithReplies extends Models.IComment {
 }
 
 interface IUiCommentProps {
+  type: 'comment' | 'reply'
   data: ICommentWithReplies | Models.IReply
 }
 
@@ -68,17 +69,20 @@ function toggleReplyForm (): void {
           <p v-html="useOrphans(data.content)" />
         </base-content>
 
+        <div
+          v-if="type === 'comment' && (data as ICommentWithReplies)?.replies?.length > 0"
+          class="flex flex-col flex-nowrap gap-32 mt-32">
+          <ui-comment
+            v-for="reply in (data as ICommentWithReplies).replies"
+            :key="reply.id"
+            type="reply"
+            :data="reply" />
+        </div>
+
         <lazy-form-reply-create
           v-if="isReplyFormActive"
           class="mt-24" />
       </div>
     </div>
-
-    <template v-if="data?.replies && data.replies?.length > 0">
-      <ui-comment
-        v-for="reply in data.replies"
-        :key="reply.id"
-        :data="reply" />
-    </template>
   </div>
 </template>
