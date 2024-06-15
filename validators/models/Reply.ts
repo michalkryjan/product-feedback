@@ -6,7 +6,7 @@ import { UserSchema } from './User'
 export const ReplySchema = z.object({
   id: z.string(),
   content: z.string(),
-  replying_to: UserSchema,
+  replying_to: z.string(),
   created_by: UserSchema,
   created_date: z.instanceof(Timestamp)
 })

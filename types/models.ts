@@ -35,7 +35,7 @@ export declare namespace Models {
   interface IReply {
     id: string
     content: string
-    replying_to: IUser
+    replying_to: string
     created_by: IUser
     created_date: Timestamp
   }
