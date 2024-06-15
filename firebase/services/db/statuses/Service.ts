@@ -10,13 +10,11 @@ interface IFirebaseStatusesService {
 export class FirebaseStatusesService implements IFirebaseStatusesService {
   private readonly firestore: Firestore
   private readonly converter: StatusConverter
-
   private collectionRef: CollectionReference<Models.IStatus | null, Models.IStatus> | undefined
 
   constructor (firestore: Firestore) {
     this.firestore = firestore
     this.converter = new StatusConverter()
-
     this.collectionRef = undefined
   }
 

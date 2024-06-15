@@ -15,7 +15,6 @@ export class FirebaseUsersService implements IFirebaseUsersService {
   constructor (firestore: Firestore) {
     this.firestore = firestore
     this.converter = new UserConverter()
-
     this.collectionRef = undefined
   }
 
