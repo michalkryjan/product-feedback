@@ -1,37 +1,26 @@
-import { addDoc, collection, doc, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
+import { addDoc, collection, type CollectionReference, type DocumentReference, type Firestore } from 'firebase/firestore'
 import type { Models } from 'types/models'
 import { ReplyConverter } from './Converter'
 
 interface IFirebaseRepliesService {
-  getCollectionRef: () => CollectionReference<Models.IReply | null, Models.IReply>
-  getDocRef: (id: string) => DocumentReference<Models.IReply | null, Models.IReply>
-  addNewDoc: (data: Omit<Models.IReply, 'id'>) => Promise<DocumentReference<Models.IReply | null, Models.IReply>>
+  getCollectionRef: (feedbackId: Models.IFeedback['id'], commentId: Models.IComment['id']) => CollectionReference<Models.IReply | null, Models.IReply>
+  addNewDoc: (feedbackId: Models.IFeedback['id'], commentId: Models.IComment['id'], data: Omit<Models.IReply, 'id'>) => Promise<DocumentReference<Models.IReply | null, Models.IReply>>
 }
 
 export class FirebaseRepliesService implements IFirebaseRepliesService {
   private readonly firestore: Firestore
   private readonly converter: ReplyConverter
-  private collectionRef: CollectionReference<Models.IReply | null, Models.IReply> | undefined
 
   constructor (firestore: Firestore) {
     this.firestore = firestore
     this.converter = new ReplyConverter()
-    this.collectionRef = undefined
   }
 
-  public getCollectionRef () {
-    if (!this.collectionRef) {
-      this.collectionRef = collection(this.firestore, 'replies').withConverter(this.converter)
-    }
-
-    return this.collectionRef
+  public getCollectionRef (feedbackId: Models.IFeedback['id'], commentId: Models.IComment['id']) {
+    return collection(this.firestore, 'feedbacks', feedbackId, 'comments', commentId, 'replies').withConverter(this.converter)
   }
 
-  public getDocRef (id: string) {
-    return doc(this.firestore, 'replies', id).withConverter(this.converter)
-  }
-
-  public addNewDoc (data: Omit<Models.IReply, 'id'>) {
-    return addDoc(this.getCollectionRef(), data) as Promise<DocumentReference<Models.IReply | null, Models.IReply>>
+  public addNewDoc (feedbackId: Models.IFeedback['id'], commentId: Models.IComment['id'], data: Omit<Models.IReply, 'id'>) {
+    return addDoc(this.getCollectionRef(feedbackId, commentId), data) as Promise<DocumentReference<Models.IReply | null, Models.IReply>>
   }
 }

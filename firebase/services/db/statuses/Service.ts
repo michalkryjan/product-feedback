@@ -4,7 +4,7 @@ import { StatusConverter } from './Converter'
 
 interface IFirebaseStatusesService {
   getCollectionRef: () => CollectionReference<Models.IStatus | null, Models.IStatus>
-  getDocRef: (id: string) => DocumentReference<Models.IStatus | null, Models.IStatus>
+  getDocRef: (id: Models.IStatus['id']) => DocumentReference<Models.IStatus | null, Models.IStatus>
 }
 
 export class FirebaseStatusesService implements IFirebaseStatusesService {
@@ -26,7 +26,7 @@ export class FirebaseStatusesService implements IFirebaseStatusesService {
     return this.collectionRef
   }
 
-  public getDocRef (id: string) {
+  public getDocRef (id: Models.IStatus['id']) {
     return doc(this.firestore, 'statuses', id).withConverter(this.converter)
   }
 }

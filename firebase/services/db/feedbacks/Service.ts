@@ -5,10 +5,10 @@ import { FirebaseCommentsService } from './comments/Service'
 
 interface IFirebaseFeedbacksService {
   getCollectionRef: () => CollectionReference<Models.IFeedback | null, Models.IFeedback>
-  getDocRef: (id: string) => DocumentReference<Models.IFeedback | null, Models.IFeedback>
+  getDocRef: (id: Models.IFeedback['id']) => DocumentReference<Models.IFeedback | null, Models.IFeedback>
   addNewDoc: (data: Omit<Models.IFeedback, 'id'>) => Promise<DocumentReference<Models.IFeedback | null, Models.IFeedback>>
-  updateDoc: (id: string, data: Omit<Models.IFeedback, 'id'>) => Promise<void>,
-  deleteDoc: (id: string) => Promise<void>
+  updateDoc: (id: Models.IFeedback['id'], data: Omit<Models.IFeedback, 'id'>) => Promise<void>,
+  deleteDoc: (id: Models.IFeedback['id']) => Promise<void>
 }
 
 export class FirebaseFeedbacksService implements IFirebaseFeedbacksService {
@@ -32,7 +32,7 @@ export class FirebaseFeedbacksService implements IFirebaseFeedbacksService {
     return this.collectionRef
   }
 
-  public getDocRef (id: string) {
+  public getDocRef (id: Models.IFeedback['id']) {
     return doc(this.firestore, 'feedbacks', id).withConverter(this.converter)
   }
 
@@ -40,11 +40,11 @@ export class FirebaseFeedbacksService implements IFirebaseFeedbacksService {
     return addDoc(this.getCollectionRef(), data) as Promise<DocumentReference<Models.IFeedback | null, Models.IFeedback>>
   }
 
-  public updateDoc (id: string, data: Omit<Models.IFeedback, 'id'>) {
+  public updateDoc (id: Models.IFeedback['id'], data: Omit<Models.IFeedback, 'id'>) {
     return updateDoc(this.getDocRef(id), data)
   }
 
-  public deleteDoc (id: string) {
+  public deleteDoc (id: Models.IFeedback['id']) {
     return deleteDoc(this.getDocRef(id))
   }
 }

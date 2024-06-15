@@ -12,7 +12,7 @@ export class CommentConverter implements FirestoreDataConverter<Models.IComment 
 
     return validateComment({
       id: snapshot.id,
-      content: data?.title,
+      content: data?.content,
       created_by: data?.created_by,
       created_date: data?.created_date
     })

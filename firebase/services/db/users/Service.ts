@@ -4,7 +4,7 @@ import { UserConverter } from './Converter'
 
 interface IFirebaseUsersService {
   getCollectionRef: () => CollectionReference<Models.IUser | null, Models.IUser>
-  getDocRef: (id: string) => DocumentReference<Models.IUser | null, Models.IUser>
+  getDocRef: (id: Models.IUser['id']) => DocumentReference<Models.IUser | null, Models.IUser>
 }
 
 export class FirebaseUsersService implements IFirebaseUsersService {
@@ -26,7 +26,7 @@ export class FirebaseUsersService implements IFirebaseUsersService {
     return this.collectionRef
   }
 
-  public getDocRef (id: string) {
+  public getDocRef (id: Models.IUser['id']) {
     return doc(this.firestore, 'users', id).withConverter(this.converter)
   }
 }
