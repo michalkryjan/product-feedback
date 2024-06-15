@@ -28,5 +28,9 @@ const feedbacksStore = useFeedbacksStore()
     <ui-feedback-board-roadmap
       v-if="feedbacksStore.feedbacksGroupedByStatus?.length > 0"
       :feedbacks-groups="feedbacksStore.feedbacksGroupedByStatus" />
+    <lazy-ui-feedback-not-found
+      v-else
+      title="There is no feedback yet."
+      content="Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app." />
   </layout-page-inner>
 </template>
