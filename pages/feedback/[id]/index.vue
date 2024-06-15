@@ -1,9 +1,25 @@
 <script setup lang="ts">
+import { getDocs } from 'firebase/firestore'
+import { extractNonNullableDocs } from '~/firebase/helpers'
+
+const { $firebase } = useNuxtApp()
 const currentFeedback = useCurrentRouteFeedback()
 
-const editFeedbackUrl = computed<string | undefined>(() =>
-  currentFeedback.value?.id ? `/feedback/${currentFeedback.value.id}/edit` : undefined
+const { data: commentsWithReplies } = useAsyncData(
+  `feedback/${currentFeedback.value?.id}/comments`,
+  () => getCommentsWithReplies()
 )
+
+const editFeedbackUrl = computed<string | undefined>(() => currentFeedback.value?.id ? `/feedback/${currentFeedback.value.id}/edit` : undefined)
+
+async function getCommentsWithReplies () {
+  if (!currentFeedback.value?.id) {
+    return null
+  }
+
+  const commentsQuerySnapshot = await getDocs($firebase.db.feedbacks.comments.getCollectionRef(currentFeedback.value.id))
+  return extractNonNullableDocs(commentsQuerySnapshot.docs)
+}
 </script>
 
 <template>
@@ -28,7 +44,11 @@ const editFeedbackUrl = computed<string | undefined>(() =>
         :data="currentFeedback"
         :link-to-details="false" />
 
-      <ui-comment-list :data="[]" />
+      <suspense>
+        <ui-comment-list
+          v-if="commentsWithReplies"
+          :data="commentsWithReplies" />
+      </suspense>
 
       <ui-comment-create
         title="Add comment"
