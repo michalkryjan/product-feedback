@@ -1,4 +1,10 @@
 <script setup lang="ts">
+interface IUiFeedbackNotFoundProps {
+  title: string
+  content?: string
+}
+
+const props = defineProps<IUiFeedbackNotFoundProps>()
 </script>
 
 <template>
@@ -14,15 +20,16 @@
       align="center"
       color="navy"
       class="mb-16">
-      <span v-html="useOrphans('There is no feedback yet.')" />
+      <span v-html="useOrphans(title)" />
     </base-headline>
 
     <base-content
+      v-if="content"
       typography="text-body-1"
       align="center"
       color="gray"
       class="mb-48 max-w-430">
-      <span v-html="useOrphans('Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.')" />
+      <span v-html="useOrphans(content)" />
     </base-content>
 
     <base-button
