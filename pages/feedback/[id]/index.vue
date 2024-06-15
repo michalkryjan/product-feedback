@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getDocs } from 'firebase/firestore'
 import type { Models } from 'types/models'
+import type { ICommentWithReplies } from '~/components/ui/Comment.vue'
 import { extractNonNullableDocs } from '~/firebase/helpers'
 
 const { $firebase } = useNuxtApp()
@@ -21,7 +22,7 @@ async function getCommentsWithReplies () {
   const comments = await getComments(currentFeedback.value.id)
   await addRepliesToComments(comments)
 
-  return comments
+  return comments as ICommentWithReplies[]
 }
 
 async function getComments (feedbackId: Models.IFeedback['id']) {
@@ -30,13 +31,13 @@ async function getComments (feedbackId: Models.IFeedback['id']) {
 }
 
 async function addRepliesToComments (comments: Models.IComment[]) {
-  comments.forEach(async (comment) => {
+  for (const comment of comments) {
     const replies = await getReplies(currentFeedback.value?.id as string, comment.id)
 
     Object.assign(comment, {
       replies
     })
-  })
+  }
 }
 
 async function getReplies (feedbackId: Models.IFeedback['id'], commentId: Models.IComment['id']) {
@@ -75,6 +76,7 @@ async function getReplies (feedbackId: Models.IFeedback['id'], commentId: Models
       <suspense>
         <ui-comment-list
           v-if="commentsWithReplies"
+          :comments-count="currentFeedback.comments_count"
           :data="commentsWithReplies" />
       </suspense>
 
