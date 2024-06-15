@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import type { Models } from 'types/models'
 
+export interface ICommentWithReplies extends Models.IComment {
+  replies: Models.IReply[]
+}
+
 interface IUiCommentProps {
-  data: Models.IComment | Models.IReply
+  data: ICommentWithReplies | Models.IReply
 }
 
 const props = defineProps<IUiCommentProps>()

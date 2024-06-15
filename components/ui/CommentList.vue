@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { Models } from 'types/models'
+import type { ICommentWithReplies } from './Comment.vue'
 
 interface IUiCommentListProps {
-  data: Models.IComment[]
+  data: ICommentWithReplies[]
+  commentsCount: number
 }
 
 const props = defineProps<IUiCommentListProps>()
@@ -15,12 +16,15 @@ const props = defineProps<IUiCommentListProps>()
       typography="title-3"
       color="navy"
       class="mb-28">
-      {{ `${ data.length } comments` }}
+      {{ `${ commentsCount } comments` }}
     </base-headline>
 
-    <ui-comment
-      v-for="item in data"
-      :key="item.id"
-      :data="item" />
+    <div class="flex flex-col flex-nowrap">
+      <ui-comment
+        v-for="item in data"
+        :key="item.id"
+        :data="item"
+        class="after:w-full after:h-1 after:bg-gray-7 after:bg-opacity-25 after:my-32 last:after:hidden" />
+    </div>
   </ui-card>
 </template>

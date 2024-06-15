@@ -44,7 +44,8 @@ export default {
         3: '#F7F8FD',
         4: '#CFD7FF',
         5: '#979797',
-        6: '#CDD2EE'
+        6: '#CDD2EE',
+        7: '#8C92B3'
       },
       purple: {
         1: '#AD1FEA',
@@ -138,6 +139,7 @@ export default {
       full: '100%',
       fit: 'fit-content',
       max: 'max-content',
+      1: '0.1rem',
       4: '0.4rem',
       6: '0.6rem',
       8: '0.8rem',
