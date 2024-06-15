@@ -6,7 +6,7 @@ export interface ISortByOption {
 }
 
 export interface IFilterBy {
-  categoryName: string | undefined
+  category: Models.ICategory | undefined
 }
 
 export const useFiltersStore = defineStore('filters', () => {
@@ -31,7 +31,7 @@ export const useFiltersStore = defineStore('filters', () => {
 
   const sortBy = ref<ISortByOption>(availableSortOptions[0])
   const filterBy = reactive<IFilterBy>({
-    categoryName: undefined
+    category: undefined
   })
 
   return {

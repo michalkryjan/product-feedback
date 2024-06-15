@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const feedbacksStore = useFeedbacksStore()
+const categoriesStore = useCategoriesStore()
 const filtersStore = useFiltersStore()
 
 useHead({
@@ -16,7 +17,11 @@ useHead({
         <ui-product-info
           title="Your app name"
           subtitle="Feedback Board" />
-        <block-category-filters />
+
+        <ui-category-filters
+          v-model:filter-by="filtersStore.filterBy.category"
+          :categories="categoriesStore.categories" />
+
         <block-roadmap-summary />
       </div>
 

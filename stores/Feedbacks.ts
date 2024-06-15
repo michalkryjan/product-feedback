@@ -96,11 +96,11 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
 
   function filterFeedbacks (filters: IFilterBy, feedbacks: Models.IFeedback[]) {
     return feedbacks.filter(feedback => {
-      if (!filters.categoryName) {
+      if (!filters.category?.name) {
         return true
       }
 
-      return feedback?.category_name === filters.categoryName
+      return feedback?.category_name === filters.category.name
     })
   }
 

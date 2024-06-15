@@ -3,26 +3,28 @@ import type { IFiltersOptionData } from '~/components/ui/FiltersOption.vue'
 
 interface IUiFiltersProps {
   options: IFiltersOptionData[]
-  value: string | string[] | undefined
+  value: IFiltersOptionData | undefined
   gapSize?: 's1'
-  addOptionAll?: boolean
 }
 
 interface IUiFiltersEmits {
-  (e: 'change', val: typeof props.value): void
+  (e: 'update:value', val: IFiltersOptionData): void
 }
 
 const props = withDefaults(defineProps<IUiFiltersProps>(), {
   optionTheme: 'gray',
-  gapSize: 's1',
-  addOptionAll: false
+  gapSize: 's1'
 })
-
 const emit = defineEmits<IUiFiltersEmits>()
 
 defineOptions({
   inheritAttrs: false
 })
+
+const optionAll = {
+  id: 'all',
+  name: 'All'
+}
 
 const configGapSize: Record<NonNullable<IUiFiltersProps['gapSize']>, string> = {
   s1: 'gap-x-8 gap-y-14'
@@ -36,35 +38,26 @@ const wrapperClasses = computed(() => {
 })
 
 const optionsComputed = computed(() => {
-  return props.addOptionAll
-    ? [
-      {
-        id: 'all',
-        name: 'All'
-      },
-      ...props.options
-    ]
-    : props.options
+  return [
+    optionAll,
+    ...props.options
+  ]
 })
 
-const valueModel = computed<string | string[] | undefined>({
-  get: () => props.value,
-  set: (val: typeof props.value) => emit('change', val)
+const valueModel = computed<IFiltersOptionData>({
+  get: () => props.value ? props.value : optionAll,
+  set: (val: IFiltersOptionData) => emit('update:value', val)
 })
 
-function handleSelect (val: string): void {
+function handleSelect (val: IFiltersOptionData): void {
   valueModel.value = val
 }
 
 function handleUnselect (): void {
-  valueModel.value = undefined
-}
-
-onBeforeMount(() => {
-  if (props.addOptionAll) {
-    handleSelect('all')
+  if (valueModel.value?.id !== 'all') {
+    valueModel.value = optionAll
   }
-})
+}
 </script>
 
 <template>
@@ -75,9 +68,9 @@ onBeforeMount(() => {
       v-bind="$attrs"
       :data="option"
       theme="gray"
-      :is-disabled="valueModel === 'all' && option?.id === 'all'"
-      :is-selected="valueModel === option?.id"
-      @select="handleSelect(option?.id)"
+      :is-disabled="valueModel?.id === 'all' && option?.id === 'all'"
+      :is-selected="valueModel?.id === option?.id"
+      @select="handleSelect(option)"
       @unselect="handleUnselect()" />
   </div>
 </template>
