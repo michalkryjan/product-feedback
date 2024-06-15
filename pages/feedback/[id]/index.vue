@@ -30,7 +30,9 @@ const editFeedbackUrl = computed<string | undefined>(() =>
 
       <block-comment-list :comments-ids="currentFeedback.comments" />
 
-      <block-comment-create :feedback-id="currentFeedback.id" />
+      <ui-comment-create
+        title="Add comment"
+        :feedback-id="currentFeedback.id" />
     </layout-grid>
   </layout-page-inner>
 </template>
