@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getDocs } from 'firebase/firestore'
+import type { Models } from 'types/models'
 import { extractNonNullableDocs } from '~/firebase/helpers'
 
 const { $firebase } = useNuxtApp()
@@ -17,8 +18,35 @@ async function getCommentsWithReplies () {
     return null
   }
 
-  const commentsQuerySnapshot = await getDocs($firebase.db.feedbacks.comments.getCollectionRef(currentFeedback.value.id))
-  return extractNonNullableDocs(commentsQuerySnapshot.docs)
+  const comments = await getComments(currentFeedback.value.id)
+  await addRepliesToComments(comments)
+
+  return comments
+}
+
+async function getComments (feedbackId: Models.IFeedback['id']) {
+  const querySnapshot = await getDocs($firebase.db.feedbacks.comments.getCollectionRef(feedbackId))
+  return extractNonNullableDocs(querySnapshot.docs)
+}
+
+async function addRepliesToComments (comments: Models.IComment[]) {
+  comments.forEach(async (comment) => {
+    const replies = await getReplies(currentFeedback.value?.id as string, comment.id)
+
+    Object.assign(comment, {
+      replies
+    })
+  })
+}
+
+async function getReplies (feedbackId: Models.IFeedback['id'], commentId: Models.IComment['id']) {
+  const querySnapshot = await getDocs($firebase.db.feedbacks.comments.replies.getCollectionRef(feedbackId, commentId))
+
+  if (querySnapshot.empty) {
+    return []
+  }
+
+  return extractNonNullableDocs(querySnapshot.docs)
 }
 </script>
 
