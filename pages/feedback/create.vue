@@ -5,6 +5,6 @@
   <layout-page-inner
     width-type="s"
     vertical-padding-type="m">
-    <block-feedback-create />
+    <form-feedback-create />
   </layout-page-inner>
 </template>

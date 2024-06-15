@@ -8,6 +8,8 @@ const currentFeedback = useCurrentRouteFeedback()
     vertical-padding-type="m">
     <ui-header-subpage margin-bottom-type="l" />
 
-    <block-feedback-edit :feedback="currentFeedback" />
+    <form-feedback-edit
+      v-if="currentFeedback"
+      :feedback="currentFeedback" />
   </layout-page-inner>
 </template>

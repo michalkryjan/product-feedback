@@ -31,7 +31,10 @@ useHead({
           :sort-by-options="filtersStore.availableSortingOptions"
           :feedbacks-count="feedbacksStore.feedbacksCountFiltered" />
 
-        <block-feedback-list-default v-if="feedbacksStore.feedbacksCountFiltered > 0" />
+        <ui-feedback-list
+          v-if="feedbacksStore.feedbacksCountFiltered > 0"
+          :items="feedbacksStore.feedbacksFiltered"
+          type="default" />
         <lazy-ui-feedback-not-found
           v-else-if="feedbacksStore.feedbacksCountAll > 0"
           title="There is no feedback in current category yet."
