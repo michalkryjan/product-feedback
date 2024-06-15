@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import type { IUiListSummaryItemProps } from '~/components/ui/ListSummaryItem.vue'
+import type { IFeedbacksGroupedByStatus } from '~/stores/Feedbacks'
 
-const feedbacksStore = useFeedbacksStore()
+interface IUiRoadmapSummaryProps {
+  title: string
+  feedbacksGroups: IFeedbacksGroupedByStatus[]
+}
 
-const listItems = computed<IUiListSummaryItemProps[]>(() => {
-  if (feedbacksStore.feedbacksGroupedByStatus) {
-    return feedbacksStore.feedbacksGroupedByStatus.filter(group => group.status.order !== 1).map(group => {
+const props = defineProps<IUiRoadmapSummaryProps>()
+
+const groupsMapped = computed<IUiListSummaryItemProps[]>(() => {
+  if (props.feedbacksGroups) {
+    return props.feedbacksGroups.filter(group => group.status.order !== 1).map(group => {
       return {
         label: group.status.name,
         count: group.feedbacks.length,
@@ -18,7 +24,7 @@ const listItems = computed<IUiListSummaryItemProps[]>(() => {
 })
 
 const isRoadmapDisabled = computed<boolean>(() => {
-  listItems.value.forEach(group => {
+  groupsMapped.value.forEach(group => {
     if (group.count > 0) {
       return false
     }
@@ -35,7 +41,7 @@ const isRoadmapDisabled = computed<boolean>(() => {
         :level="2"
         typography="title-3"
         color="navy">
-        <span>Roadmap</span>
+        {{ title }}
       </base-headline>
 
       <base-button
@@ -48,6 +54,6 @@ const isRoadmapDisabled = computed<boolean>(() => {
         :disabled="isRoadmapDisabled" />
     </div>
 
-    <ui-list-summary :items="listItems" />
+    <ui-list-summary :items="groupsMapped" />
   </ui-card>
 </template>

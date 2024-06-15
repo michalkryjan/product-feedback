@@ -22,7 +22,9 @@ useHead({
           v-model:filter-by="filtersStore.activeFilters.category"
           :categories="categoriesStore.categories" />
 
-        <block-roadmap-summary />
+        <ui-roadmap-summary
+          title="Roadmap"
+          :feedbacks-groups="feedbacksStore.feedbacksGroupedByStatus" />
       </div>
 
       <div class="col-start-2 col-end-2 h-fit flex flex-col">
