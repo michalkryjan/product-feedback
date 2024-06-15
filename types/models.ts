@@ -36,7 +36,7 @@ export declare namespace Models {
     id: string
     content: string
     replying_to: string
-    created_by: IUser
+    created_by: Omit<IUser, 'id'>
     created_date: Timestamp
   }
 

@@ -7,7 +7,7 @@ export const ReplySchema = z.object({
   id: z.string(),
   content: z.string(),
   replying_to: z.string(),
-  created_by: UserSchema,
+  created_by: UserSchema.omit({ id: true }),
   created_date: z.instanceof(Timestamp)
 })
 
