@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const feedbacksStore = useFeedbacksStore()
+const filtersStore = useFiltersStore()
 
 useHead({
   title: 'Feedback board',
@@ -18,7 +19,11 @@ useHead({
       </div>
 
       <div class="col-start-2 col-end-2 h-fit flex flex-col">
-        <block-board-header />
+        <ui-header-board
+          v-model:sort-by="filtersStore.sortBy"
+          :sort-by-options="filtersStore.availableSortOptions"
+          :feedbacks-count="feedbacksStore.feedbacksCountFiltered" />
+
         <block-feedback-list-default v-if="feedbacksStore.feedbacksCountAll > 0" />
         <block-feedback-not-found v-else />
       </div>
