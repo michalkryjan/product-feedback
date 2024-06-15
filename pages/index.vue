@@ -19,7 +19,7 @@ useHead({
           subtitle="Feedback Board" />
 
         <ui-category-filters
-          v-model:filter-by="filtersStore.filterBy.category"
+          v-model:filter-by="filtersStore.activeFilters.category"
           :categories="categoriesStore.categories" />
 
         <block-roadmap-summary />
@@ -27,8 +27,8 @@ useHead({
 
       <div class="col-start-2 col-end-2 h-fit flex flex-col">
         <ui-header-board
-          v-model:sort-by="filtersStore.sortBy"
-          :sort-by-options="filtersStore.availableSortOptions"
+          v-model:sort-by="filtersStore.activeSorting"
+          :sort-by-options="filtersStore.availableSortingOptions"
           :feedbacks-count="feedbacksStore.feedbacksCountFiltered" />
 
         <block-feedback-list-default v-if="feedbacksStore.feedbacksCountFiltered > 0" />

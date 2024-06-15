@@ -10,7 +10,7 @@ export interface IFilterBy {
 }
 
 export const useFiltersStore = defineStore('filters', () => {
-  const availableSortOptions: ISortByOption[] = [
+  const availableSortingOptions: ISortByOption[] = [
     {
       id: 'upvotes_count-desc',
       name: 'Most Upvotes'
@@ -29,14 +29,14 @@ export const useFiltersStore = defineStore('filters', () => {
     }
   ]
 
-  const sortBy = ref<ISortByOption>(availableSortOptions[0])
-  const filterBy = reactive<IFilterBy>({
+  const activeSorting = ref<ISortByOption>(availableSortingOptions[0])
+  const activeFilters = reactive<IFilterBy>({
     category: undefined
   })
 
   return {
-    availableSortOptions,
-    sortBy,
-    filterBy
+    availableSortingOptions,
+    activeSorting,
+    activeFilters
   }
 })

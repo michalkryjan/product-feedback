@@ -24,11 +24,11 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   })
 
   const feedbacksFiltered = computed(() => {
-    return filterFeedbacks(filtersStore.filterBy, feedbacks.value)
+    return filterFeedbacks(filtersStore.activeFilters, feedbacks.value)
   })
 
   const feedbacksFilteredAndSorted = computed(() => {
-    return sortFeedbacks(filtersStore.sortBy.id, ld_cloneDeep(feedbacksFiltered.value))
+    return sortFeedbacks(filtersStore.activeSorting.id, ld_cloneDeep(feedbacksFiltered.value))
   })
 
   const feedbacksCountAll = computed<number>(() => feedbacks.value?.length)
@@ -95,12 +95,14 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   }
 
   function filterFeedbacks (filters: IFilterBy, feedbacks: Models.IFeedback[]) {
-    return feedbacks.filter(feedback => {
-      if (!filters.category?.name) {
-        return true
-      }
 
-      return feedback?.category_name === filters.category.name
+
+    if (!filters.category?.name) {
+      return feedbacks
+    }
+
+    return feedbacks.filter(feedback => {
+      return feedback?.category_name === filters.category?.name
     })
   }
 
