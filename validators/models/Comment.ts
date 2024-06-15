@@ -6,7 +6,7 @@ import { UserSchema } from './User'
 export const CommentSchema = z.object({
   id: z.string(),
   content: z.string(),
-  created_by: UserSchema,
+  created_by: UserSchema.omit({ id: true }),
   created_date: z.instanceof(Timestamp)
 })
 

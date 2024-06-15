@@ -28,7 +28,7 @@ export declare namespace Models {
   interface IComment {
     id: string
     content: string
-    created_by: IUser
+    created_by: Omit<IUser, 'id'>
     created_date: Timestamp
   }
 
