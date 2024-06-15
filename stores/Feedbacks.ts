@@ -3,7 +3,7 @@ import type { Models } from 'types/models'
 import { extractNonNullableDocs } from '~/firebase/helpers'
 import type { IFilterBy, ISortByOption } from '~/stores/Filters'
 
-interface IFeedbacksGroupedByStatus {
+export interface IFeedbacksGroupedByStatus {
   feedbacks: Models.IFeedback[]
   status: Models.IStatus
 }
@@ -95,8 +95,6 @@ export const useFeedbacksStore = defineStore('feedbacks', () => {
   }
 
   function filterFeedbacks (filters: IFilterBy, feedbacks: Models.IFeedback[]) {
-
-
     if (!filters.category?.name) {
       return feedbacks
     }

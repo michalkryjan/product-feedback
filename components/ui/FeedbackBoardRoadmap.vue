@@ -1,13 +1,19 @@
 <script setup lang="ts">
-const feedbacksStore = useFeedbacksStore()
+import type { IFeedbacksGroupedByStatus } from '~/stores/Feedbacks'
+
+interface IUiFeedbackBoardRoadmapProps {
+  feedbacksGroups: IFeedbacksGroupedByStatus[]
+}
+
+const props = defineProps<IUiFeedbackBoardRoadmapProps>()
+
+const groupsFiltered = computed(() => props.feedbacksGroups.filter(group => group.status.order !== 1))
 </script>
 
 <template>
-  <div
-    v-if="feedbacksStore.feedbacksGroupedByStatus?.length > 0"
-    class="inline-flex gap-x-30 w-full">
+  <div class="inline-flex gap-x-30 w-full">
     <section
-      v-for="group in feedbacksStore.feedbacksGroupedByStatus.slice(1)"
+      v-for="group in groupsFiltered"
       :key="group.status.id"
       class="flex-1">
       <base-header variant="2">

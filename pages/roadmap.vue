@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const feedbacksStore = useFeedbacksStore()
 </script>
 
 <template>
@@ -24,6 +25,8 @@
       </template>
     </ui-header-subpage>
 
-    <block-feedback-list-roadmap />
+    <ui-feedback-board-roadmap
+      v-if="feedbacksStore.feedbacksGroupedByStatus?.length > 0"
+      :feedbacks-groups="feedbacksStore.feedbacksGroupedByStatus" />
   </layout-page-inner>
 </template>

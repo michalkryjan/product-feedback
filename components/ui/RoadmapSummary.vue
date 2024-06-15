@@ -9,18 +9,16 @@ interface IUiRoadmapSummaryProps {
 
 const props = defineProps<IUiRoadmapSummaryProps>()
 
+const groupsFiltered = computed(() => props.feedbacksGroups.filter(group => group.status.order !== 1))
+
 const groupsMapped = computed<IUiListSummaryItemProps[]>(() => {
-  if (props.feedbacksGroups) {
-    return props.feedbacksGroups.filter(group => group.status.order !== 1).map(group => {
-      return {
-        label: group.status.name,
-        count: group.feedbacks.length,
-        markerColor: group.status.order
-      }
-    })
-  } else {
-    return []
-  }
+  return groupsFiltered.value.map(group => {
+    return {
+      label: group.status.name,
+      count: group.feedbacks.length,
+      markerColor: group.status.order
+    }
+  })
 })
 
 const isRoadmapDisabled = computed<boolean>(() => {
