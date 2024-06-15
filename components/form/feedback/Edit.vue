@@ -133,10 +133,10 @@ watch(values, () => {
 
         <base-button
           text="Cancel"
-          href="/"
           size="s2"
           theme="navy"
-          label-color="white" />
+          label-color="white"
+          @click="$router.back()" />
 
         <base-button
           type="submit"

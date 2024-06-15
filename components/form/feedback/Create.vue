@@ -106,10 +106,10 @@ watch(values, () => {
       <div class="inline-flex gap-x-16 justify-end w-full">
         <base-button
           text="Cancel"
-          href="/"
           size="s2"
           theme="navy"
-          label-color="white" />
+          label-color="white"
+          @click="$router.back()" />
 
         <base-button
           type="submit"
