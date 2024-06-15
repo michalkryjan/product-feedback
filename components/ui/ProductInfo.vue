@@ -1,4 +1,10 @@
 <script setup lang="ts">
+interface IUiProductInfoProps {
+  title: string
+  subtitle: string
+}
+
+const props = defineProps<IUiProductInfoProps>()
 </script>
 
 <template>
@@ -9,11 +15,11 @@
       <base-headline
         :level="1"
         typography="title-2">
-        Frontend Mentor
+        {{ title }}
       </base-headline>
 
       <base-content typography="text-body-2">
-        Feedback Board
+        {{ subtitle }}
       </base-content>
     </div>
   </ui-card>

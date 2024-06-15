@@ -13,7 +13,9 @@ useHead({
     vertical-padding-type="m">
     <div class="grid grid-cols-[26rem_1fr] w-full gap-x-30">
       <div class="col-start-1 col-end-1 flex flex-col gap-24">
-        <block-product-info />
+        <ui-product-info
+          title="Your app name"
+          subtitle="Feedback Board" />
         <block-category-filters />
         <block-roadmap-summary />
       </div>
