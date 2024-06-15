@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Models } from 'types/models'
+import type { Models } from 'types/models'
 
-interface IBlockCommentListProps {
+interface IUiCommentListProps {
   data: Models.IComment[]
 }
 
-const props = defineProps<IBlockCommentListProps>()
+const props = defineProps<IUiCommentListProps>()
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const props = defineProps<IBlockCommentListProps>()
       typography="title-3"
       color="navy"
       class="mb-28">
-      {{ '4 comments' }}
+      {{ `${ data.length } comments` }}
     </base-headline>
 
     <ui-comment

@@ -28,7 +28,7 @@ const editFeedbackUrl = computed<string | undefined>(() =>
         :data="currentFeedback"
         :link-to-details="false" />
 
-      <block-comment-list :comments-ids="currentFeedback.comments" />
+      <ui-comment-list :data="[]" />
 
       <ui-comment-create
         title="Add comment"
