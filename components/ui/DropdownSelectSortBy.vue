@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type DropdownSelect from '~/components/ui/DropdownSelect.vue'
-import type { IDropdownSelectOption, IUiDropdownSelectProps } from './DropdownSelect.vue'
+import type DropdownSelect from '~/components/ui/DropdownSelect.vue';
+import type { IDropdownSelectOption, IUiDropdownSelectProps } from './DropdownSelect.vue';
 
 interface IUiDropdownSelectSortByProps extends Omit<IUiDropdownSelectProps, 'ariaLabelOpened' | 'ariaLabelClosed'> {}
 
@@ -31,7 +31,7 @@ const selectedOption = computed<IDropdownSelectOption | undefined>({
         <base-content
           tag="span"
           typography="text-label-3"
-          color="light"
+          color="gray-alt1"
           :class="[
             'transition-opacity',
             dropdownSelectRef?.isOpened ? 'opacity-75' : ''

@@ -10,17 +10,17 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "verbatimModuleSyntax": false,
     "paths": {
+      "#imports": [
+        "./.nuxt/imports.d.ts"
+      ],
       "types/*": [
         "./types/*"
       ],
       "*": [
         "types/*.d.ts"
-      ],
-      "#imports": [
-        ".nuxt/imports.d.ts"
       ],
       "~/*": [
         "./*"
