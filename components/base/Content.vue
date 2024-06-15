@@ -26,6 +26,7 @@ const configColor = {
   light: 'text-light-1',
   blue: 'text-blue-1',
   gray: 'text-gray-1',
+  'gray-alt1': 'text-gray-2',
   navy: 'text-navy-1'
 }
 

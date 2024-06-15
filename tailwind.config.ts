@@ -30,9 +30,6 @@ export default {
       transparent: 'transparent',
       white: '#FFFFFF',
       black: '#000000',
-      light: {
-        1: '#F2F4FE'
-      },
       lightBlue: {
         1: '#62BCFA',
         2: '#8397F8'
@@ -46,7 +43,8 @@ export default {
         2: '#F2F4FF',
         3: '#F7F8FD',
         4: '#CFD7FF',
-        5: '#979797'
+        5: '#979797',
+        6: '#CDD2EE'
       },
       purple: {
         1: '#AD1FEA',
@@ -105,6 +103,7 @@ export default {
       18: '1.8rem',
       20: '2rem',
       24: '2.4rem',
+      26: '2.6rem',
       28: '2.8rem',
       30: '3rem',
       32: '3.2rem',
@@ -114,6 +113,7 @@ export default {
       52: '5.2rem',
       54: '5.4rem',
       56: '5.6rem',
+      68: '6.8rem',
       80: '8rem',
       90: '9rem',
       min: 'min-content',

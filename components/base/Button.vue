@@ -8,7 +8,7 @@ export interface IBaseButtonProps {
   size?: 'fit' | 's1' | 's2' | 's3' | 's4'
   theme?: 'gray' | 'blue' | 'navy' | 'darkNavy' | 'red' | 'purple' | 'transparent'
   labelSize?: 's1' | 's2'
-  labelColor?: 'blue' | 'white' | 'navy'
+  labelColor?: 'blue' | 'white' | 'navy' | 'gray'
   isUnderline?: boolean
   isOneLine?: boolean
   isDisabled?: boolean
@@ -49,7 +49,8 @@ const configWrapperSize: Record<NonNullable<IBaseButtonProps['size']>, string> =
 const configlabelColor: Record<NonNullable<IBaseButtonProps['labelColor']>, string> = {
   white: 'text-white',
   blue: 'text-blue-1',
-  navy: 'text-navy-1'
+  navy: 'text-navy-1',
+  gray: 'text-gray-1'
 }
 
 const configLabelSize: Record<NonNullable<IBaseButtonProps['labelSize']>, string> = {
