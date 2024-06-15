@@ -87,7 +87,7 @@ const buttonUpvoteClasses = computed<string[]>(() => {
           class="mb-4 order-2">
           <nuxt-link
             :to="detailsUrl"
-            class="transition-colors hover:text-blue-1">
+            :class="detailsUrl ? 'transition-colors hover:text-blue-1' : ''">
             <span v-html="useOrphans(data.title)" />
           </nuxt-link>
         </base-headline>
