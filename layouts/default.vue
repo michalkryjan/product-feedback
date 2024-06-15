@@ -11,7 +11,7 @@ async function updateStoresData () {
   ])
 }
 
-await useAsyncData('stores_data', () => updateStoresData()).then(() => true)
+await useAsyncData('stores/data', () => updateStoresData()).then(() => true)
 </script>
 
 <template>
